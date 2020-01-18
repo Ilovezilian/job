@@ -1,0 +1,3480 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE DispMask PUBLIC "-//Test Example//DTD DispMask//DE" "disp-masks.dtd" >
+
+<DispMask version="1.0">
+
+    <InputPanel
+		id          ="tmp_ktoauskunft"
+		alignment	="CENTER;CENTER">
+
+         <TableInput
+            id              ="tbl_kontoauskunft"
+            posY            ="3"
+            records         ="16"
+            rows            ="16"
+            columns         ="6"
+            recordCaching	="64"
+            buttonSpacing	="10"
+            tableSpacing	="10">
+
+	            <TableButton
+					id			 ="tbl_kontoauskunft"
+					buttonTyp	 ="first"
+					content		 ="first"
+					key			 ="KEY_SCROLL_FIRST"
+					src			 ="bFirst.gif"
+					src_inactive ="bIFirst.gif"
+					active		 ="n"/>
+
+				<TableButton
+					id			 ="tbl_kontoauskunft"
+					buttonTyp	 ="prev"
+					content		 ="prev"
+					key			 ="KEY_SCROLL_PREV"
+					src			 ="bBack.gif"
+					src_inactive ="bIBack.gif"
+					active		 ="n"/>
+
+				<TableButton
+					id			 ="tbl_kontoauskunft"
+					buttonTyp	 ="next"
+					content		 ="next"
+					key			 ="KEY_SCROLL_NEXT"
+					src			 ="bNext.gif"
+					src_inactive ="bINext.gif"
+					active		 ="n"/>
+
+				<TableButton
+					id			 ="tbl_kontoauskunft"
+					buttonTyp	 ="last"
+					content		 ="last"
+					key			 ="KEY_SCROLL_LAST"
+					src			 ="bLast.gif"
+					src_inactive ="bILast.gif"
+					active		 ="n"/>
+
+                <Column
+                    id			 ="tbl_kontoauskunft"
+                    name		 ="std_bb_ktoaus_ktonr"
+                    typ          ="string"
+                    formatlength ="12"/>
+
+                <Column
+                    id			 ="tbl_kontoauskunft"
+                    name		 ="std_bb_ktoaus_kurzname"
+                    maxlength	 ="16"
+                    typ          ="string"
+                    formatlength ="16"/>
+
+                <Column
+                    id			 ="tbl_kontoauskunft"
+                    name		 ="std_bb_ktoaus_saldo"
+                    precomma	 ="10"
+                    typ          ="amount"
+                    formatlength ="15"/>
+
+                <Column
+                    id			 ="tbl_kontoauskunft"
+                    name		 ="std_bb_ktoaus_wkz"
+                    maxlength	 ="5"
+                    typ          ="string"
+                    formatlength ="5"/>
+
+                <Column
+                    id			 ="tbl_kontoauskunft"
+                    name		 ="std_bb_ktoaus_bezeichnung"
+                    maxlength	 ="20"
+                    typ          ="string"
+                    formatlength ="25"/>
+
+                <Column
+                    id			 ="tbl_kontoauskunft"
+                    name		 ="std_bb_ktoaus_limit"
+                    precomma	 ="7"
+                    typ          ="amount"
+                    formatlength ="10"/>
+
+        </TableInput>
+
+
+    </InputPanel>
+
+
+
+	<InputPanel
+		id          ="tmp_WpHeaderPanel02">
+
+		<Label
+			id			="lbl_risiko"
+			posX		="35"
+			posY		="5"
+			content		="wp_rikl"/>
+
+		<TextInput
+			id          ="txt_risiko"
+			posX        ="40"
+			posY        ="5"
+			typ         ="upper"
+			maxlength   ="1"
+			editable    ="n"/>
+
+	</InputPanel>
+
+
+	<InputPanel
+		id			="tmp_WpHeaderPanel01">
+
+		<Label
+			id			="lbl_depotnr"
+			posX		="5"
+			posY		="5"
+			content		="wp_depotnr3"/>
+
+		<TextInput
+			id          ="txt_depotnr"
+			posX        ="10"
+			posY        ="5"
+			typ         ="numeric0"
+			maxlength   ="10"
+			editable    ="n"/>
+
+		<TextInput
+			id          ="txt_depotnr1"
+			posX        ="10"
+			posY        ="5"
+			typ         ="numeric0"
+			maxlength   ="2"
+			editable    ="n"
+			visible		="n"
+			spaceRight	="0"/>
+
+		<TextInput
+			id          ="txt_depotnr2"
+			posX        ="15"
+			posY        ="5"
+			typ         ="numeric0"
+			maxlength   ="8"
+			editable    ="n"
+			visible		="n"
+			spaceLeft	="0"/>
+
+		<Label
+			id			="lbl_dummy01"
+			posX		="30"
+			posY		="5"
+			maxlength   ="5"/>
+
+		<Label
+			id			="lbl_geldkto"
+			posX		="5"
+			posY		="10"
+			content		="wp_geldkto"/>
+
+		<TextInput
+			id          ="txt_geldkto"
+			posX        ="10"
+			posY        ="10"
+			spanX		="10"
+			typ         ="numeric0"
+			maxlength   ="10"
+			editable    ="n"/>
+
+		<Label
+			id			="lbl_saldo"
+			posX		="15"
+			posY		="10"
+			content		="wp_saldo"/>
+
+		<Label
+			id          ="lbl_wkz"
+			posX        ="20"
+			posY        ="10"
+			typ         ="upper"
+			editable    ="n"/>
+
+		<AmountInput
+			id          ="amt_saldo"
+			posX        ="25"
+			posY        ="10"
+			precomma    ="10"
+			editable    ="n"/>
+
+	</InputPanel>
+
+	<InputPanel
+		id			="tmp_WpAuftraggeber">
+
+		<Label
+			id			="lbl_auftraggeber"
+			posX		="5"
+			posY		="5"
+			content		="wp_auftraggeber"/>
+
+		<TextInput
+			id          ="txt_auftraggeber"
+			posX        ="10"
+			posY        ="5"
+			maxlength   ="20"
+			spaceRight  ="15"/>
+
+		<RadiobuttonInput
+			id			="rdb_depotinhaber"
+			name        ="auftraggeber"
+			posX		="20"
+			posY		="5"
+			content		="0"
+			text        ="wp_depotinhaber"
+			selected    ="y"/>
+
+		<RadiobuttonInput
+			id			="rdb_bevollmaechtigter"
+			name        ="auftraggeber"
+			posX		="25"
+			posY		="5"
+			content		="1"
+			text        ="wp_bevollm"/>
+
+	</InputPanel>
+
+	<InputPanel
+		id			="tmp_WpGeschaeftsArt">
+
+		<InputPanel
+			id          ="pan_geschartpanel"
+			posX        ="5"
+			posY        ="5"
+			border		="n">
+
+			<Label
+				id			="lbl_geschart"
+				posX		="5"
+				posY		="5"
+				content		="wp_geschart"
+				spaceRight  ="15"/>
+	
+			<RadiobuttonInput
+				id			="rdb_kauf"
+				name        ="geschart"
+				posX		="15"
+				posY		="5"
+				content		="K"
+				text        ="wp_kkauf"
+				selected    ="y"
+				handling    ="c"
+				fct         ="rdb_kauf()"/>
+	
+			<RadiobuttonInput
+				id			="rdb_vkauf"
+				name        ="geschart"
+				posX		="20"
+				posY		="5"
+				content		="V"
+				text        ="wp_kvkauf"
+				handling    ="c"
+				fct         ="rdb_vkauf()"/>
+	
+			<Label
+				id			="lbl_zeich"
+				posX		="25"
+				posY		="5"
+				content		="wp_kzeich"
+				visible		="n"/>
+
+		</InputPanel>
+		
+		<!-- 18.09.2007 MaWa - Langtext mit 75 Zeichen anzeigen -->
+		<InputPanel
+				id          ="pan_rispanel"
+				posX        ="10"
+				posY        ="5"
+				border		="n"
+				alignment   ="WEST;NORTH">
+	
+				<Label
+					id			="lbl_wpRisiko"
+					posX		="20"
+					posY		="10"
+					content		="wp_risiko"/>
+	
+				<TextInput
+					id          ="txt_wpRisiko"
+					posX        ="25"
+					posY        ="10"
+					maxlength   ="1"
+					editable    ="n"/>
+	
+		</InputPanel>
+		
+	</InputPanel>
+	
+	<InputPanel
+		id			="tmp_OrderPanel"
+		label       ="wp_ord">
+
+		<InputPanel
+			id          ="pan_nompanel"
+			posX        ="5"
+			posY        ="5"
+			border		="n">
+
+			<Label
+				id			="lbl_nominale"
+				posX		="5"
+				posY		="5"
+				content		="wp_nominale"/>
+
+			<AmountInput
+				id           ="amt_nominale"
+				posX         ="10"
+				posY         ="5"
+				precomma     ="9"
+				postcomma    ="3"
+				sign		 ="n"
+				formatlength ="15"
+				triggerMode  ="onChange"
+				event		 ="trWpNominale"/>
+
+			<Label
+				id			="lbl_einheit"
+				posX		="15"
+				posY		="5"/>
+
+			<Label
+				id			="lbl_zeichnungstext04"
+				posX		="20"
+				posY		="5"
+				visible		="n"/>
+
+			<TextInput
+				id			="txt_minEinheit"
+				posX		="25"
+				posY		="5"
+				typ			="numeric"
+				maxlength	="4"
+				visible		="n"/>
+
+			<Label
+				id			="lbl_zeichnungstext05"
+				posX		="30"
+				posY		="5"
+				visible		="n"/>
+
+			<Label
+				id			="lbl_wknisin"
+				posX		="5"
+				posY		="10"
+				content		="wp_wknisin"/>
+
+
+			<TextInput
+				id           ="txt_wknisin"
+				posX         ="10"
+				posY         ="10"
+				maxlength    ="12"
+				formatlength ="14"
+    			typ          ="upper"
+				triggerMode  ="onChange"
+				textAlign	 ="EAST"
+				event		 ="trWpWknIsin"/>
+
+			<!-- 18.09.2007 MaWa - Langtext mit 75 Zeichen anzeigen -->
+			<TextInput
+				id          ="txt_wknKurz"
+				posX        ="10"
+				posY        ="15"
+				spanX		="35"
+				maxlength   ="75"
+				editable    ="n"
+				visible		="n"/>
+
+			<Label
+				id			="lbl_fondtext"
+				posX		="5"
+				posY		="20"
+				spanX		="100"
+				visible		="n"/>
+
+		</InputPanel>
+
+		<InputPanel
+			id          ="pan_boerse"
+			posX        ="5"
+			posY        ="15"
+			spanX       ="30">
+
+			<Label
+				id			="lbl_boerse"
+				posX		="5"
+				posY		="15"
+				content		="wp_boerse"/>
+
+			<ComboboxInput
+				id          ="cmb_bokuerzel"
+				posX        ="10"
+				posY        ="15"
+				width       ="4"
+				popupWidth  ="30"
+				lines       ="8"
+				show        ="value"
+				triggerMode  ="onChange"
+				event		 ="trWpBoerse"/>
+
+			<Label
+				id			="lbl_txtboerse"
+				posX		="15"
+				posY		="15"
+				content		="wp_autoboers"/>
+
+			<!-- MaRe 22.10.2007 WP2-Projekt - wird nicht mehr benoetigt
+			<Label
+				id			="lbl_txtboersaen"
+				posX		="15"
+				posY		="20"
+				content		="wp_boersaen"
+				background  ="ColorError"
+                font1       ="InputFontBold1"
+				font2       ="InputFontBold2"/>
+			-->
+			
+		</InputPanel>
+
+		<InputPanel
+			id          ="pan_limitpanel"
+			posX        ="5"
+			posY        ="20"
+			spanX       ="30"
+			spaceBottom	="20"
+			spaceTop	="25">
+
+			<RadiobuttonInput
+				id			="rdb_unlimitiert"
+				name        ="limit"
+				posX		="0"
+				posY		="10"
+				content		="N"
+				text        ="wp_unlimitiert"
+				selected    ="y"
+				triggerMode  ="onChange"
+				event		 ="trWpLimitiert"/>
+
+			<TextInput
+				id          ="txt_unlZusatz"
+				posX        ="5"
+				posY        ="10"
+				maxlength   ="10"
+				editable    ="n"/>
+
+			<RadiobuttonInput
+				id			="rdb_limitiert"
+				name        ="limit"
+				posX		="10"
+				posY		="10"
+				content		="J"
+				text        ="wp_limit"
+				triggerMode  ="onChange"
+				event		 ="trWpLimitiert"/>
+
+			<AmountInput
+				id			="amt_limit"
+				posX		="15"
+				posY		="10"
+				precomma    ="7"
+				postcomma   ="3"
+				sign		="n"
+				editable    ="n"
+				visible     ="n"
+				spaceRight  ="10"/>
+
+			<CheckboxInput
+				id          ="chk_limitZusatz"
+				posX        ="20"
+				posY        ="10"
+				content     ="J;N"
+				visible		="n"
+				editable	="n"/>
+
+			<TextInput
+				id          ="txt_limitZusatz"
+				posX        ="25"
+				posY        ="10"
+				spaceRight  ="10"
+				visible     ="n"/>
+
+		</InputPanel>
+
+		<InputPanel
+			id          ="pan_zeichnung"
+			posX        ="5"
+			posY        ="25"
+			spanX       ="30"
+			spaceTop	="25"
+			visible     ="n">
+
+			<Label
+				id			="lbl_frist"
+				posX		="5"
+				posY		="5"
+				content		="Zeichnungsfrist"/>
+
+			<DateInput
+				id			="dat_datumStart"
+				posX		="15"
+				posY		="5"
+				editable    ="n"/>
+
+			<Label
+				id			="lbl_strich01"
+				posX		="20"
+				posY		="5"
+				content		="-"/>
+
+			<DateInput
+				id			="dat_datumEnde"
+				posX		="25"
+				posY		="5"
+				editable    ="n"/>
+
+			<Label
+				id			="lbl_space"
+				posX		="30"
+				posY		="5"
+				maxlength   ="5"/>
+
+			<Label
+				id			="lbl_handelstag"
+				posX		="35"
+				posY		="5"
+				content		="1. Handelstag"/>
+
+			<DateInput
+				id			="dat_datumHandelstag"
+				posX		="40"
+				posY		="5"
+				editable    ="n"/>
+
+		</InputPanel>
+
+		<InputPanel
+			id          ="pan_zlimit"
+			posX        ="5"
+			posY        ="30"
+			spanX       ="40"
+			spaceTop    ="20"
+			visible     ="n">
+
+			<Label
+				id			="lbl_zeichnungstext01"
+				posX		="5"
+				posY		="5"
+				spanX       ="15"
+				maxlength   ="20"/>
+
+			<Label
+				id          ="lbl_limitWkz"
+				posX        ="10"
+				posY        ="5"
+				typ         ="upper"
+				editable    ="n"/>
+
+			<Label
+				id			="lbl_preisVon"
+				posX		="15"
+				posY		="5"
+				content		="wp_spvon"
+				visible		="n"/>
+
+			<AmountInput
+				id          ="amt_preisVon"
+				posX        ="20"
+				posY        ="5"
+				precomma    ="7"
+				postcomma   ="3"
+				sign		="n"/>
+
+			<Label
+				id			="lbl_preisBis"
+				posX		="25"
+				posY		="5"
+				content		="wp_spbis"
+				visible		="n"/>
+
+			<AmountInput
+				id          ="amt_preisBis"
+				posX        ="30"
+				posY        ="5"
+				precomma    ="7"
+				postcomma   ="3"
+				sign		="n"/>
+
+			<Label
+				id			="lbl_zeichnungstext02"
+				posX		="5"
+				posY		="10"/>
+
+			<Label
+				id          ="lbl_zlimitWkz"
+				posX        ="8"
+				posY        ="10"
+				typ         ="upper"
+				editable    ="n"/>
+
+			<AmountInput
+				id          ="amt_zlimit"
+				posX        ="10"
+				posY        ="10"
+				precomma    ="7"
+				postcomma   ="3"
+				sign		="n"
+				triggerMode  ="onChange"
+				event		 ="trWpLimit"/>
+
+			<Label
+				id			="lbl_zeichnungstext03"
+				posX		="15"
+				posY		="10"
+				visible		="n"/>
+
+		</InputPanel>
+
+		<Label
+			id			="lbl_leerzeile01"
+			posX		="5"
+			posY        ="33"
+			maxlength   ="65"
+			spanX       ="50"/>
+
+		<InputPanel
+			id          ="pan_konto"
+			posX        ="5"
+			posY        ="35"
+			spanX       ="30">
+
+			<InputPanel
+				id              ="pan_datum"
+				posY            ="15"
+				spanX           ="50"
+				spaceLeft       ="0">
+
+				<InputPanel
+					id              ="pan_datAb"
+					posX            ="5"
+					posY            ="15"
+					visible         ="n"
+					spaceLeft       ="0">
+
+					<Label
+						id			="lbl_gueltigab"
+						posX		="5"
+						posY		="15"
+						content		="wp_orgueltab"/>
+
+					<DateInput
+						id          ="dat_gueltigab"
+						posX        ="10"
+						posY        ="15"
+						typ	   ="dd.mm.yyyy"
+						triggerMode  ="onChange"
+						event		 ="trWpGueltigAb">
+
+						<CalendarButton
+							id        ="dat_gueltigab"
+							content   ="..."
+							typ ="week"
+							maxlength ="3"
+							lines	  ="1"/>
+
+					</DateInput>
+
+				</InputPanel>
+
+				<Label
+					id			="lbl_gueltigbis"
+					posX		="15"
+					posY		="15"
+					content		="wp_orgueltbis"/>
+
+				<DateInput
+					id          ="dat_gueltigbis"
+					posX        ="20"
+					posY        ="15"
+					triggerMode  ="onChange"
+					event		 ="trWpGueltigBis">
+
+					<CalendarButton
+						id        ="dat_gueltigbis"
+						content   ="..."
+						maxlength ="3"
+						typ="week"
+						lines	  ="1"/>
+
+				</DateInput>
+
+			</InputPanel>
+
+			<Label
+				id			="lbl_konto"
+				posX		="5"
+				posY		="20"
+				spanX       ="10"
+				content		="wp_abw"/>
+
+			<ComboboxInput
+				id			="cmb_ktonr1"
+				posX		="15"
+				posY		="20"
+				width 		="3"
+				popupWidth	="25"
+				lines		="10"
+				spaceRight  ="0"
+				triggerMode  ="onChange"
+				event		 ="trWpVerrKonto1"/>
+
+			<TextInput
+				id			="txt_ktonr2"
+				posX		="20"
+				posY		="20"
+				typ         ="numeric0"
+				maxlength   ="7"
+				editable    ="n"
+				spaceLeft   ="0"/>
+
+		</InputPanel>
+
+	</InputPanel>
+
+	<InputPanel
+		id          ="tmp_boersenname"
+		spaceTop    ="20"
+		spaceBottom ="20">
+
+		<Label
+			id      ="lbl_bokuerzel"
+			posX    ="5"
+			posY    ="5"
+			content ="wp_bokuerzel"/>
+
+		<TextInput
+			id          ="txt_bokuerzel"
+			posX        ="10"
+			posY        ="5"
+			maxlength   ="4"
+			event		="trBoKuerzel"
+            required    ="y"
+			label		="lbl_bokuerzel"
+			typ         ="upper"/>
+
+		<Label
+			id      ="lbl_boname"
+			posX    ="5"
+			posY    ="10"
+			content ="wp_boname"/>
+
+		<TextInput
+			id          ="txt_boname"
+			posX        ="10"
+			posY        ="10"
+			spanX       ="20"
+			maxlength   ="50"/>
+
+	</InputPanel>
+
+	<InputPanel
+		id          ="tmp_mustertext"
+		spaceTop    ="20"
+		spaceBottom ="20">
+
+		<Label
+			id      ="lbl_mustbez"
+			posX    ="5"
+			posY    ="5"
+			content ="wp_mustbez"/>
+
+		<TextInput
+			id          ="txt_mustbez"
+			posX        ="10"
+			posY        ="5"
+			maxlength   ="20"
+			event		="trMuKuerzel"
+			typ         ="upper"/>
+
+		<Label
+			id      ="lbl_musttext"
+			posX    ="5"
+			posY    ="10"
+			content ="wp_musttext"/>
+
+		<TextAreaInput
+			id          ="txt_musttext"
+			posX        ="5"
+			posY        ="15"
+			spanX       ="20"
+			linelength  ="80"
+			lines       ="7"/>
+
+	</InputPanel>
+
+	<InputPanel
+		id          ="tmp_KundenPanel">
+		<TextInput
+			id                 ="txt_kundenname"
+			posX               ="5"
+			posY               ="5"
+			maxlength          ="20"
+			editable           ="n"
+			border             ="n"
+			font1       	   ="LabelFont1"
+			font2       	   ="LabelFont2"/>
+
+		<TextInput
+			id                 ="txt_titel"
+			posX               ="10"
+			posY               ="5"
+			maxlength          ="14"
+			editable           ="n"
+			border             ="n"
+			font1       	   ="LabelFont1"
+			font2       	   ="LabelFont2"/>
+
+		<TextInput
+			id                 ="txt_kundennr"
+			posX               ="15"
+			posY               ="5"
+			typ                ="numeric"
+			maxlength          ="7"
+			editable           ="n"
+			border             ="n"
+			font1       	   ="LabelFont1"
+			font2       	   ="LabelFont2"
+			spaceRight         ="10"/>
+
+		<TextInput
+			id                 ="txt_auftraggeber"
+			posX               ="20"
+			posY               ="5"
+			maxlength          ="16"
+			editable           ="n"
+			border             ="n"
+			font1       	   ="LabelFont1"
+			font2       	   ="LabelFont2"/>
+
+		<DateInput
+			id                 ="dat_gebdat"
+			posX               ="25"
+			posY               ="5"
+			editable           ="n"
+			border             ="n"
+			font1       	   ="LabelFont1"
+			font2       	   ="LabelFont2"/>
+
+	</InputPanel>
+
+	<InputPanel
+		id			="tmp_WpGeschaeftsArtPruefung">
+
+		<Label
+			id			="lbl_geschart"
+			posX        ="5"
+			posY		="5"
+			content		="wp_kauforder"/>
+
+		<Label
+			id			="lbl_pruef"
+			posX        ="5"
+			posY		="10"
+			content		="wp_ordpruef"/>
+
+		<Label
+			id			="lbl_erkannt"
+			posX        ="5"
+			posY		="15"
+			content		="wp_orderkannt"/>
+
+	</InputPanel>
+
+	<InputPanel
+		id			="tmp_OrderGegenwert">
+
+		<Label
+			id			="lbl_gegenwert"
+			posX        ="5"
+			posY		="5"
+			content		="wp_ordergegenw"/>
+
+		<Label
+			id          ="lbl_gegenwertWkz"
+			posX        ="10"
+			posY        ="5"
+			typ         ="upper"
+			maxlength   ="4"
+			editable    ="n"/>
+
+		<AmountInput
+			id          ="amt_gegenwert"
+			posX        ="15"
+			posY        ="5"
+			precomma    ="11"
+			postcomma   ="3"
+			editable    ="n"/>
+
+	</InputPanel>
+
+	<InputPanel
+		id			="tmp_WpGeschaeftsArtAnnahme">
+
+		<Label
+			id			="lbl_geschart"
+			posX        ="5"
+			posY		="5"
+			spanX       ="20"
+			content		="wp_orderentg"/>
+
+		<Label
+			id			="lbl_pruef"
+			posX        ="5"
+			posY		="10"
+			content		="wp_auftragsnr"/>
+
+		<TextInput
+			id          ="txt_auftragsnr"
+			posX        ="10"
+			posY        ="10"
+			spanX       ="15"
+			maxlength   ="16"
+			editable    ="n"/>
+
+		<Label
+			id			="lbl_auftrzeit"
+			posX        ="5"
+			posY		="15"
+			content		="wp_auftrzeit"/>
+
+		<DateInput
+			id			="dat_auftrDatum"
+			posX		="10"
+			posY		="15"
+			editable    ="n"/>
+
+		<Label
+			id			="lbl_auftrKomma"
+			posX        ="15"
+			posY		="15"
+			content		=", "/>
+
+		<TimeInput
+			id			="tim_auftrTime"
+			posX		="20"
+			posY		="15"
+			editable    ="n"/>
+
+		<Label
+			id			="lbl_erfzeit"
+			posX        ="5"
+			posY		="20"
+			content		="wp_erfzeit"/>
+
+		<DateInput
+			id			="dat_erfDatum"
+			posX		="10"
+			posY		="20"
+			editable    ="n"/>
+
+		<Label
+			id			="lbl_erfKomma"
+			posX        ="15"
+			posY		="20"
+			content		=", "/>
+
+		<TimeInput
+			id			="tim_erfTime"
+			posX		="20"
+			posY		="20"
+			editable    ="n"/>
+
+	</InputPanel>
+
+	<InputPanel
+		id			="tmp_WpAuftragBearb">
+
+		<Label
+			id			="lbl_pruef"
+			posX        ="5"
+			posY		="10"
+			content		="wp_auftragsnr"/>
+
+		<TextInput
+			id          ="txt_auftragsnr"
+			posX        ="10"
+			posY        ="10"
+			spanX       ="15"
+			maxlength   ="16"
+			editable    ="n"/>
+
+		<Label
+			id			="lbl_auftrzeit"
+			posX        ="5"
+			posY		="15"
+			content		="wp_auftrzeit"/>
+
+		<DateInput
+			id			="dat_auftrDatum"
+			posX		="10"
+			posY		="15"
+			editable    ="n"/>
+
+		<Label
+			id			="lbl_auftrkomma"
+			posX        ="15"
+			posY		="15"
+			content		=", "/>
+
+		<TimeInput
+			id			="tim_auftrZeit"
+			posX		="20"
+			posY		="15"
+			editable    ="n"/>
+
+		<Label
+			id			="lbl_orderstatus"
+			posX        ="5"
+			posY		="20"
+			content		="wp_orderstatus"/>
+
+		<TextInput
+			id          ="txt_orderstatus"
+			posX        ="10"
+			posY        ="20"
+			spanX       ="15"
+			maxlength   ="22"
+			editable    ="n"/>
+
+	</InputPanel>
+
+	<InputPanel
+		id          ="tmp_empfaenger01"
+		alignment   ="WEST;NORTH">
+
+		<Label
+			id			="lbl_empf"
+			posX		="5"
+			posY		="5"
+			content		="wp_empf"/>
+
+		<ComboboxInput
+			id      ="cmb_filiale"
+			posX    ="10"
+			posY    ="5"
+			width   ="30"
+			lines   ="8"
+			content =""
+			triggerMode="onLeave"
+			event	="trFiliale"
+			handling="s"
+			label   ="lbl_empf"/>
+
+		<!-- <Label
+			id			="lbl_team"
+			posX		="5"
+			posY		="10"
+			content		="wp_team"/>
+
+		<TextInput
+			id          ="txt_team"
+			posX        ="10"
+			posY        ="10"
+			maxlength   ="4"/> -->
+
+	</InputPanel>
+
+	<InputPanel
+		id          ="tmp_empfaenger02"
+		alignment   ="EAST;NORTH">
+
+		<Label
+			id			="lbl_tel02"
+			posX		="5"
+			posY		="5"
+			content		="wp_tel02"/>
+
+		<TextInput
+			id          ="txt_tel02"
+			posX        ="10"
+			posY        ="5"
+			maxlength   ="16"
+			editable    ="n"/>
+
+		<Label
+			id			="lbl_fax"
+			posX		="5"
+			posY		="10"
+			content		="wp_fax02"/>
+
+		<TextInput
+			id          ="txt_fax"
+			posX        ="10"
+			posY        ="10"
+			maxlength   ="16"
+			editable    ="n"/>
+
+	</InputPanel>
+
+
+	<InputPanel
+		id			="tmp_orderdatenmanuell">
+
+		<Label
+			id			="lbl_auftr"
+			posX        ="5"
+			posY		="10"
+			content		="wp_auftragsnr"/>
+
+		<TextInput
+			id          ="txt_auftragsnr"
+			posX        ="10"
+			posY        ="10"
+			maxlength   ="16"/>
+
+		<Label
+			id			="lbl_auftrzeit"
+			posX        ="15"
+			posY		="10"
+			content		="wp_auftrzeit"/>
+
+		<DateInput
+			id			="dat_auftrDatum"
+			posX		="20"
+			posY		="10"/>
+
+		<Label
+			id			="lbl_auftrkomma"
+			posX        ="25"
+			posY		="10"
+			content		=", "/>
+
+		<TimeInput
+			id			="tim_auftrTime"
+			posX		="30"
+			posY		="10"/>
+
+		<Label
+			id			="lbl_geschart"
+			posX		="5"
+			posY		="15"
+			content		="wp_geschart"
+			spaceRight  ="15"/>
+
+		<ComboboxInput
+			id          ="cmb_geschart"
+			posX        ="10"
+			posY        ="15"
+			width       ="10"
+			triggerMode	="onLeave"
+			fct			="setLabelGeschArt()"
+			handling	="c"
+			lines       ="8"
+			content     ="wp_cmb_geschart"
+			selected    ="K"/>
+
+		<Label
+			id			="lbl_wknisin"
+			posX		="5"
+			posY		="20"
+			content		="wp_wknisin"/>
+
+		<TextInput
+			id           ="txt_wknisin"
+			posX         ="10"
+			posY         ="20"
+			typ          ="upper"
+			textAlign	 ="EAST"
+			maxlength    ="12"
+			event		 ="trWknIsin"/>
+
+<!-- DiRe 20.02.2004 active="n" eingetragen		-->
+		<TextInput
+			id          ="txt_wknKurz"
+			posX        ="15"
+			posY        ="20"
+			spanX       ="40"
+			maxlength   ="35"
+			editable    ="n"
+			active		="n"
+			border      ="n"
+			font1       ="LabelFont1"
+			font2       ="LabelFont2"/>
+
+		<Label
+			id			="lbl_nominale"
+			posX		="5"
+			posY		="25"
+			content		="wp_nominale"/>
+
+		<AmountInput
+			id           ="amt_nominale"
+			posX         ="10"
+			posY         ="25"
+			precomma     ="9"
+			postcomma    ="3"
+			formatlength ="15"
+			fct			 ="checkNominale()"
+			handling	 ="c"/>
+
+		<TextInput
+			id			="txt_stk_wkz"
+			posX		="15"
+			posY		="25"
+			maxlength   ="3"
+			formatlength	="4"
+			font1       ="LabelFont1"
+			font2       ="LabelFont2"/>
+
+		<Label
+			id			="lbl_stkOderWert"
+			posX		="20"
+			posY		="25"
+			spanX		="30"
+			content		="wp_stkOderWert"/>
+
+		<InputPanel
+			id          ="pan_limit"
+			posX        ="10"
+			posY        ="30"
+			spanX       ="45"
+			spaceLeft   ="0">
+
+			<RadiobuttonInput
+				id			="rdb_unlimitiert"
+				name        ="limit"
+				posX		="10"
+				posY		="30"
+				content		="0"
+				text        ="wp_unlimitiert"
+				selected    ="y"
+				fct			="setLimitInactive()"
+				handling	="c"
+				editable	="n"/>
+
+			<RadiobuttonInput
+				id			="rdb_limitiert"
+				name        ="limit"
+				posX		="15"
+				posY		="30"
+				content		="1"
+				text        ="wp_limit"
+				fct			="setLimitActive()"
+				handling	="c"
+				editable	="n"/>
+
+			<AmountInput
+				id			="amt_limit"
+				posX		="20"
+				posY		="30"
+				precomma    ="7"
+				postcomma   ="3"
+				triggerMode	="onChangeOrDelete"
+				fct			="checkZusatz()"
+				handling	="c"
+				editable    ="n"
+				spaceRight  ="10"/>
+
+			<CheckboxInput
+				id          ="chk_limitZusatz"
+				posX        ="25"
+				posY        ="30"
+				content     ="J;N"
+				visible		="n"
+				editable	="n"/>
+
+			<Label
+				id          ="lbl_limitZusatz"
+				posX        ="30"
+				posY        ="30"
+				visible		="n"
+				maxlength	="10"
+				spaceRight  ="10"/>
+
+		</InputPanel>
+
+		<InputPanel
+			id          ="pan_boerse"
+			posX        ="5"
+			posY        ="35"
+			spanX       ="50"
+			spaceLeft   ="0">
+
+			<Label
+				id			="lbl_boerse"
+				posX		="5"
+				posY		="35"
+				content		="wp_boerse"/>
+
+			<!-- DiRe 24.02.2004								-->
+			<!-- die Content-Daten kommen vom Server			-->
+			<!-- content ="wp_cmb_boerse_select"				-->
+			<ComboboxInput
+				id          ="cmb_bokuerzel"
+				posX        ="10"
+				posY        ="35"
+				width       ="50"
+				popupWidth  ="50"
+				lines       ="8"
+				handling	="c"
+				triggerMode	="onLeave"
+				fct			="validate()"/>
+
+			<!-- DiRe 24.02.2004								-->
+			<!-- Dieses Feld wird für das PDF-Druckformular		-->
+			<!-- am Server verwendet!							-->
+			<!-- kommt jetzt aus der Datenbank!!!				-->
+<!--
+			<TextInput
+				id           ="txt_hidden_bo_name"
+				posX         ="15"
+				posY         ="35"
+				maxlength    ="70"
+				visible		 ="n"
+				active		 ="n"/>
+-->
+			<TextInput
+				id           ="txt_hidden_art_text"
+				posX         ="20"
+				posY         ="35"
+				maxlength    ="20"
+				visible		 ="n"
+				active		 ="n"/>
+		</InputPanel>
+
+		<Label
+			id			="lbl_gueltigbis"
+			posX		="5"
+			posY		="40"
+			content		="wp_orgueltbis"/>
+
+		<DateInput
+			id          ="dat_gueltigbis"
+			posX        ="10"
+			posY        ="40"
+			triggerMode	="onChange"
+			fct			="checkDatumBis()"
+			handling	="c">
+
+			<CalendarButton
+				id        ="dat_gueltigbis"
+				content   ="..."
+				maxlength ="3"
+				typ="week"
+				lines	  ="1"/>
+
+		</DateInput>
+	</InputPanel>
+
+
+	<InputPanel
+		id      ="tmp_sorten">
+
+		<Label
+			id      ="lbl_wkz"
+			posX    ="5"
+			posY    ="5"
+			content ="srt_wkz"/>
+
+		<TextInput
+			id          ="txt_wkz"
+			posX        ="10"
+			posY        ="5"
+			typ         ="upper"
+            event       ="trCheckWKZ"
+			allowedchars="A-Z;a-z"
+			required	="y"
+			label		="lbl_wkz"
+			maxlength   ="4"/>
+
+		<Label
+			id      ="lbl_wrg"
+			posX    ="5"
+			posY    ="10"
+			content ="srt_wrg"/>
+
+		<TextInput
+			id          ="txt_wrg"
+			posX        ="10"
+			posY        ="10"
+			spanX       ="20"
+			typ         ="upper"
+            required    ="y"
+			label		="lbl_wrg"
+			maxlength   ="27"/>
+
+		<Label
+			id      ="lbl_kurs"
+			posX    ="5"
+			posY    ="20"
+			content ="srt_kurs"/>
+
+		<AmountInput
+			id          ="amt_kurs"
+			posX        ="10"
+			posY        ="20"
+            required    ="y"
+			label		="lbl_kurs"
+			precomma    ="4"
+			postcomma   ="6"/>
+
+		<Label
+			id      ="lbl_text"
+			posX    ="5"
+			posY    ="25"
+			spanX   ="30"
+			content ="srt_text"/>
+
+		<Label
+			id      ="lbl_rund"
+			posX    ="5"
+			posY    ="30"
+			spanX   ="10"
+			content ="srt_rund"
+			spaceTop    ="10"
+			spaceBottom ="10"/>
+
+		<TextInput
+			id          ="txt_rund"
+			posX        ="20"
+			posY        ="30"
+			maxlength	="10"
+			typ         ="numeric"
+            required    ="y"
+			label		="lbl_rund"
+			spaceTop    ="10"
+			spaceBottom ="10"/>
+	</InputPanel>
+
+
+	<InputPanel
+		id      ="tmp_reiseschecks">
+		<Label
+			id      ="lbl_wkz"
+			posX    ="5"
+			posY    ="5"
+			content ="sch_wkz"/>
+
+		<TextInput
+			id          ="txt_wkz"
+			posX        ="15"
+			posY        ="5"
+            event       ="trCheckWKZ"
+			required	="y"
+			label		="lbl_wkz"
+			typ         ="upper"
+			maxlength   ="4"/>
+
+		<TextInput
+			id          ="txt_wrg"
+			posX        ="20"
+			posY        ="5"
+            required    ="y"
+			label		="lbl_wkz"
+			typ         ="upper"
+			maxlength   ="30"/>
+
+		<Label
+			id          ="lbl_einheit"
+			posX        ="5"
+			posY        ="15"
+			content     ="sch_einheit"/>
+
+		<TextInput
+			id          ="txt_einheit"
+			posX        ="15"
+			posY        ="15"
+            required    ="y"
+			label		="lbl_einheit"
+			typ         ="numeric"
+			maxlength   ="5"/>
+
+		<AmountInput
+			id          ="amt_kurs"
+			posX        ="20"
+			posY        ="15"
+            required    ="y"
+			label		="lbl_einheit"
+			precomma    ="4"
+			sign		="n"
+			postcomma   ="6"/>
+
+		<InputPanel
+			id          ="pan_stk"
+			posX        ="5"
+			posY        ="25"
+			spanX       ="30"
+			alignment   ="CENTER;CENTER"
+			spaceTop    ="10">
+
+			<Separator
+				id			="sep_tbl02"
+				posX        ="7"
+				posY		="5"
+				spanY		="70"
+				typ			="vertical"
+				linewidth	="2"
+				alignment	="CENTER;GROW"/>
+
+			<Label
+				id          ="lbl_stk"
+				posX        ="10"
+				posY        ="5"
+				content     ="sch_stk"
+				alignment   ="CENTER;CENTER"/>
+
+			<Separator
+				id			="sep_tbl03"
+				posX        ="12"
+				posY		="5"
+				spanY		="70"
+				typ			="vertical"
+				linewidth	="2"
+				alignment	="CENTER;GROW"/>
+
+			<Label
+				id          ="lbl_pack"
+				posX        ="15"
+				posY        ="5"
+				content     ="sch_pack"
+				alignment   ="CENTER;CENTER"/>
+
+			<Label
+				id          ="lbl_stk2"
+				posX        ="10"
+				posY        ="7"
+				content     ="sch_stk2"
+				alignment   ="CENTER;CENTER"/>
+
+			<Label
+				id          ="lbl_pack2"
+				posX        ="15"
+				posY        ="7"
+				content     ="sch_pack2"
+				alignment   ="CENTER;CENTER"/>
+
+			<Separator
+				id			="sep_tbl01"
+				posX        ="5"
+				posY		="10"
+				spanX		="20"
+				typ			="horizontal"
+				linewidth	="2"
+				alignment	="GROW;CENTER"/>
+
+			<Label
+				id          ="lbl_nr1"
+				posX        ="5"
+				posY        ="15"
+				content     ="1."
+				alignment   ="CENTER;CENTER"/>
+
+			<TextInput
+				id          ="txt_stk1"
+				posX        ="10"
+				posY        ="15"
+				typ         ="numeric"
+				triggerMode ="onChange"
+				event		="trStk1"
+				maxlength   ="9"
+				alignment   ="CENTER;CENTER"/>
+
+			<TextInput
+				id          ="txt_pack1"
+				posX        ="15"
+				posY        ="15"
+				spanX       ="2"
+				maxlength   ="20"
+				typ         ="numeric"
+				alignment   ="CENTER;CENTER"/>
+
+			<Label
+				id          ="lbl_nr2"
+				posX        ="5"
+				posY        ="20"
+				content     ="2."
+				alignment   ="CENTER;CENTER"/>
+
+			<TextInput
+				id          ="txt_stk2"
+				posX        ="10"
+				posY        ="20"
+				typ         ="numeric"
+				triggerMode ="onChange"
+				event		="trStk2"
+				maxlength   ="9"
+				alignment   ="CENTER;CENTER"/>
+
+			<TextInput
+				id          ="txt_pack2"
+				posX        ="15"
+				posY        ="20"
+                spanX       ="2"
+				maxlength   ="20"
+				typ         ="numeric"
+				alignment   ="CENTER;CENTER"/>
+
+			<Label
+				id          ="lbl_nr3"
+				posX        ="5"
+				posY        ="25"
+				content     ="3."
+				alignment   ="CENTER;CENTER"/>
+
+			<TextInput
+				id          ="txt_stk3"
+				posX        ="10"
+				posY        ="25"
+				typ         ="numeric"
+				triggerMode ="onChange"
+				event		="trStk3"
+				maxlength   ="9"
+				alignment   ="CENTER;CENTER"/>
+
+			<TextInput
+				id          ="txt_pack3"
+				posX        ="15"
+				posY        ="25"
+				maxlength   ="20"
+				typ         ="numeric"
+				alignment   ="CENTER;CENTER"/>
+
+			<Label
+				id          ="lbl_nr4"
+				posX        ="5"
+				posY        ="30"
+				content     ="4."
+				alignment   ="CENTER;CENTER"/>
+
+			<TextInput
+				id          ="txt_stk4"
+				posX        ="10"
+				posY        ="30"
+				typ         ="numeric"
+				triggerMode ="onChange"
+				event		="trStk4"
+				maxlength   ="9"
+				alignment   ="CENTER;CENTER"/>
+
+			<TextInput
+				id          ="txt_pack4"
+				posX        ="15"
+				posY        ="30"
+				maxlength   ="20"
+				typ         ="numeric"
+				alignment   ="CENTER;CENTER"/>
+
+			<Label
+				id          ="lbl_nr5"
+				posX        ="5"
+				posY        ="35"
+				content     ="5."
+				alignment   ="CENTER;CENTER"/>
+
+			<TextInput
+				id          ="txt_stk5"
+				posX        ="10"
+				posY        ="35"
+				typ         ="numeric"
+				triggerMode ="onChange"
+				event		="trStk5"
+				maxlength   ="9"
+				alignment   ="CENTER;CENTER"/>
+
+			<TextInput
+				id          ="txt_pack5"
+				posX        ="15"
+				posY        ="35"
+				maxlength   ="20"
+				typ         ="numeric"
+				alignment   ="CENTER;CENTER"/>
+
+			<Label
+				id          ="lbl_nr6"
+				posX        ="5"
+				posY        ="40"
+				content     ="6."
+				alignment   ="CENTER;CENTER"/>
+
+			<TextInput
+				id          ="txt_stk6"
+				posX        ="10"
+				posY        ="40"
+				typ         ="numeric"
+				triggerMode ="onChange"
+				event		="trStk6"
+				maxlength   ="9"
+				alignment   ="CENTER;CENTER"/>
+
+			<TextInput
+				id          ="txt_pack6"
+				posX        ="15"
+				posY        ="40"
+				maxlength   ="20"
+				typ         ="numeric"
+				alignment   ="CENTER;CENTER"/>
+
+		</InputPanel>
+
+	</InputPanel>
+
+	<InputPanel
+		id          ="tmp_sparform">
+
+		<InputPanel
+			id	    	="pan_top"
+			posX    	="5"
+			posY	    ="5"
+			spanX       ="20"
+			alignment   ="WEST;CENTER"
+			spaceBottom ="10">
+
+			<Label
+				id          ="lbl_spfschl"
+				posX        ="5"
+				posY        ="5"
+				content     ="spf_schl"/>
+
+			<TextInput
+				id          ="txt_spfschl"
+				posX        ="10"
+				posY        ="5"
+				typ         ="numeric"
+                required    ="y"
+				label		="lbl_spfschl"
+				maxlength   ="4"/>
+
+			<Label
+				id          ="lbl_bez"
+				posX        ="15"
+				posY        ="5"
+				content     ="spf_bez"/>
+
+			<TextInput
+				id          ="txt_bez"
+				posX        ="20"
+				posY        ="5"
+                required    ="y"
+				label		="lbl_bez"
+				maxlength   ="30"/>
+
+			<Label
+				id          ="lbl_anlw"
+				posX        ="5"
+				posY        ="10"
+				content     ="spf_anlw"/>
+
+			<Label
+				id          ="lbl_wkz"
+				posX        ="10"
+				posY        ="10"
+				content		="EUR"/>
+
+		</InputPanel>
+
+		<InputPanel
+			id	    	="pan_middle"
+			posX    	="5"
+			posY	    ="10"
+			spanX       ="20"
+			alignment	="WEST;CENTER"
+			spaceBottom ="10">
+
+			<Label
+				id          ="lbl_zins"
+				posX        ="5"
+				posY        ="5"
+				content     ="spf_zinssatz"/>
+
+			<PercentageInput
+				id          ="per_zinssatz"
+				posX        ="10"
+				posY        ="5"
+                datatype    ="double"
+				sign		="n"
+                precomma    ="2"
+				postcomma   ="3"/>
+
+			<Label
+				id          ="lbl_mindestbetr"
+				posX        ="5"
+				posY        ="10"
+				content     ="spf_mindestbetr"/>
+
+			<AmountInput
+				id          ="amt_minbet"
+				posX        ="10"
+				posY        ="10"
+				sign		="n"
+				precomma    ="8"/>
+
+			<Label
+				id          ="lbl_rate"
+				posX        ="13"
+				posY        ="10"
+				content     ="spf_rate"/>
+
+			<AmountInput
+				id          ="amt_minrat"
+				posX        ="15"
+				posY        ="10"
+				sign		="n"
+				precomma    ="8"/>
+
+		</InputPanel>
+
+		<InputPanel
+			id	    	="pan_middle2"
+			posX    	="5"
+			posY	    ="15"
+			spanX       ="20"
+			alignment	="WEST;CENTER"
+			spaceBottom ="10">
+
+			<Label
+				id          ="lbl_mindestlfz"
+				posX        ="5"
+				posY        ="10"
+				content     ="spf_mindestlfz"/>
+
+			<TextInput
+				id          ="txt_minlaufz"
+				posX        ="25"
+				posY        ="10"
+				typ         ="numeric"
+				maxlength   ="5"/>
+
+			<Label
+				id          ="lbl_intag0"
+				posX        ="30"
+				posY        ="10"
+				content     ="spf_intag"/>
+
+			<Label
+				id          ="lbl_hoechstlfz"
+				posX        ="5"
+				posY        ="15"
+				content     ="spf_hoechstlfz"/>
+
+			<TextInput
+				id          ="txt_maxlaufz"
+				posX        ="25"
+				posY        ="15"
+				typ         ="numeric"
+				maxlength   ="5"/>
+
+			<Label
+				id          ="lbl_intag1"
+				posX        ="30"
+				posY        ="15"
+				content     ="spf_intag"/>
+
+			<Label
+				id          ="lbl_umstkuen"
+				posX        ="5"
+				posY        ="20"
+				content     ="spf_umstkuen"/>
+
+			<TextInput
+				id          ="txt_umstkuen"
+				posX        ="25"
+				posY        ="20"
+				typ         ="numeric"
+				maxlength   ="5"/>
+
+			<Label
+				id          ="lbl_intag2"
+				posX        ="30"
+				posY        ="20"
+				content     ="spf_intag"/>
+
+			<Label
+				id          ="lbl_zeitsond"
+				posX        ="5"
+				posY        ="25"
+				content     ="spf_zeitsond"/>
+
+			<TextInput
+				id          ="txt_zeitsond"
+				posX        ="25"
+				posY        ="25"
+				typ         ="numeric"
+				maxlength   ="5"/>
+
+			<Label
+				id          ="lbl_intag3"
+				posX        ="30"
+				posY        ="25"
+				content     ="spf_intag"/>
+
+			<Label
+				id          ="lbl_letztrat"
+				posX        ="5"
+				posY        ="30"
+				content     ="spf_letztrat"/>
+
+			<TextInput
+				id          ="txt_letztrat"
+				posX        ="25"
+				posY        ="30"
+				typ         ="numeric"
+				maxlength   ="5"/>
+
+			<Label
+				id          ="lbl_intag4"
+				posX        ="30"
+				posY        ="30"
+				content     ="spf_intag"/>
+
+		</InputPanel>
+
+		<InputPanel
+			id	    	="pan_bottom"
+			posX    	="5"
+			posY	    ="20"
+			spanX       ="20"
+			alignment	="WEST;CENTER">
+
+			<CheckboxInput
+				id          ="chk_einheitskond"
+				posX        ="5"
+				posY        ="5"
+				content     ="J;N"
+				selected	="y"
+				text        ="spf_einheitskond"/>
+
+			<CheckboxInput
+				id          ="chk_aufl"
+				posX        ="5"
+				posY        ="10"
+				content     ="J;N"
+				selected	="y"
+				text        ="spf_aufl"/>
+
+			<CheckboxInput
+				id          ="chk_kuend"
+				posX        ="5"
+				posY        ="15"
+				content     ="J;N"
+				selected	="y"
+				text        ="spf_kuend"/>
+
+			<Label
+				id          ="lbl_ausk2"
+				posX        ="5"
+				posY        ="20"
+				content     ="spf_ausk2"
+				spaceTop	="15"/>
+
+			<ComboboxInput
+				id          ="cmb_ausk2"
+				posX        ="10"
+				posY        ="20"
+				content     ="spf_cmb_ausk2"
+				width       ="30"
+				popupWidth  ="30"
+				lines       ="5"
+				spaceTop	="15"/>
+
+			<Label
+				id          ="lbl_erf"
+				posX        ="5"
+				posY        ="25"
+				content     ="spf_erf"/>
+
+			<ComboboxInput
+				id          ="cmb_erf"
+				posX        ="10"
+				posY        ="25"
+				content     ="spf_cmb_erf"
+				width       ="30"
+				popupWidth  ="30"
+				lines       ="5"/>
+
+			<Label
+				id          ="lbl_prolong"
+				posX        ="5"
+				posY        ="30"
+				content     ="spf_prolong"/>
+
+			<ComboboxInput
+				id          ="cmb_prolong"
+				posX        ="10"
+				posY        ="30"
+				content     ="spf_cmb_prolong"
+				width       ="30"
+				popupWidth  ="30"
+				lines       ="5"/>
+
+		</InputPanel>
+
+	</InputPanel>
+
+	<InputPanel
+		id          ="tmp_seminar">
+
+		<Label
+			id          ="lbl_skz"
+			posX        ="5"
+			posY        ="5"
+            content     ="sem_skz"/>
+
+		<TextInput
+			id          ="txt_art"
+			posX        ="10"
+			posY        ="5"
+			typ         ="upper"
+			required	="y"
+			maxlength   ="4"/>
+
+		<Label
+			id          ="lbl_thema"
+			posX        ="5"
+			posY        ="10"
+            content     ="sem_thema"/>
+
+		<TextInput
+			id          ="txt_thema"
+			required	="y"
+			label		="lbl_thema"
+			posX        ="10"
+			posY        ="10"
+			maxlength   ="50"/>
+
+		<InputPanel
+            id	  		="pan_themen"
+            posX        ="5"
+			posY        ="15"
+			spanX       ="20">
+
+             <Label
+                id          ="lbl_themen"
+                posX        ="1"
+                posY        ="1"
+                maxlength   ="25"
+                content     ="sem_themen"/>
+
+            <TextInput
+                id          ="txt_inhalt1"
+                posX        ="1"
+                posY        ="3"
+                maxlength   ="80"/>
+
+            <TextInput
+                id          ="txt_inhalt2"
+                posX        ="1"
+                posY        ="4"
+                maxlength   ="80"/>
+
+            <TextInput
+                id          ="txt_inhalt3"
+                posX        ="1"
+                posY        ="5"
+                maxlength   ="80"/>
+
+            <TextInput
+                id          ="txt_inhalt4"
+                posX        ="1"
+                posY        ="6"
+                maxlength   ="80"/>
+
+            <TextInput
+                id          ="txt_inhalt5"
+                posX        ="1"
+                posY        ="7"
+                maxlength   ="80"/>
+
+            <TextInput
+                id          ="txt_inhalt6"
+                posX        ="1"
+                posY        ="8"
+                maxlength   ="80"/>
+
+            <TextInput
+                id          ="txt_inhalt7"
+                posX        ="1"
+                posY        ="9"
+                maxlength   ="80"/>
+
+            <TextInput
+                id          ="txt_inhalt8"
+                posX        ="1"
+                posY        ="10"
+                maxlength   ="80"/>
+
+        </InputPanel>
+
+
+	</InputPanel>
+
+	<InputPanel
+		id		="tmp_seminarbez">
+
+		<Label
+			id          ="lbl_seminar"
+			posX        ="5"
+			content     ="ver_seminar"/>
+
+		<TextInput
+			id                 ="txt_seminarnr"
+			posX               ="10"
+			typ                ="numeric0"
+			maxlength          ="4"
+			editable           ="n"
+			font1       	   ="LabelFont1"
+			font2       	   ="LabelFont2"/>
+
+		<TextInput
+			id                 ="txt_seminarname"
+			posX               ="15"
+			maxlength          ="27"
+			editable           ="n"
+			font1       	   ="LabelFont1"
+			font2       	   ="LabelFont2"/>
+
+         <Button
+            id      = "suche_seminar"
+            handling="s"
+            event   ="trSucheSeminar"
+            src     ="bSearch.gif"
+            posX    ="21"
+            />
+
+	</InputPanel>
+
+	<InputPanel
+		id		="tmp_veranstaltung">
+
+		<InputPanel
+			id      ="pan_veranst01"
+			posX    ="5"
+			posY    ="5"
+			spaceBottom ="10">
+
+			<Label
+				id          ="lbl_veranstnr"
+				posX        ="5"
+				posY        ="5"
+				content     ="ver_nr"/>
+
+			<TextInput
+				id          ="txt_veranstnr"
+				posX        ="10"
+				posY        ="5"
+				spanX       ="10"
+			            typ         ="numeric0"
+				maxlength   ="4"/>
+
+			<Label
+				id          ="lbl_teilnehmer"
+				posX        ="5"
+				posY        ="10"
+				content     ="ver_teiln"/>
+
+			<TextInput
+				id          ="txt_teilnehmer"
+				posX        ="10"
+				posY        ="10"
+				spanX       ="30"
+				maxlength   ="27"/>
+
+			<Label
+                id          ="lbl_terminvonbis"
+                posX        ="5"
+                posY        ="15"
+                content     ="ver_termin"/>
+
+			<TextInput
+				id          ="txt_wotagvon"
+				posX        ="10"
+				posY        ="15"
+                editable    ="n"
+				maxlength   ="2"/>
+
+            <DateInput
+                id          ="dat_termindatvon"
+                event       ="trVonTag"
+                triggerMode ="onChange"
+                handling    ="s"
+                required    ="y"
+				label		="lbl_terminvonbis"
+                posX        ="15"
+                posY        ="15"/>
+
+            <TimeInput
+                id          ="tim_terminzeitvon"
+                posX        ="20"
+                posY        ="15"/>
+
+          <Label
+                id          ="lbl_termintrenner"
+                posX        ="25"
+                posY        ="15"
+                content     =" - "/>
+
+			<TextInput
+				id          ="txt_wotagbis"
+				posX        ="30"
+				posY        ="15"
+                editable    ="n"
+				maxlength   ="2"/>
+
+           <DateInput
+                id          ="dat_termindatbis"
+                event       ="trBisTag"
+                triggerMode ="onChange"
+                handling    ="s"
+                required    ="y"
+				label		="lbl_terminvonbis"
+                posX        ="35"
+                posY        ="15"/>
+
+           <TimeInput
+                id          ="tim_terminzeitbis"
+                posX        ="40"
+                posY        ="15"/>
+
+			<Label
+				id          ="lbl_ort"
+				posX        ="5"
+				posY        ="20"
+				maxlength   ="15"
+				content     ="ver_ort"/>
+
+            <TextInput
+                id          ="txt_seminarort"
+                posX        ="10"
+                posY        ="20"
+                maxlength   ="20"
+	            spanX       ="20"/>
+
+		</InputPanel>
+
+		<InputPanel
+			id      ="pan_veranst02"
+			posX    ="5"
+			posY    ="10"
+			spaceBottom ="10">
+
+			<Label
+				id          ="lbl_tagadr"
+				posX        ="5"
+				posY        ="5"
+				content     ="ver_tagadr"
+				spaceRight  ="5"/>
+
+			<Label
+				id          ="lbl_bez"
+				posX        ="10"
+				posY        ="5"
+				content     ="ver_bez"/>
+
+			<TextInput
+				id          ="txt_tagadr"
+				posX        ="15"
+				posY        ="5"
+				spanX       ="10"
+				maxlength   ="30"/>
+
+			<Label
+				id          ="lbl_str"
+				posX        ="10"
+				posY        ="10"
+				content     ="ver_str"/>
+
+			<TextInput
+				id          ="txt_str"
+				posX        ="15"
+				posY        ="10"
+				spanX       ="10"
+				maxlength   ="27"/>
+
+			<Label
+				id          ="lbl_plz"
+				posX        ="10"
+				posY        ="15"
+				content     ="ver_plz"/>
+
+			<TextInput
+				id          ="txt_plz"
+				posX        ="15"
+				posY        ="15"
+				typ         ="numeric"
+				maxlength   ="5"/>
+
+			<TextInput
+				id          ="txt_ort"
+				posX        ="20"
+				posY        ="15"
+				maxlength   ="27"/>
+
+		</InputPanel>
+
+		<InputPanel
+			id      ="pan_veranst03"
+			posX    ="5"
+			posY    ="15"
+			spaceBottom ="10">
+
+			<Label
+				id          ="lbl_ausrfil"
+				posX        ="5"
+				posY        ="5"
+				content     ="ver_ausrfil"/>
+
+            <TextInput
+				id          ="txt_ausrfilobg"
+				posX        ="10"
+				posY        ="5"
+                event       ="trObg"
+                triggerMode ="onChange"
+                required    ="y"
+				label		="lbl_ausrfil"
+                handling    ="s"
+				maxlength   ="4"/>
+
+            <TextInput
+				id          ="txt_ausrfilname"
+				posX        ="15"
+				posY        ="5"
+                editable    ="n"
+				maxlength   ="27"/>
+
+			<Label
+				id			="lbl_txtfil"
+				posX		="15"
+				posY		="5"
+				maxlength   ="45"/>
+
+			<Label
+				id          ="lbl_mitveranst"
+				posX        ="5"
+				posY        ="10"
+				content     ="ver_mit"/>
+
+			<TextInput
+				id          ="txt_mitveranst"
+				posX        ="10"
+				posY        ="10"
+				spanX       ="10"
+				maxlength   ="30"/>
+
+		</InputPanel>
+
+		<InputPanel
+			id      ="pan_veranst04"
+			posX    ="5"
+			posY    ="20">
+
+			<Label
+				id          ="lbl_gebuehr"
+				posX        ="5"
+				posY        ="5"
+				content     ="ver_gebuehr"/>
+
+			<Label
+				id          ="lbl_wkz"
+				posX        ="10"
+				posY        ="5"
+				content     ="ver_gebuehrWKZ"/>
+
+			<AmountInput
+				id          ="amt_gebuehr"
+				posX        ="15"
+				posY        ="5"
+				precomma    ="4"/>
+
+			<Label
+				id			="lbl_ktonr"
+				posX		="20"
+				posY		="5"
+				content     ="ver_ktonr"/>
+
+			<TextInput
+				id          ="txt_ktonr"
+				posX        ="25"
+				posY        ="5"
+				typ         ="numeric0"
+				maxlength   ="10"/>
+
+			<Label
+				id			="lbl_blz"
+				posX		="20"
+				posY		="10"
+				content     ="ver_blz"/>
+
+			<TextInput
+				id          ="txt_blz"
+				posX        ="25"
+				posY        ="10"
+				event       ="trBlz"
+                triggerMode ="onChange"
+                handling    ="s"
+                required    ="y"
+				label		="lbl_blz"
+                typ         ="numeric0"
+				maxlength   ="8"/>
+
+			<TextInput
+				id          ="txt_institut"
+				posX        ="30"
+				posY        ="10"
+				maxlength   ="27"
+                editable    ="n"/>
+
+		</InputPanel>
+
+	</InputPanel>
+
+	<!-- 02.07.2003 PeTa/DiRe - Filialtabellenverwaltung -->
+	<InputPanel
+		id			="tmp_filialtabellen01">
+
+		<InputPanel
+			id	  		="Filialauskunft"
+			handling	="c">
+
+			 <InputPanel
+				id	  		="pan_1"
+				handling	="c"
+				posY		="1">
+
+				<Label
+					id          ="lbl_obg"
+					posX        ="1"
+					posY        ="1"
+					content     ="std_fil_aendern_obg"/>
+
+				<TextInput
+					id          ="txt_obg"
+					posX        ="2"
+					posY        ="1"
+					maxlength   ="4"
+					event		="trCheckOgb"
+					autoTab     ="y"
+					label       ="lbl_obg"
+					typ         ="numeric0"/>
+
+				<Label
+					id          ="lbl_blz"
+					posX        ="3"
+					posY        ="1"
+					maxlength   ="18"
+					content     ="std_fil_aendern_blz"/>
+
+				<TextInput
+					id          ="txt_blz"
+					posX        ="4"
+					posY        ="1"
+					maxlength   ="8"
+					label       ="lbl_blz"
+					typ         ="numeric0"/>
+
+				<Label
+					id          ="lbl_name"
+					posX        ="1"
+					posY        ="2"
+					content     ="std_fil_aendern_name"/>
+
+				<TextInput
+					id          ="txt_name"
+					posX        ="2"
+					posY        ="2"
+					maxlength   ="27"
+					label       ="lbl_name"
+					typ         ="string"/>
+
+			   <Label
+					id          ="lbl_plz"
+					posX        ="3"
+					posY        ="2"
+					maxlength   ="18"
+					content     ="std_fil_aendern_plz"/>
+
+				<TextInput
+					id          ="txt_plz"
+					posX        ="4"
+					posY        ="2"
+					maxlength   ="5"
+					label       ="lbl_plz"
+					typ         ="numeric0"/>
+
+				<Label
+					id          ="lbl_strasse"
+					posX        ="1"
+					posY        ="3"
+					content     ="std_fil_aendern_strasse"/>
+
+				<TextInput
+					id          ="txt_strasse"
+					posX        ="2"
+					posY        ="3"
+					maxlength   ="27"
+					label       ="lbl_strasse"
+					typ         ="string"/>
+
+			   <Label
+					id          ="lbl_ort"
+					posX        ="3"
+					posY        ="3"
+					maxlength   ="18"
+					content     ="std_fil_aendern_ort"/>
+
+			   <TextInput
+					id          ="txt_ort"
+					posX        ="4"
+					posY        ="3"
+					maxlength   ="27"
+					label       ="lbl_ort"
+					typ         ="string"/>
+
+			   <Label
+					id          ="lbl_bezirk"
+					posX        ="1"
+					posY        ="4"
+					content     ="std_fil_aendern_bezirk"/>
+
+				<TextInput
+					id          ="txt_bezirk"
+					posX        ="2"
+					posY        ="4"
+					maxlength   ="27"
+					label       ="lbl_bezirk"
+					typ         ="string"/>
+
+				<Label
+					id          ="lbl_bundesland"
+					posX        ="3"
+					posY        ="4"
+					maxlength   ="18"
+					content     ="std_fil_aendern_bundl"/>
+
+				<ComboboxInput
+					id          ="com_bundesland"
+					posX        ="4"
+					posY        ="4"
+					lines       ="8"
+					content     ="com_fil_bundesland"
+					label       ="lbl_bundesland"
+					width       ="20"/>
+
+				<Label
+					id          ="lbl_staat"
+					posX        ="1"
+					posY        ="5"
+					content     ="std_fil_aendern_staat"/>
+
+			   <ComboboxInput
+					id          ="com_staat"
+					posX        ="2"
+					posY        ="5"
+				    lines       ="5"
+					content     ="com_fil_staat"
+					label       ="lbl_staat"
+					width       ="20"/>
+
+				<Label
+					id          ="lbl_telnr"
+					posX        ="1"
+					posY        ="6"
+					content     ="std_fil_aendern_telnr"/>
+
+				<TextInput
+					id          ="txt_telnr"
+					posX        ="2"
+					posY        ="6"
+					maxlength   ="27"
+					label       ="lbl_telnr"
+					typ         ="string"/>
+
+			   <Label
+					id          ="lbl_faxnr"
+					posX        ="3"
+					posY        ="6"
+					maxlength	="18"
+					content     ="std_fil_aendern_faxnr"/>
+
+				<TextInput
+					id          ="txt_faxnr"
+					posX        ="4"
+					posY        ="6"
+					maxlength   ="27"
+					label       ="lbl_faxnr"
+					typ         ="string"/>
+
+				<Label
+					id          ="lbl_rszobg"
+					posX        ="1"
+					posY        ="7"
+					content     ="std_fil_aendern_rszobg"/>
+
+				<TextInput
+					id          ="txt_rszobg"
+					posX        ="2"
+					posY        ="7"
+					maxlength   ="4"
+					label       ="lbl_rszobg"
+					typ         ="string"/>
+
+				<Label
+					id          ="lbl_termingeldtab"
+					posX        ="3"
+					posY        ="7"
+					maxlength   ="18"
+					content     ="std_fil_aendern_termingeldtab"/>
+
+				<ComboboxInput
+					id          ="com_termingeldtab"
+					posX        ="4"
+					posY        ="7"
+					lines       ="5"
+					label       ="lbl_termingeldtab"
+					width       ="20"
+					next        ="txt_area_filiale"/>
+			</InputPanel>
+
+			<InputPanel
+				id	  		="pan_3"
+				handling	="c"
+				posY		="3">
+
+				<TextAreaInput
+					id			="txt_area_filiale"
+					posX		="1"
+					posY		="1"
+					alignment	="CENTER;CENTER"
+					lines		="5"
+					linelength	="78"
+					maxlength	="141"/>
+
+			</InputPanel>
+
+<!-- 25.05.2005 MaRe - Filialtabellenverwaltung - entfernt A0035-01.04
+			<InputPanel
+				id	  		="pan_4"
+				handling	="c"
+				posY		="4">
+
+				<Label
+					id          ="lbl_geldauto"
+					posX        ="1"
+					posY        ="1"
+					maxlength   ="20"
+					content     ="std_fil_aendern_geldauto"/>
+
+				<CheckboxInput
+					id          ="chk_geldauto"
+					posX        ="2"
+					posY        ="1"
+					label       ="lbl_geldauto"/>
+
+				<Label
+					id          ="lbl_behfreu"
+					posX        ="1"
+					posY        ="2"
+					maxlength   ="25"
+					content     ="std_fil_aendern_behfreu"/>
+
+				<CheckboxInput
+					id          ="chk_behfreu"
+					posX        ="2"
+					posY        ="2"
+					label       ="lbl_behfreu"/>
+
+		   </InputPanel>
+-->
+		</InputPanel>
+	</InputPanel>
+
+	<!-- 22.10.2003 PeTa - Sparkonten Neuanlagen -->
+	<InputPanel
+		id	="tmp_sparneuanlage_auftrag">
+
+		<Label
+			id			="lbl_auftragsart"
+			posX		="5"
+			posY		="5"
+			content		="spar_auftragsart"/>
+
+		<ComboboxInput
+			id			="cmb_auftragsart"
+			posX		="10"
+			posY		="5"
+			spanX		="5"
+			content		="spar_auftrag_cont"
+            triggerMode ="onChange"
+			selected	="1"
+			width		="15"
+			lines		="5"
+			event		="trSparAuftragsart"/>
+
+		<Label
+			id			="lbl_anlagewrg"
+			posX		="15"
+			posY		="5"
+			content		="spar_anlagewrg"/>
+
+		<TextInput
+			id			="txt_wkz"
+			posX		="20"
+			posY		="5"
+			editable	="n"
+			typ			="upper"/>
+
+		<Label
+			id			="lbl_format"
+			posX		="5"
+			posY		="10"
+			content		="spar_format"/>
+
+		<TextInput
+			id			="txt_sp_art"
+			posX		="10"
+			posY		="10"
+			maxlength	="4"
+			editable	="n"
+			typ			="numeric"/>
+
+		<TextInput
+			id			="txt_sp_bez"
+			posX		="14"
+			posY		="10"
+			maxlength	="30"
+			editable	="n"/>
+
+	</InputPanel>
+
+	<!-- 22.10.2003 PeTa - Sparkonten Neuanlagen -->
+	<InputPanel
+		id	="tmp_sparneuanlage_ersteinlage">
+
+		<Label
+			id			="lbl_ersteinlage"
+			posX		="5"
+			posY		="5"
+			content		="spar_ersteinlage"/>
+
+		<AmountInput
+			id			="amt_sp_betr"
+			posX		="10"
+			posY		="5"
+			precomma	="10"
+			event		="trSparBetrag"/>
+
+
+		<Label
+			id			="lbl_zinssatz"
+			posX		="15"
+			posY		="5"
+			content		="spar_zinssatz"/>
+
+		<PercentageInput
+			id			="per_sp_zins"
+			posX		="20"
+			posY		="5"/>
+
+	</InputPanel>
+
+	<!-- 22.10.2003 PeTa - Sparkonten Neuanlagen -->
+	<InputPanel
+		id	="tmp_sparneuanlage_laufzeit">
+
+		<Label
+			id			="lbl_laufzeit"
+			posX		="5"
+			posY		="5"
+			content		="spar_laufzeit"/>
+
+		<DateInput
+			id			="dat_sp_lzvon"
+			posX		="10"
+			posY		="5">
+
+			<CalendarButton
+				id        ="dat_sp_lzvon"
+				content   ="..."
+				maxlength ="3"
+				lines	  ="1"
+				typ		  ="week"/>
+
+		</DateInput>
+
+		<Label
+			id			="lbl_lzbis"
+			posX		="15"
+			posY		="5"
+			content		="spar_bis"/>
+
+		<DateInput
+			id			="dat_sp_lzbis"
+			posX		="20"
+			posY		="5">
+
+			<CalendarButton
+				id        ="dat_sp_lzbis"
+				content   ="..."
+				maxlength ="3"
+				lines	  ="1"
+				typ		  ="week"/>
+
+		</DateInput>
+
+	</InputPanel>
+
+	<!-- 23.03.2004 DiRe - Sparkonten Auflösung -->
+	<InputPanel
+		id	="tmp_sparaufloesung_modalitaet">
+
+		<Label
+			id			="lbl_modalitaet1"
+			posX		="5"
+			posY		="5"
+			content		="spar_zahlungsmod"/>
+
+		<TextInput
+			id			="txt_sp_diff"
+			posX		="10"
+			posY		="5"
+			typ     	="combinedLabel"
+			visible		="n"/>
+
+		<TextInput
+			id			="txt_modalitaet"
+			posX		="15"
+			posY		="5"
+			spanX		="5"
+			visible		="y"
+			editable	="n"
+			typ			="label"
+			content		="spar_aufloe_modali"/>
+
+		<Label
+			id			="lbl_gegenkto1"
+			posX		="20"
+			posY		="5"
+			content		="spar_gegenkto"/>
+
+		<ComboboxInput
+			id			="cmb_sp_gkonto11"
+			posX		="25"
+			posY		="5"
+			width		="3"
+			popupWidth	="25"
+            lines		="10"
+			triggerMode ="onChange"
+			event		="trSparGegenKonto11"
+			spaceRight  ="0"/>
+
+		<TextInput
+			id			="txt_sp_gkonto12"
+			posX		="30"
+			posY		="5"
+			typ         ="numeric0"
+			maxlength   ="7"
+			editable    ="n"
+			spaceLeft   ="0"/>
+
+	</InputPanel>
+
+
+	<!-- 22.10.2003 PeTa - Sparkonten Neuanlagen -->
+	<InputPanel
+		id	="tmp_sparneuanlage_modalitaet1">
+
+		<Label
+			id			="lbl_modalitaet1"
+			posX		="5"
+			posY		="5"
+			content		="spar_zahlungsmod"/>
+
+		<TextInput
+			id			="txt_sp_diff"
+			posX		="10"
+			posY		="5"
+			typ     	="combinedLabel"
+			visible		="n"/>
+
+		<ComboboxInput
+			id			="cmb_modalitaet1"
+			posX		="15"
+			posY		="5"
+			spanX		="5"
+			content		="spar_modal_cont"
+			selected	="1"
+			width		="25"
+			lines		="5"/>
+
+		<Label
+			id			="lbl_gegenkto1"
+			posX		="20"
+			posY		="5"
+			content		="spar_gegenkto"/>
+
+		<ComboboxInput
+			id			="cmb_sp_gkonto11"
+			posX		="25"
+			posY		="5"
+			width		="3"
+			popupWidth	="25"
+            lines		="10"
+			triggerMode ="onChange"
+			event		="trSparGegenKonto11"
+			spaceRight  ="0"/>
+
+		<TextInput
+			id			="txt_sp_gkonto12"
+			posX		="30"
+			posY		="5"
+			typ         ="numeric0"
+			maxlength   ="7"
+			editable    ="n"
+			spaceLeft   ="0"/>
+
+	</InputPanel>
+
+	<!-- 22.10.2003 PeTa - Sparkonten Neuanlagen -->
+	<InputPanel
+		id	="tmp_sparneuanlage_modalitaet2">
+
+		<Label
+			id			="lbl_modalitaet2"
+			posX		="5"
+			posY		="5"
+			content		="spar_zahlungsmod"/>
+
+		<ComboboxInput
+			id			="cmb_modalitaet2"
+			posX		="10"
+			posY		="5"
+			spanX		="5"
+			content		="spar_modal_cont"
+			width		="25"
+			lines		="5"/>
+
+		<Label
+			id			="lbl_gegenkto2"
+			posX		="15"
+			posY		="5"
+			content		="spar_gegenkto"/>
+
+		<ComboboxInput
+			id			="cmb_sp_gkonto21"
+			posX		="20"
+			posY		="5"
+			width		="3"
+			lines	    ="3"
+			triggerMode ="onChange"
+			event		="trSparGegenKonto21"
+			spaceRight  ="0"/>
+
+		<TextInput
+			id			="txt_sp_gkonto22"
+			posX		="25"
+			posY		="5"
+			typ         ="numeric0"
+			maxlength   ="7"
+			editable    ="n"
+			spaceLeft   ="0"/>
+
+	</InputPanel>
+
+	<!-- 22.10.2003 PeTa - Sparkonten Neuanlagen -->
+	<InputPanel
+		id	="tmp_sparneuanlage_info">
+
+		<Label
+			id			="lbl_info"
+			posX		="5"
+			posY		="5"
+			content		="spar_info"/>
+
+		<TextInput
+			id			="txt_sp_info1"
+			posX		="5"
+			posY		="10"
+			maxlength	="70"/>
+
+		<TextInput
+			id			="txt_sp_info2"
+			posX		="5"
+			posY		="15"
+			maxlength	="70"/>
+
+	</InputPanel>
+
+
+	<!-- 30.03.2005 MaRe - Sparkonten Prolongation -->
+	<InputPanel
+		id	="tmp_sparprolongation_modalitaet1">
+
+		<Label
+			id			="lbl_modalitaet1"
+			posX		="5"
+			posY		="5"
+			content		="spar_zahlungsmod"/>
+
+		<TextInput
+			id			="txt_sp_diff"
+			posX		="10"
+			posY		="5"
+			typ     	="combinedLabel"
+			visible		="n"/>
+
+		<ComboboxInput
+			id			="cmb_modalitaet1"
+			posX		="15"
+			posY		="5"
+			spanX		="5"
+			content		="spar_prolo_modal_cont"
+			selected	="1"
+			width		="25"
+			lines		="5"/>
+
+		<Label
+			id			="lbl_gegenkto1"
+			posX		="20"
+			posY		="5"
+			content		="spar_gegenkto"/>
+
+		<ComboboxInput
+			id			="cmb_sp_gkonto11"
+			posX		="25"
+			posY		="5"
+			width		="3"
+			popupWidth	="25"
+            lines		="10"
+			triggerMode ="onChange"
+			event		="trSparGegenKonto11"
+			spaceRight  ="0"/>
+
+		<TextInput
+			id			="txt_sp_gkonto12"
+			posX		="30"
+			posY		="5"
+			typ         ="numeric0"
+			maxlength   ="7"
+			editable    ="n"
+			spaceLeft   ="0"/>
+
+	</InputPanel>
+
+	<!-- 22.10.2003 PeTa - Sparkonten Einzelauskunft -->
+	<InputPanel
+		id	="tmp_spareinzelausk_header">
+
+		<Label
+			id			="lbl_format"
+			posX		="5"
+			posY		="5"
+			content		="spar_format"/>
+
+		<TextInput
+			id			="txt_C852_kopftxt1"
+			posX		="10"
+			posY		="5"
+			maxlength	="30"
+			editable	="n"/>
+
+		<Label
+			id			="lbl_kto"
+			posX		="15"
+			posY		="5"
+			content		="spar_konto"/>
+
+		<TextInput
+			id			="txt_C852_KKTONR"
+			posX		="20"
+			posY		="5"
+			maxlength	="10"
+			editable	="n"
+			typ			="numeric0"/>
+
+		<Label
+			id			="lbl_fil"
+			posX		="5"
+			posY		="10"
+			content		="spar_filiale"/>
+
+		<TextInput
+			id			="txt_fi_name"
+			posX		="10"
+			posY		="10"
+			maxlength	="30"
+			editable	="n"/>
+
+		<Label
+			id			="lbl_team"
+			posX		="15"
+			posY		="10"
+			content		="spar_team"/>
+
+		<TextInput
+			id			="txt_C852_akt"
+			posX		="20"
+			posY		="10"
+			maxlength	="2"
+			editable	="n"/>
+
+		<Label
+			id			="lbl_ktoerf"
+			posX		="5"
+			posY		="15"
+			content		="spar_ktoeroeffnung"/>
+
+		<DateInput
+			id			="dat_C852_kedat"
+			posX		="10"
+			posY		="15"
+			editable	="n"/>
+
+		<Label
+			id			="lbl_kennwort"
+			posX		="15"
+			posY		="15"
+			content		="spar_kennwort"/>
+
+		<TextInput
+			id			="txt_C852_kennwort"
+			posX		="20"
+			posY		="15"
+			maxlength	="15"
+			editable	="n"/>
+
+		<Label
+			id			="lbl_ktowrg"
+			posX		="15"
+			posY		="20"
+			content		="spar_ktowrg"/>
+
+		<Label
+			id			="txt_C852_wkz"
+			posX		="20"
+			posY		="20"
+			typ			="upper"/>
+
+	</InputPanel>
+
+	<!-- 22.10.2003 PeTa - Sparkonten Einzelauskunft -->
+	<InputPanel
+		id	="tmp_spareinzelausk_zinsen">
+
+		<Label
+			id			="lbl_vorschuss"
+			posX		="5"
+			posY		="5"
+			content		="spar_vorschuss"/>
+
+		<Label
+			id			="txt_C852_wkz2"
+			posX		="10"
+			posY		="5" />
+
+		<AmountInput
+			id			="amt_C852_zivz"
+			posX		="15"
+			posY		="5"
+			precomma	="10"
+			editable	="n"/>
+
+		<Label
+			id			="lbl_freibetrag"
+			posX		="5"
+			posY		="10"
+			content		="spar_freibetrag"/>
+
+		<Label
+			id			="txt_C852_wkz3"
+			posX		="10"
+			posY		="10"/>
+
+		<AmountInput
+			id			="txt_C852_vzfrei"
+			posX		="15"
+			posY		="10"
+			precomma	="10"
+			editable	="n"/>
+
+	</InputPanel>
+
+	<!-- 22.10.2003 PeTa - Sparkonten Einzelauskunft -->
+	<InputPanel
+		id	="tmp_spareinzelausk_bonitaeten">
+
+		<Label
+			id			="lbl_bonitaeten"
+			posX		="5"
+			posY		="5"
+			content		="spar_bonitaeten"
+			font1		="HeaderFont1"
+			font2		="HeaderFont2"
+			font3		="HeaderFont3"
+			font4		="HeaderFont4"
+			font5		="HeaderFont5"/>
+
+	 	<Separator
+             id         ="sep_line04"
+             posX       ="5"
+             posY       ="10"
+             typ        ="horizontal"
+             linewidth  ="2"
+             spaceBottom="10"
+             spaceTop   ="10"
+             alignment  ="GROW;GROW"
+             spanX      ="20"/>
+
+		<TextInput
+			id			="txt_C852_bon1"
+			posX		="5"
+			posY		="15"
+			maxlength	="32"
+			editable	="n"
+			typ 		="label"
+            prefix		="txt_bon1_"/>
+
+		<TextInput
+			id			="txt_C852_bon2"
+			posX		="10"
+			posY		="15"
+			maxlength	="32"
+			editable	="n"
+			typ 		="label"
+            prefix		="txt_bon1_"/>
+
+		<TextInput
+			id			="txt_C852_bon3"
+			posX		="5"
+			posY		="20"
+			maxlength	="32"
+			editable	="n"
+			typ 		="label"
+            prefix		="txt_bon1_"/>
+
+		<TextInput
+			id			="txt_C852_bon4"
+			posX		="10"
+			posY		="20"
+			maxlength	="32"
+			editable	="n"
+			typ 		="label"
+            prefix		="txt_bon1_"/>
+
+	</InputPanel>
+
+	<InputPanel
+    	id	  		="tmp_termingeld_bonitaeten">
+
+				<Label
+                    id          ="lbl_bonitaet"
+                    posX        ="1"
+                    posY        ="1"
+                    maxlength   ="10"
+                    content     ="std_tt_termaend_bonitaet"/>
+
+
+                <ComboboxInput
+                    id          ="cmb_bon1"
+                    posX        ="1"
+                    posY        ="2"
+                    datatype    ="string"
+                    width       ="32"
+                    show        ="content"
+                    content     ="tg_boni"/>
+
+                <ComboboxInput
+                    id          ="cmb_bon2"
+                    posX        ="2"
+                    posY        ="2"
+                    width       ="32"
+                    datatype    ="string"
+                    show        ="content"
+                    content     ="tg_boni"/>
+
+                <ComboboxInput
+                    id          ="cmb_bon3"
+                    posX        ="1"
+                    posY        ="3"
+                    width       ="32"
+                    show        ="content"
+                    datatype    ="string"
+                    content     ="tg_boni"/>
+
+	</InputPanel>
+
+
+	<InputPanel
+    	id	  		="tmp_termingeld_boni_label">
+
+
+                <TextInput
+                    id          ="txt_bon1"
+                    posX        ="1"
+                    posY        ="3"
+                    maxlength	="32"
+					typ 		="combinedLabel"
+                    datatype    ="string"/>
+
+
+                <TextInput
+                    id          ="txt_bon2"
+                    posX        ="2"
+                    posY        ="3"
+                    maxlength	="32"
+                    datatype    ="string"
+					typ 		="label"
+                    prefix		="txt_bon1_"/>
+
+                <TextInput
+                    id          ="txt_bon3"
+                    posX        ="1"
+                    posY        ="4"
+                    maxlength	="32"
+                    datatype	="string"
+					typ 		="label"
+                    prefix		="txt_bon1_"/>
+
+	</InputPanel>
+
+
+	<!-- 04.02.2004 DiRe - Protokoll Anzeige Kopf NEU -->
+	<InputPanel
+    	id	  		="tmp_protokoll_anz_kopf">
+
+		<InputPanel
+			id			="pan_Protokoll_Panel_1"
+			posX		="10"
+			posY		="10"
+			handling	="s"
+			spanX       ="20">
+
+			<Label
+				id          ="lbl_laufnummer"
+				posX        ="5"
+				posY        ="5"
+				spaceTop	="20"
+				content     ="std_pr_anz_nachforsch_laufnummer"/>
+			<TextInput
+				id			="txt_counter"
+				posX		="10"
+				posY		="5"
+				spaceTop	="20"
+				typ         ="numeric"
+				maxlength	="7"/>
+			<Label
+				id          ="lbl_laufnummer_trenner"
+				posX        ="15"
+				posY        ="5"
+				spaceTop	="20"
+				content     =" / "/>
+			<TextInput
+				id			="txt_laufnummer"
+				posX		="20"
+				posY		="5"
+				spaceTop	="20"
+				typ         ="numeric"
+				maxlength	="5"/>
+
+
+			<Label
+				id          ="lbl_spur"
+				posX        ="25"
+				posY        ="5"
+				spaceTop	="20"
+				content     ="std_pr_anz_nachforsch_spur"/>
+			<TextInput
+				id			="txt_spur"
+				posX		="30"
+				posY		="5"
+				spaceTop	="20"
+				typ         ="numeric"
+				maxlength	="5"/>
+
+
+			<Label
+				id          ="lbl_mitarbeiter"
+				posX        ="35"
+				posY        ="5"
+				spaceTop	="20"
+				content     ="std_pr_anz_nachforsch_mitarbeiter"/>
+			<TextInput
+				id			="txt_mitarbeiter"
+				posX		="40"
+				posY		="5"
+				spaceTop	="20"
+				typ         ="string"
+				maxlength	="10"/>
+		</InputPanel>
+		<InputPanel
+			id			="pan_Protokoll_Panel_2"
+			posX		="10"
+			posY		="20"
+			handling	="s"
+			spanX       ="20">
+
+			<Label
+				id          ="lbl_arbeitsplatz"
+				posX        ="5"
+				posY        ="5"
+				content     ="std_pr_anz_nachforsch_arbeitsplatz"/>
+			<TextInput
+				id			="txt_arbeitsplatz"
+				posX		="10"
+				posY		="5"
+				typ         ="string"
+				maxlength	="3"/>
+
+
+			<Label
+				id          ="lbl_telefon"
+				posX        ="15"
+				posY        ="5"
+				content     ="std_pr_anz_nachforsch_telefon"/>
+			<TextInput
+				id			="txt_telefon"
+				posX		="20"
+				posY		="5"
+				typ         ="numeric"
+				maxlength	="10"/>
+
+			<Label
+				id          ="lbl_paginiernummer"
+				posX        ="5"
+				posY        ="10"
+				content     ="std_pr_anz_nachforsch_paginiernummer"/>
+			<TextInput
+				id			="txt_paginiernummer"
+				posX		="10"
+				posY		="10"
+				typ         ="numeric"
+				maxlength	="8"/>
+
+			<Label
+				id          ="lbl_date_time"
+				posX        ="15"
+				posY        ="10"
+				content     ="std_pr_anz_nachforsch_date_time"/>
+
+			<TextInput
+				id			="txt_date_time"
+				posX		="20"
+				posY		="10"
+				typ         ="string"
+				maxlength	="20"/>
+		</InputPanel>
+
+	</InputPanel>
+
+
+	<!-- 20.01.2004 PeTa - Einfacher Label als Template -->
+	<Label
+    	id 		="tmp_lbl_header"
+    	posX    ="5"
+		posY    ="1"
+		spanX	="20"
+		font1	="HeaderFont1"
+		font2	="HeaderFont2"
+		font3	="HeaderFont3"
+		font4	="HeaderFont4"
+		font5	="HeaderFont5"/>
+
+</DispMask>

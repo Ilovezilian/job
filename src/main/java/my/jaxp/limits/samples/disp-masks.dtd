@@ -1,0 +1,1326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Some Long Text to get over 8kb limit................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ....................................................................... -->
+<!-- ........................... -->
+
+<!ELEMENT DispMask (InputPanel+)>
+<!ATTLIST DispMask
+	version	CDATA #REQUIRED
+>
+<!ELEMENT InputPanel (InputPanel | PercentageInput | Button | CheckboxInput | ComboboxInput | Label | ListboxInput | RadiobuttonInput | Separator | TableInput | TextInput | TextAreaInput | PasswordInput | DateInput | TimeInput | AmountInput | ToggleButton | Toolbar | Entry | Tree | ProgressBar | SortTable | Include | include)*>
+<!ATTLIST InputPanel
+	id          CDATA   #REQUIRED
+	alignment   CDATA   #IMPLIED
+	background  CDATA   #IMPLIED
+	posX        CDATA   #IMPLIED
+	posY        CDATA   #IMPLIED
+	spaceBottom CDATA   #IMPLIED
+	spaceLeft   CDATA   #IMPLIED
+	spaceRight  CDATA   #IMPLIED
+	spaceTop    CDATA   #IMPLIED
+	spanX       CDATA   #IMPLIED
+	spanY       CDATA   #IMPLIED
+	visible     (y | n) #IMPLIED
+	bean   		CDATA   #IMPLIED
+	focus  		CDATA   #IMPLIED
+	masks  		CDATA   #IMPLIED
+	tabbedPaneWrap	CDATA   #IMPLIED
+	schema 		CDATA   #IMPLIED
+	border (y | n | 3d) #IMPLIED
+	borderFont  CDATA   #IMPLIED
+	borderColor CDATA   #IMPLIED
+	size		CDATA   #IMPLIED
+	weightx		CDATA   #IMPLIED
+	weighty		CDATA   #IMPLIED
+	label		CDATA	#IMPLIED
+	handling	CDATA	#IMPLIED
+	keylist		CDATA 	#IMPLIED
+	buttonPanel (y | n) #IMPLIED
+	scrollable	(y | n) #IMPLIED
+	font1  CDATA #IMPLIED
+    font2  CDATA #IMPLIED
+    font3  CDATA #IMPLIED
+    font4  CDATA #IMPLIED
+    font5  CDATA #IMPLIED
+    font6  CDATA #IMPLIED
+    font7  CDATA #IMPLIED
+    font8  CDATA #IMPLIED
+    font9  CDATA #IMPLIED
+    font10 CDATA #IMPLIED
+>
+	<!ELEMENT TableInput (TableButton | Column)+>
+	<!ATTLIST TableInput
+		id          CDATA   #REQUIRED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		foreground	CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		visible     (y | n) #IMPLIED
+		editable	(y | n) #IMPLIED
+		active		(y | n) #IMPLIED
+		help		CDATA   #IMPLIED
+		label		CDATA   #IMPLIED
+		next		CDATA   #IMPLIED
+		border		(y | n) #IMPLIED
+		grid		(y | n) #IMPLIED
+		tooltip		CDATA   #IMPLIED
+	    selected 	CDATA 	#IMPLIED
+	    columns		CDATA 	#REQUIRED
+        rows 		CDATA 	#REQUIRED
+        records 	CDATA 	#REQUIRED
+        recordCaching 	CDATA #REQUIRED
+        selection	(single | multiple) #IMPLIED
+        buttonAlignment (NORTH | SOUTH | WEST | EAST) #IMPLIED
+        buttonSpacing 	CDATA #IMPLIED
+        tableSpacing 	CDATA #IMPLIED
+        tableRowFitToFont (y | n) #IMPLIED
+        headerBackground 	CDATA #IMPLIED
+        headerForeground 	CDATA #IMPLIED
+        inactiveForeground 	CDATA #IMPLIED
+        inactiveBackground 	CDATA #IMPLIED
+        inactiveHeaderForeground CDATA #IMPLIED
+        inactiveHeaderBackground CDATA #IMPLIED
+		font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+	    headerFont1  CDATA #IMPLIED
+	    headerFont2  CDATA #IMPLIED
+	    headerFont3  CDATA #IMPLIED
+	    headerFont4  CDATA #IMPLIED
+	    headerFont5  CDATA #IMPLIED
+	    headerFont6  CDATA #IMPLIED
+	    headerFont7  CDATA #IMPLIED
+	    headerFont8  CDATA #IMPLIED
+	    headerFont9  CDATA #IMPLIED
+	    headerFont10 CDATA #IMPLIED
+	    event		CDATA   		#IMPLIED
+		fct			CDATA   		#IMPLIED
+		handling	(c|s|cs|f|fs) 	#IMPLIED
+		inEvent		CDATA   		#IMPLIED
+		inFct		CDATA   		#IMPLIED
+		inHandling	(c | s | cs)	#IMPLIED
+		dblClickEvent		CDATA   		#IMPLIED
+		dblClickFct			CDATA			#IMPLIED
+		dblClickHandling	(c | s | cs)	#IMPLIED
+		validateAtEvents	CDATA	#IMPLIED
+		showTableRecordsParameter	(y | n) #IMPLIED
+	>
+		<!ELEMENT Column EMPTY>
+		<!ATTLIST Column
+			id 			 		CDATA   #REQUIRED
+			name 		 		CDATA   #REQUIRED
+			foreground	 		CDATA   #IMPLIED
+			background	 		CDATA   #IMPLIED
+			inactiveForeground	CDATA   #IMPLIED
+			inactiveBackground	CDATA   #IMPLIED
+			content		 		CDATA 	#IMPLIED
+			editable 	 		CDATA   #IMPLIED
+			formatlength 		CDATA   #IMPLIED
+			maxlength 	 		CDATA   #IMPLIED
+			postcomma	 		CDATA   #IMPLIED
+			precomma 	 		CDATA 	#IMPLIED
+			sign		 		(y | n) #IMPLIED
+			typ 		 		CDATA   #IMPLIED
+			showEmpty			(y | n) #IMPLIED
+			alignment 			( WEST | CENTER | EAST ) #IMPLIED
+			validation			(y | n) #IMPLIED
+			tooltip				CDATA #IMPLIED
+			prefix				CDATA #IMPLIED
+			convertDataId		CDATA #IMPLIED
+		>
+		<!ELEMENT TableButton EMPTY>
+		<!ATTLIST TableButton
+			id           CDATA   #REQUIRED
+			buttonTyp 	 (first | last | next | prev) #REQUIRED
+			key 		 (KEY_SCROLL_FIRST | KEY_SCROLL_LAST | KEY_SCROLL_NEXT | KEY_SCROLL_PREV) #REQUIRED
+			background	 		CDATA   #IMPLIED
+			inactiveBackground	CDATA   #IMPLIED
+			foreground	 		CDATA   #IMPLIED
+			inactiveForeground	CDATA   #IMPLIED
+			handling	 (c | s | cs)   #IMPLIED
+			visible      (y | n) #IMPLIED
+			active 	 	 (y | n) #IMPLIED
+			src 		 CDATA   #IMPLIED
+		    src_inactive CDATA   #IMPLIED
+			content		 CDATA   #IMPLIED
+			border	 	 CDATA   #IMPLIED
+			lines		 CDATA	 #IMPLIED
+		    font1  CDATA #IMPLIED
+		    font2  CDATA #IMPLIED
+		    font3  CDATA #IMPLIED
+		    font4  CDATA #IMPLIED
+		    font5  CDATA #IMPLIED
+		    font6  CDATA #IMPLIED
+		    font7  CDATA #IMPLIED
+		    font8  CDATA #IMPLIED
+		    font9  CDATA #IMPLIED
+		    font10 CDATA #IMPLIED
+		    show		(text | image | both) #IMPLIED
+		>
+
+	<!ELEMENT Include EMPTY>
+	<!ATTLIST Include
+		name        CDATA   #REQUIRED
+		onError		(shutDown | doNothing) #IMPLIED
+	>
+
+	<!ELEMENT SortTable (Column)+>
+	<!ATTLIST SortTable
+		id          CDATA   #REQUIRED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		foreground	CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		visible     (y | n) #IMPLIED
+		editable	(y | n) #IMPLIED
+		active		(y | n) #IMPLIED
+		help		CDATA   #IMPLIED
+		label		CDATA   #IMPLIED
+		next		CDATA   #IMPLIED
+		border		(y | n) #IMPLIED
+		grid		(y | n) #IMPLIED
+		tooltip		CDATA   #IMPLIED
+	    selected 	CDATA 	#IMPLIED
+	    columns		CDATA 	#REQUIRED
+        rows 		CDATA 	#REQUIRED
+        selection	(single | multiple) #IMPLIED
+        buttonAlignment (NORTH | SOUTH | WEST | EAST) #IMPLIED
+        buttonSpacing 	CDATA #IMPLIED
+        tableSpacing 	CDATA #IMPLIED
+        tableRowFitToFont (y | n) #IMPLIED
+        headerBackground 	CDATA #IMPLIED
+        headerForeground 	CDATA #IMPLIED
+        inactiveForeground 	CDATA #IMPLIED
+        inactiveBackground 	CDATA #IMPLIED
+        inactiveHeaderForeground CDATA #IMPLIED
+        inactiveHeaderBackground CDATA #IMPLIED
+		font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+	    headerFont1  CDATA #IMPLIED
+	    headerFont2  CDATA #IMPLIED
+	    headerFont3  CDATA #IMPLIED
+	    headerFont4  CDATA #IMPLIED
+	    headerFont5  CDATA #IMPLIED
+	    headerFont6  CDATA #IMPLIED
+	    headerFont7  CDATA #IMPLIED
+	    headerFont8  CDATA #IMPLIED
+	    headerFont9  CDATA #IMPLIED
+	    headerFont10 CDATA #IMPLIED
+	    event		CDATA   		#IMPLIED
+		fct			CDATA   		#IMPLIED
+		handling	(c|s|cs|f|fs) 	#IMPLIED
+		inEvent		CDATA   		#IMPLIED
+		inFct		CDATA   		#IMPLIED
+		inHandling	(c | s | cs)	#IMPLIED
+		dblClickEvent		CDATA   		#IMPLIED
+		dblClickFct			CDATA			#IMPLIED
+		dblClickHandling	(c | s | cs)	#IMPLIED
+		validateAtEvents	CDATA	#IMPLIED
+	>
+	<!ELEMENT Tree (Entry*)>
+	<!ATTLIST Tree
+		id          CDATA   #REQUIRED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		foreground	CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		datatype	(char | string | integer | short | long | date | time | double) #IMPLIED
+		mode		(PUZZLE | WINDOW | DIALOG | INFO | COMMAND | INTERNAL) #IMPLIED
+		content		CDATA   #IMPLIED
+		editable	(y | n) #IMPLIED
+		help		CDATA   #IMPLIED
+		key			CDATA   #IMPLIED
+		next		CDATA   #IMPLIED
+		region		CDATA   #IMPLIED
+		request		(y | n) #IMPLIED
+		required	(y | n) #IMPLIED
+		tooltip		CDATA   #IMPLIED
+		name 		CDATA   #REQUIRED
+	    width 		CDATA   #IMPLIED
+	    height		CDATA	#IMPLIED
+	    icon		CDATA	#IMPLIED
+		shortcut	CDATA	#IMPLIED
+		font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+	    event		CDATA   		#IMPLIED
+		fct			CDATA   		#IMPLIED
+		handling	(c|s|cs|f|fs) 	#IMPLIED
+		inEvent		CDATA   		#IMPLIED
+		inFct		CDATA   		#IMPLIED
+		inHandling	(c | s | cs)	#IMPLIED
+		showShortcutText	(y | n) #IMPLIED
+	>
+	<!ELEMENT Toolbar (Entry+)>
+	<!ATTLIST Toolbar
+		id          CDATA   #REQUIRED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		foreground	CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		visible     (y | n) #IMPLIED
+		help		CDATA   #IMPLIED
+		key			CDATA   #IMPLIED
+		tooltip		CDATA   #IMPLIED
+		name 		CDATA   #REQUIRED
+	    active 		(n | y) #IMPLIED
+	    hSpace 		CDATA   #IMPLIED
+	    vSpace 		CDATA   #IMPLIED
+		font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+	>
+		<!ELEMENT Entry (Entry*)>
+		<!ATTLIST Entry
+			id           CDATA   #REQUIRED
+			visible      (y | n) #IMPLIED
+			content		 CDATA   #IMPLIED
+			help		 CDATA   #IMPLIED
+			key			 CDATA   #IMPLIED
+			region		 CDATA   #IMPLIED
+			request		 (y | n) #IMPLIED
+			tooltip		 CDATA   #IMPLIED
+		    src 		 CDATA   #IMPLIED
+		    src_inactive CDATA   #IMPLIED
+		    active 	 	 (y | n) #IMPLIED
+		    border	 	 CDATA   #IMPLIED
+		    name 		 CDATA 	 #REQUIRED
+			mode		(PUZZLE | WINDOW | DIALOG | INFO | COMMAND | INTERNAL) #IMPLIED
+			level		CDATA	#IMPLIED
+			icon		CDATA	#IMPLIED
+			background  CDATA #IMPLIED
+			inactiveBackground CDATA #IMPLIED
+			modal (y | n) #IMPLIED
+			separator (y | n ) #IMPLIED
+			font1  CDATA #IMPLIED
+		    font2  CDATA #IMPLIED
+		    font3  CDATA #IMPLIED
+		    font4  CDATA #IMPLIED
+		    font5  CDATA #IMPLIED
+		    font6  CDATA #IMPLIED
+		    font7  CDATA #IMPLIED
+		    font8  CDATA #IMPLIED
+		    font9  CDATA #IMPLIED
+		    font10 CDATA #IMPLIED
+		    standard (Guest | User | Admin ) #IMPLIED
+		    buttons		CDATA #IMPLIED
+		    panelButtons	CDATA #IMPLIED
+		    toolbarButtons	CDATA #IMPLIED
+		    event		CDATA   		#IMPLIED
+			fct			CDATA   		#IMPLIED
+			handling	(c|s|cs|f|fs) 	#IMPLIED
+			inEvent		CDATA   		#IMPLIED
+			inFct		CDATA   		#IMPLIED
+			inHandling	(c | s | cs)	#IMPLIED
+		>
+	<!ELEMENT AmountInput EMPTY>
+	<!ATTLIST AmountInput
+		id          CDATA   #REQUIRED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		foreground	CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		visible     (y | n) #IMPLIED
+		content		CDATA   #IMPLIED
+		editable	(y | n) #IMPLIED
+		help		CDATA   #IMPLIED
+		key			CDATA   #IMPLIED
+		label		CDATA   #IMPLIED
+		next		CDATA   #IMPLIED
+		region		CDATA   #IMPLIED
+		request		(y | n) #IMPLIED
+		required	(y | n) #IMPLIED
+		tooltip		CDATA   #IMPLIED
+		precomma  	CDATA   #IMPLIED
+	    postcomma 	CDATA   #IMPLIED
+	    sign      	(y | n) #IMPLIED
+	    border    	CDATA   #IMPLIED
+	    showEmpty 	(y | n) #IMPLIED
+	    inactiveBackground CDATA #IMPLIED
+		inactiveForeground CDATA #IMPLIED
+		formatlength	   CDATA   #IMPLIED
+	    datatype	(char | string | integer | short | long | date | time | double | bigdecimal) #IMPLIED
+		mode		(PUZZLE | WINDOW | DIALOG | INFO | COMMAND | INTERNAL) #IMPLIED
+		insertMode  (overwrite | first | last) "overwrite"
+		references CDATA #IMPLIED
+		font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+	    event		CDATA   		#IMPLIED
+		fct			CDATA   		#IMPLIED
+		handling	(c|s|cs|f|fs) 	#IMPLIED
+		triggerMode (always | onChange | onChangeOrDelete) #IMPLIED
+		inEvent		CDATA   		#IMPLIED
+		inFct		CDATA   		#IMPLIED
+		inHandling	(c | s | cs)	#IMPLIED
+		textAlign	(WEST | CENTER | EAST) #IMPLIED
+		maxlength 	CDATA   #IMPLIED
+		tooltip		CDATA   #IMPLIED
+		defaultSign CDATA   #IMPLIED
+		doRounding (y | n) #IMPLIED
+	>
+	<!--
+		outEvent			CDATA   		#IMPLIED
+		outFct				CDATA   		#IMPLIED
+		outHandling 		(c | s | cs)	#IMPLIED
+		outTriggerMode		( always | onChange | onChangeOrDelete) #IMPLIED
+	-->
+	<!ELEMENT Button EMPTY>
+	<!ATTLIST Button
+		id           CDATA   #REQUIRED
+		alignment    CDATA   #IMPLIED
+		background   CDATA   #IMPLIED
+		foreground	 CDATA   #IMPLIED
+		posX         CDATA   #IMPLIED
+		posY         CDATA   #IMPLIED
+		spaceBottom  CDATA   #IMPLIED
+		spaceLeft    CDATA   #IMPLIED
+		spaceRight   CDATA   #IMPLIED
+		spaceTop     CDATA   #IMPLIED
+		spanX        CDATA   #IMPLIED
+		spanY        CDATA   #IMPLIED
+		visible      (y | n) #IMPLIED
+		content		 CDATA   #IMPLIED
+		editable	 (y | n) #IMPLIED
+		help		 CDATA   #IMPLIED
+		key			 CDATA   #IMPLIED
+		label		 CDATA   #IMPLIED
+		next		 CDATA   #IMPLIED
+		region		 CDATA   #IMPLIED
+		request		 (y | n) #IMPLIED
+		required	 (y | n) #IMPLIED
+		tooltip		 CDATA   #IMPLIED
+	    maxlength 	 CDATA   #IMPLIED
+	    lines 		 CDATA   #IMPLIED
+	    src 		 CDATA   #IMPLIED
+	    src_inactive CDATA   #IMPLIED
+	    active 	 	 (y | n) #IMPLIED
+	    border	 	 CDATA   #IMPLIED
+	    mnemonic 	 CDATA   #IMPLIED
+	    inactiveBackground CDATA #IMPLIED
+	    inactiveForeground CDATA #IMPLIED
+	    datatype	(char | string | integer | short | long | date | time | double) #IMPLIED
+		mode		(PUZZLE | WINDOW | DIALOG | INFO | COMMAND | INTERNAL) #IMPLIED
+		sendLastTrigger (y | n) #IMPLIED
+	    font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+	    event		CDATA   		#IMPLIED
+		fct			CDATA   		#IMPLIED
+		handling	(c|s|cs|f|fs) 	#IMPLIED
+		inEvent		CDATA   		#IMPLIED
+		inFct		CDATA   		#IMPLIED
+		inHandling	(c | s | cs)	#IMPLIED
+		show		(text | image | both) #IMPLIED
+		sendFocusTrigger (y | n ) #IMPLIED
+	>
+	<!ELEMENT CheckboxInput EMPTY>
+	<!ATTLIST CheckboxInput
+		id          CDATA   #REQUIRED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		foreground	CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		visible     (y | n) #IMPLIED
+		datatype	(char | string | integer | short | long | date | time | double) #IMPLIED
+		mode		(PUZZLE | WINDOW | DIALOG | INFO | COMMAND | INTERNAL) #IMPLIED
+		content		CDATA   #IMPLIED
+		editable	(y | n) #IMPLIED
+		help		CDATA   #IMPLIED
+		key			CDATA   #IMPLIED
+		label		CDATA   #IMPLIED
+		next		CDATA   #IMPLIED
+		region		CDATA   #IMPLIED
+		request		(y | n) #IMPLIED
+		required	(y | n) #IMPLIED
+		tooltip		CDATA   #IMPLIED
+		selected 	CDATA   #IMPLIED
+	    text 		CDATA   #IMPLIED
+		inactiveForeground CDATA #IMPLIED
+	    inactiveBackground CDATA #IMPLIED
+	    mnemonic CDATA #IMPLIED
+		font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+	    event		CDATA   		#IMPLIED
+		fct			CDATA   		#IMPLIED
+		handling	(c|s|cs|f|fs) 	#IMPLIED
+		inEvent		CDATA   		#IMPLIED
+		inFct		CDATA   		#IMPLIED
+		inHandling	(c | s | cs)	#IMPLIED
+	>
+	<!ELEMENT ComboboxInput EMPTY>
+	<!ATTLIST ComboboxInput
+		id          CDATA   #REQUIRED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		foreground	CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		visible     (y | n) #IMPLIED
+		datatype	(char | string | integer | short | long | date | time | double) #IMPLIED
+		mode		(PUZZLE | WINDOW | DIALOG | INFO | COMMAND | INTERNAL) #IMPLIED
+		content		CDATA   #IMPLIED
+		editable	(y | n) #IMPLIED
+		help		CDATA   #IMPLIED
+		key			CDATA   #IMPLIED
+		label		CDATA   #IMPLIED
+		next		CDATA   #IMPLIED
+		region		CDATA   #IMPLIED
+		request		(y | n) #IMPLIED
+		required	(y | n) #IMPLIED
+		tooltip		CDATA   #IMPLIED
+		width 		CDATA   #IMPLIED
+        popupWidth 	CDATA   #IMPLIED
+        lines 		CDATA   #IMPLIED
+        selected 	CDATA   #IMPLIED
+        border    	CDATA   #IMPLIED
+        show 		(content | value | both) #IMPLIED
+		inactiveForeground CDATA #IMPLIED
+	    inactiveBackground CDATA #IMPLIED
+	    formatlength 		CDATA   #IMPLIED
+	    searchFieldSize CDATA #IMPLIED
+	    popupAlignment (left | right) #IMPLIED
+	    blankEntry (y | n) #IMPLIED
+		font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+	    event		CDATA   		#IMPLIED
+		fct			CDATA   		#IMPLIED
+		handling	(c|s|cs|f|fs) 	#IMPLIED
+		triggerMode (onChange | onLeave | always) #IMPLIED
+		inEvent		CDATA   		#IMPLIED
+		inFct		CDATA   		#IMPLIED
+		inHandling	(c | s | cs)	#IMPLIED
+		searchBox	(y | n)			#IMPLIED
+		convertTable	CDATA   #IMPLIED
+		convertDataId	CDATA   #IMPLIED
+		sendDisplayText	(y | n)	#IMPLIED
+	>
+	<!ELEMENT DateInput (CalendarButton?)>
+	<!ATTLIST DateInput
+		id          CDATA   #REQUIRED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		foreground	CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		visible     (y | n) #IMPLIED
+		datatype	(char | string | integer | short | long | date | time | double) #IMPLIED
+		mode		(PUZZLE | WINDOW | DIALOG | INFO | COMMAND | INTERNAL) #IMPLIED
+		content		CDATA   #IMPLIED
+		editable	(y | n) #IMPLIED
+		help		CDATA   #IMPLIED
+		key			CDATA   #IMPLIED
+		label		CDATA   #IMPLIED
+		next		CDATA   #IMPLIED
+		region		CDATA   #IMPLIED
+		request		(y | n) #IMPLIED
+		required	(y | n) #IMPLIED
+		tooltip		CDATA   #IMPLIED
+		border    	CDATA   #IMPLIED
+        maxlength 	CDATA   #IMPLIED
+        dateLine	CDATA	#IMPLIED
+        inactiveForeground CDATA #IMPLIED
+        inactiveBackground CDATA #IMPLIED
+        typ (dd.mm.yy | dd.mm.yyyy | dd.mm | mm.yyyy | mm.yy ) #IMPLIED
+		daysOfFebruary CDATA #IMPLIED
+		validation (y | n) #IMPLIED
+		insertMode  (overwrite | first | last) "overwrite"
+		formatlength 		CDATA   #IMPLIED
+		references CDATA #IMPLIED
+		fillUpWithDay (first | last) #IMPLIED
+		font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+	    event		CDATA   		#IMPLIED
+		fct			CDATA   		#IMPLIED
+		handling	(c|s|cs|f|fs) 	#IMPLIED
+		triggerMode (always | onChange | onChangeOrDelete) #IMPLIED
+		inEvent		CDATA   		#IMPLIED
+		inFct		CDATA   		#IMPLIED
+		inHandling	(c | s | cs)	#IMPLIED
+		textAlign	(WEST | CENTER | EAST) #IMPLIED
+	>
+		<!ELEMENT CalendarButton EMPTY>
+		<!ATTLIST CalendarButton
+			id           CDATA   #REQUIRED
+			background	 		CDATA   #IMPLIED
+			inactiveBackground	CDATA   #IMPLIED
+			foreground	 		CDATA   #IMPLIED
+			inactiveForeground	CDATA   #IMPLIED
+			src 		 CDATA   #IMPLIED
+		    src_inactive CDATA   #IMPLIED
+			content		 CDATA   #IMPLIED
+			border	 	 CDATA   #IMPLIED
+			lines		 CDATA	 #IMPLIED
+			maxlength 	 CDATA   #IMPLIED
+			tooltip		 CDATA   #IMPLIED
+			active 	(y | n) #IMPLIED
+			visible (y | n) #IMPLIED
+			typ 	(week | month) "month"
+		    font1  CDATA #IMPLIED
+		    font2  CDATA #IMPLIED
+		    font3  CDATA #IMPLIED
+		    font4  CDATA #IMPLIED
+		    font5  CDATA #IMPLIED
+		    font6  CDATA #IMPLIED
+		    font7  CDATA #IMPLIED
+		    font8  CDATA #IMPLIED
+		    font9  CDATA #IMPLIED
+		    font10 CDATA #IMPLIED
+		>
+	<!ELEMENT Label EMPTY>
+	<!ATTLIST Label
+		id          CDATA   #REQUIRED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		foreground	CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		visible     (y | n) #IMPLIED
+		content		CDATA   #IMPLIED
+		next		CDATA   #IMPLIED
+		tooltip		CDATA   #IMPLIED
+		src 		CDATA 	#IMPLIED
+	    maxlength 	CDATA 	#IMPLIED
+	    lines		CDATA	#IMPLIED
+		datatype	(char | string | integer | short | long | date | time | double) #IMPLIED
+		mnemonic CDATA #IMPLIED
+		formatlength 		CDATA   #IMPLIED
+		font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+		showImageAndText (y | n) #IMPLIED
+	>
+	<!ELEMENT ListboxInput EMPTY>
+	<!ATTLIST ListboxInput
+		id          CDATA   #REQUIRED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		foreground	CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		visible     (y | n) #IMPLIED
+		datatype	(char | string | integer | short | long | date | time | double) #IMPLIED
+		content		CDATA   #IMPLIED
+		editable	(y | n) #IMPLIED
+		help		CDATA   #IMPLIED
+		key			CDATA   #IMPLIED
+		label		CDATA   #IMPLIED
+		next		CDATA   #IMPLIED
+		required	(y | n) #IMPLIED
+		tooltip		CDATA   #IMPLIED
+		border		CDATA	#IMPLIED
+        width 		CDATA 	#IMPLIED
+        lines 		CDATA 	#IMPLIED
+        selected 	CDATA 	#IMPLIED
+        selection	(single | multiple) #IMPLIED
+        inactiveForeground CDATA #IMPLIED
+        inactiveBackground CDATA #IMPLIED
+		font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+	    event		CDATA   		#IMPLIED
+		fct			CDATA   		#IMPLIED
+		handling	(c|s|cs|f|fs) 	#IMPLIED
+		triggerMode (onChange | onLeave | always) #IMPLIED
+		inEvent		CDATA   		#IMPLIED
+		inFct		CDATA   		#IMPLIED
+		inHandling	(c | s | cs)	#IMPLIED
+		dblClickEvent		CDATA   		#IMPLIED
+		dblClickFct			CDATA			#IMPLIED
+		dblClickHandling	(c | s | cs)	#IMPLIED
+		convertTable	CDATA   #IMPLIED
+		convertDataId	CDATA   #IMPLIED
+		sendDisplayText	(y | n)	#IMPLIED
+	>
+	<!ELEMENT PasswordInput EMPTY>
+	<!ATTLIST PasswordInput
+		id          CDATA   #REQUIRED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		foreground	CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		visible     (y | n) #IMPLIED
+		datatype	(char | string | integer | short | long | date | time | double) #IMPLIED
+		mode		(PUZZLE | WINDOW | DIALOG | INFO | COMMAND | INTERNAL) #IMPLIED
+		content		CDATA   #IMPLIED
+		editable	(y | n) #IMPLIED
+		help		CDATA   #IMPLIED
+		key			CDATA   #IMPLIED
+		label		CDATA   #IMPLIED
+		next		CDATA   #IMPLIED
+		region		CDATA   #IMPLIED
+		request		(y | n) #IMPLIED
+		required	(y | n) #IMPLIED
+		tooltip		CDATA   #IMPLIED
+		echo 		CDATA 	#IMPLIED
+        maxlength 	CDATA 	#IMPLIED
+        border    	CDATA   #IMPLIED
+        inactiveForeground CDATA #IMPLIED
+        inactiveBackground CDATA #IMPLIED
+        insertMode  (overwrite | first | last) "overwrite"
+        formatlength 		CDATA   #IMPLIED
+        references CDATA #IMPLIED
+        typ (string | numeric | numeric0 | upper) #IMPLIED
+		font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+	    event		CDATA   		#IMPLIED
+		fct			CDATA   		#IMPLIED
+		handling	(c|s|cs|f|fs) 	#IMPLIED
+		triggerMode (always | onChange | onChangeOrDelete) #IMPLIED
+		inEvent		CDATA   		#IMPLIED
+		inFct		CDATA   		#IMPLIED
+		inHandling	(c | s | cs)	#IMPLIED
+		textAlign	(WEST | CENTER | EAST) #IMPLIED
+		minChars	CDATA #IMPLIED
+	>
+	<!ELEMENT PercentageInput EMPTY>
+	<!ATTLIST PercentageInput
+		id          CDATA   #REQUIRED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		foreground	CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		visible     (y | n) #IMPLIED
+		content		CDATA   #IMPLIED
+		editable	(y | n) #IMPLIED
+		help		CDATA   #IMPLIED
+		key			CDATA   #IMPLIED
+		label		CDATA   #IMPLIED
+		next		CDATA   #IMPLIED
+		region		CDATA   #IMPLIED
+		request		(y | n) #IMPLIED
+		required	(y | n) #IMPLIED
+		tooltip		CDATA   #IMPLIED
+		precomma  	CDATA   #IMPLIED
+	    postcomma 	CDATA   #IMPLIED
+	    sign      	(y | n) #IMPLIED
+	    border    	CDATA   #IMPLIED
+	    showEmpty 	(y | n) #IMPLIED
+	    inactiveBackground CDATA #IMPLIED
+		inactiveForeground CDATA #IMPLIED
+	    datatype	(char | string | integer | short | long | date | time | double) #IMPLIED
+		mode		(PUZZLE | WINDOW | DIALOG | INFO | COMMAND | INTERNAL) #IMPLIED
+		insertMode  (overwrite | first | last) "overwrite"
+        formatlength 		CDATA   #IMPLIED
+		font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+	    event		CDATA   		#IMPLIED
+		fct			CDATA   		#IMPLIED
+		handling	(c|s|cs|f|fs) 	#IMPLIED
+		triggerMode (always | onChange | onChangeOrDelete) #IMPLIED
+		inEvent		CDATA   		#IMPLIED
+		inFct		CDATA   		#IMPLIED
+		inHandling	(c | s | cs)	#IMPLIED
+		textAlign	(WEST | CENTER | EAST) #IMPLIED
+		doRounding (y | n) #IMPLIED
+	>
+	<!ELEMENT ProgressBar EMPTY>
+	<!ATTLIST ProgressBar
+		id          CDATA   #REQUIRED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		foreground	CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		visible     (y | n) #IMPLIED
+		content		CDATA   #IMPLIED
+		tooltip		CDATA   #IMPLIED
+        width 		CDATA 	#IMPLIED
+        height 		CDATA 	#IMPLIED
+	>
+	<!ELEMENT RadiobuttonInput EMPTY>
+	<!ATTLIST RadiobuttonInput
+		id          CDATA   #REQUIRED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		foreground	CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		visible     (y | n) #IMPLIED
+		datatype	(char | string | integer | short | long | date | time | double) #IMPLIED
+		mode		(PUZZLE | WINDOW | DIALOG | INFO | COMMAND | INTERNAL) #IMPLIED
+		content		CDATA   #IMPLIED
+		editable	(y | n) #IMPLIED
+		help		CDATA   #IMPLIED
+		key			CDATA   #IMPLIED
+		label		CDATA   #IMPLIED
+		next		CDATA   #IMPLIED
+		region		CDATA   #IMPLIED
+		request		(y | n) #IMPLIED
+		required	(y | n) #IMPLIED
+		tooltip		CDATA   #IMPLIED
+		selected 	CDATA   #IMPLIED
+	    text 		CDATA 	#IMPLIED
+	    name		CDATA	#IMPLIED
+		inactiveForeground CDATA #IMPLIED
+	    inactiveBackground CDATA #IMPLIED
+	    mnemonic CDATA #IMPLIED
+		font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+	    event		CDATA   		#IMPLIED
+		fct			CDATA   		#IMPLIED
+		handling	(c|s|cs|f|fs) 	#IMPLIED
+		inEvent		CDATA   		#IMPLIED
+		inFct		CDATA   		#IMPLIED
+		inHandling	(c | s | cs)	#IMPLIED
+	>
+	<!ELEMENT Separator EMPTY>
+	<!ATTLIST Separator
+		id          CDATA   #REQUIRED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		foreground	CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		visible     (y | n) #IMPLIED
+	    linewidth 	CDATA 	#IMPLIED
+	    typ 		(horizontal | vertical) "horizontal"
+	>
+	<!ELEMENT TextAreaInput EMPTY>
+	<!ATTLIST TextAreaInput
+		id          CDATA   #REQUIRED
+		active		(y | n) #IMPLIED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		foreground	CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		visible     (y | n) #IMPLIED
+		datatype	(char | string | integer | short | long | date | time | double) #IMPLIED
+		mode		(PUZZLE | WINDOW | DIALOG | INFO | COMMAND | INTERNAL) #IMPLIED
+		insertMode  (overwrite | top | bottom) "overwrite"
+		lineWrap	(y | n) #IMPLIED
+		content		CDATA   #IMPLIED
+		editable	(y | n) #IMPLIED
+		help		CDATA   #IMPLIED
+		key			CDATA   #IMPLIED
+		label		CDATA   #IMPLIED
+		next		CDATA   #IMPLIED
+		region		CDATA   #IMPLIED
+		request		(y | n) #IMPLIED
+		required	(y | n) #IMPLIED
+		tooltip		CDATA   #IMPLIED
+		maxlength 	CDATA   #IMPLIED
+        lines		CDATA   #IMPLIED
+        transparent	(y | n) #IMPLIED
+        border    	CDATA   #IMPLIED
+		scrollDown	(y | n) #IMPLIED
+        inactiveForeground CDATA #IMPLIED
+        inactiveBackground CDATA #IMPLIED
+        references CDATA #IMPLIED
+		font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+	    event		CDATA   		#IMPLIED
+		fct			CDATA   		#IMPLIED
+		handling	(c|s|cs|f|fs) 	#IMPLIED
+		triggerMode (always | onChange | onChangeOrDelete) #IMPLIED
+		inEvent		CDATA   		#IMPLIED
+		inFct		CDATA   		#IMPLIED
+		inHandling	(c | s | cs)	#IMPLIED
+		linelength	CDATA   		#IMPLIED
+		maxchars	CDATA   		#IMPLIED
+	>
+	<!ELEMENT TextInput EMPTY>
+	<!ATTLIST TextInput
+		id          CDATA   #REQUIRED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		foreground	CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		visible     (y | n) #IMPLIED
+		datatype	(char | string | integer | short | long | date | time | double) #IMPLIED
+		mode		(PUZZLE | WINDOW | DIALOG | INFO | COMMAND | INTERNAL) #IMPLIED
+		content		CDATA   #IMPLIED
+		editable	(y | n) #IMPLIED
+		help		CDATA   #IMPLIED
+		key			CDATA   #IMPLIED
+		label		CDATA   #IMPLIED
+		next		CDATA   #IMPLIED
+		region		CDATA   #IMPLIED
+		request		(y | n) #IMPLIED
+		required	(y | n) #IMPLIED
+		tooltip		CDATA   #IMPLIED
+        sign 		(y | n) #IMPLIED
+        maxlength 	CDATA 	#IMPLIED
+        border    	CDATA   #IMPLIED
+        typ 		(string | upper | numeric | numeric0 | status | label | combinedLabel) #IMPLIED
+        inactiveForeground CDATA #IMPLIED
+        inactiveBackground CDATA #IMPLIED
+        allowedchars	   CDATA #IMPLIED
+        unallowedchars	   CDATA #IMPLIED
+        insertMode  (overwrite | first | last) "overwrite"
+        formatlength	CDATA #IMPLIED
+        references 		CDATA #IMPLIED
+        autoTab 		CDATA #IMPLIED
+		font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+	    event		CDATA   		#IMPLIED
+		fct			CDATA   		#IMPLIED
+		handling	(c|s|cs|f|fs) 	#IMPLIED
+		triggerMode (always | onChange | onChangeOrDelete) #IMPLIED
+		inEvent		CDATA   		#IMPLIED
+		inFct		CDATA   		#IMPLIED
+		inHandling	(c | s | cs)	#IMPLIED
+		textAlign	(WEST | CENTER | EAST) #IMPLIED
+		minChars	CDATA #IMPLIED
+		prefix		CDATA #IMPLIED
+		defaultSign CDATA #IMPLIED
+		maxchars	CDATA #IMPLIED
+		convertTable	CDATA #IMPLIED
+		convertDataId	CDATA #IMPLIED
+	>
+	<!ELEMENT TimeInput EMPTY>
+	<!ATTLIST TimeInput
+		id          CDATA   #REQUIRED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		foreground	CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		visible     (y | n) #IMPLIED
+		datatype	(char | string | integer | short | long | date | time | double) #IMPLIED
+		mode		(PUZZLE | WINDOW | DIALOG | INFO | COMMAND | INTERNAL) #IMPLIED
+		content		CDATA   #IMPLIED
+		editable	(y | n) #IMPLIED
+		help		CDATA   #IMPLIED
+		key			CDATA   #IMPLIED
+		label		CDATA   #IMPLIED
+		next		CDATA   #IMPLIED
+		region		CDATA   #IMPLIED
+		request		(y | n) #IMPLIED
+		required	(y | n) #IMPLIED
+		tooltip		CDATA   #IMPLIED
+		maxlength 	CDATA   #IMPLIED
+        border    	CDATA   #IMPLIED
+		typ 		(hh:mm:ss | hh:mm) #IMPLIED
+        inactiveForeground CDATA #IMPLIED
+        inactiveBackground CDATA #IMPLIED
+        insertMode  (overwrite | first | last) "overwrite"
+        formatlength 		CDATA   #IMPLIED
+        references CDATA #IMPLIED
+		font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+	    event		CDATA   		#IMPLIED
+		fct			CDATA   		#IMPLIED
+		handling	(c|s|cs|f|fs) 	#IMPLIED
+		triggerMode (always | onChange | onChangeOrDelete) #IMPLIED
+		inEvent		CDATA   		#IMPLIED
+		inFct		CDATA   		#IMPLIED
+		inHandling	(c | s | cs)	#IMPLIED
+		textAlign	(WEST | CENTER | EAST) #IMPLIED
+	>
+	<!ELEMENT ToggleButton EMPTY>
+	<!ATTLIST ToggleButton
+		id           CDATA   #REQUIRED
+		alignment    CDATA   #IMPLIED
+		background   CDATA   #IMPLIED
+		foreground	 CDATA   #IMPLIED
+		posX         CDATA   #IMPLIED
+		posY         CDATA   #IMPLIED
+		spaceBottom  CDATA   #IMPLIED
+		spaceLeft    CDATA   #IMPLIED
+		spaceRight   CDATA   #IMPLIED
+		spaceTop     CDATA   #IMPLIED
+		spanX        CDATA   #IMPLIED
+		spanY        CDATA   #IMPLIED
+		visible      (y | n) #IMPLIED
+		datatype	 (char | string | integer | short | long | date | time | double) #IMPLIED
+		mode		 (PUZZLE | WINDOW | DIALOG | INFO | COMMAND | INTERNAL) #IMPLIED
+		content		 CDATA   #IMPLIED
+		editable	 (y | n) #IMPLIED
+		help		 CDATA   #IMPLIED
+		key			 CDATA   #IMPLIED
+		label		 CDATA   #IMPLIED
+		next		 CDATA   #IMPLIED
+		region		 CDATA   #IMPLIED
+		request		 (y | n) #IMPLIED
+		required	 (y | n) #IMPLIED
+		tooltip		 CDATA   #IMPLIED
+		mnemonic 	 CDATA   #IMPLIED
+		src 		 CDATA   #IMPLIED
+        src_selected CDATA   #IMPLIED
+        src_inactive CDATA   #IMPLIED
+        selected 	 CDATA   #IMPLIED
+        active 		 (n | y) #IMPLIED
+        text 		 CDATA   #IMPLIED
+	    inactiveBackground CDATA #IMPLIED
+	    inactiveForeground CDATA #IMPLIED
+		font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+	    event		CDATA   		#IMPLIED
+		fct			CDATA   		#IMPLIED
+		handling	(c|s|cs|f|fs) 	#IMPLIED
+		inEvent		CDATA   		#IMPLIED
+		inFct		CDATA   		#IMPLIED
+		inHandling	(c | s | cs)	#IMPLIED
+	>
+	<!ELEMENT include EMPTY>
+	<!ATTLIST include
+		template    CDATA   #REQUIRED
+		id          CDATA   #REQUIRED
+		onError (shutDown | doNothing) #IMPLIED
+		alignment   CDATA   #IMPLIED
+		background  CDATA   #IMPLIED
+		posX        CDATA   #IMPLIED
+		posY        CDATA   #IMPLIED
+		spaceBottom CDATA   #IMPLIED
+		spaceLeft   CDATA   #IMPLIED
+		spaceRight  CDATA   #IMPLIED
+		spaceTop    CDATA   #IMPLIED
+		spanX       CDATA   #IMPLIED
+		spanY       CDATA   #IMPLIED
+		visible     (y | n) #IMPLIED
+		bean   		CDATA   #IMPLIED
+		focus  		CDATA   #IMPLIED
+		masks  		CDATA   #IMPLIED
+		tabbedPaneWrap	CDATA   #IMPLIED
+		schema 		CDATA   #IMPLIED
+		border (y | n) #IMPLIED
+		borderFont  CDATA   #IMPLIED
+		borderColor CDATA   #IMPLIED
+		size		CDATA   #IMPLIED
+		weightx		CDATA   #IMPLIED
+		weighty		CDATA   #IMPLIED
+		label		CDATA	#IMPLIED
+		handling	CDATA	#IMPLIED
+		keylist		CDATA 	#IMPLIED
+		buttonPanel (y | n) #IMPLIED
+		scrollable	(y | n) #IMPLIED
+		font1  CDATA #IMPLIED
+	    font2  CDATA #IMPLIED
+	    font3  CDATA #IMPLIED
+	    font4  CDATA #IMPLIED
+	    font5  CDATA #IMPLIED
+	    font6  CDATA #IMPLIED
+	    font7  CDATA #IMPLIED
+	    font8  CDATA #IMPLIED
+	    font9  CDATA #IMPLIED
+	    font10 CDATA #IMPLIED
+	>
