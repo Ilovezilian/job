@@ -1,0 +1,10 @@
+<!DOCTYPE mml:math SYSTEM "mathml3.dtd" [
+    <!ENTITY % MATHML.prefixed "INCLUDE">
+    <!ENTITY % MATHML.prefix "mml">
+]>
+
+<mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML">
+
+    <mml:mo> &DifferentialD; </mml:mo>
+
+</mml:math>
