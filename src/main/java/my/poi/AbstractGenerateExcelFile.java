@@ -15,6 +15,15 @@ public abstract class AbstractGenerateExcelFile implements GenerateExcelFile {
 
     private volatile String fullFileName;
 
+    /**
+     * 默认一个表格，表格中10行 10列
+     * @throws IOException
+     */
+    @Override
+    public void generateXLSX() throws IOException {
+        generateXLSX(1, 10, 10);
+    }
+
     @Override
     public void generateXLSX(int sheetNum, int rowNum, int column) throws IOException {
         OutputStream out = new FileOutputStream(getFullFileName(sheetNum, rowNum));
@@ -25,12 +34,22 @@ public abstract class AbstractGenerateExcelFile implements GenerateExcelFile {
     }
 
     /**
+     * 默认设置10行，10列
+     *
+     * @return
+     */
+    public String getFullFileName() {
+        return getFullFileName(10, 10);
+    }
+
+    /**
      * 这里不会出现多线程问题，因为这里不出现多个线程同时修改fullFileName的情况，我这里纯粹是画蛇添足，因为想到双校验单例就写。
+     *
      * @param sheetNum
      * @param rowNum
      * @return
      */
-    private String getFullFileName(int sheetNum, int rowNum) {
+    public String getFullFileName(int sheetNum, int rowNum) {
         if (null == fullFileName || "".equals(fullFileName)) {
             fullFileName = FILE_PATH + FILE_NAME_PREFIX + (rowNum * sheetNum) + SEPARATOR + System.currentTimeMillis() + FILE_NAME_SUFFIX;
         }
@@ -40,12 +59,13 @@ public abstract class AbstractGenerateExcelFile implements GenerateExcelFile {
 
     /**
      * 支持拓展部分文件名
+     *
      * @param sheetNum
      * @param rowNum
-     * @param random 建议是文件名+时间戳
+     * @param random   建议是文件名+时间戳
      * @return
      */
-    protected void setFullFileName(int sheetNum, int rowNum, String random) {
+    public void setFullFileName(int sheetNum, int rowNum, String random) {
         this.fullFileName = FILE_PATH + FILE_NAME_PREFIX + (rowNum * sheetNum) + SEPARATOR + random + SEPARATOR + System.currentTimeMillis() + FILE_NAME_SUFFIX;
     }
 
