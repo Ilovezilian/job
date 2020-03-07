@@ -19,17 +19,10 @@ public class GenerateExcelFileFactory {
     }
 
     private AbstractGenerateExcelFile newExcelFile(AbstractGenerateExcelFile file, String fileName, int sheetNum, int rowNum, int column) {
-//        file.setFullFileName(fileName);
-//        file.setSheetNum(sheetNum);
-//        file.setRowNum(rowNum);
-//        file.setColumnNum(column);
-        // 用下面这个来替换上面这个方式 这样的话连工厂方法都不需要了。
-        AbstractGenerateExcelFile.builder()
-                .fullFileName(fileName)
-                .sheetNum(sheetNum)
-                .rowNum(rowNum)
-                .columnNum(column)
-                .build();
+        file.setFullFileName(fileName);
+        file.setSheetNum(sheetNum);
+        file.setRowNum(rowNum);
+        file.setColumnNum(column);
         return file;
     }
 }

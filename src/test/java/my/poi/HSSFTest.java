@@ -2,9 +2,10 @@ package my.poi;
 
 import java.io.IOException;
 
-public class SXSSFTest {
+public class HSSFTest {
     public static void main(String[] args) throws IOException, InterruptedException {
         Thread.sleep(3 * 1000);
-        (new SXSSF()).generateExcel();
+        (new HSSF()).generateExcel();
     }
+
 }

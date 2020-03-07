@@ -1,6 +1,5 @@
 package my.poi;
 
-import lombok.Builder;
 import lombok.Data;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -14,7 +13,6 @@ import java.io.OutputStream;
 import static my.poi.Constant.*;
 
 @Data
-@Builder
 public abstract class AbstractGenerateExcelFile implements GenerateExcelFile {
 
     private String fullFileName = "";
@@ -28,12 +26,19 @@ public abstract class AbstractGenerateExcelFile implements GenerateExcelFile {
      * @throws IOException
      */
     @Override
-    public void generateXLSX() throws IOException {
-        OutputStream out = new FileOutputStream(getFullFileName());
-        Workbook workbook = generateSheet(sheetNum, rowNum, columnNum);
-        workbook.write(out);
-        workbook.close();
-        out.close();
+    public void generateExcel() throws IOException {
+        try (OutputStream out = new FileOutputStream(getFullFileName());
+             Workbook workbook = generateSheet(sheetNum, rowNum, columnNum)) {
+            workbook.write(out);
+        }
+    }
+
+    @Override
+    public void generateExcel(Workbook workbook) throws IOException {
+        try (OutputStream out = new FileOutputStream(getFullFileName())) {
+            workbook.write(out);
+            workbook.close();
+        }
     }
 
     /**
@@ -56,7 +61,10 @@ public abstract class AbstractGenerateExcelFile implements GenerateExcelFile {
      * @return
      */
     public void setFullFileName(String fileName) {
-        this.fullFileName = FILE_PATH + FILE_NAME_PREFIX + this.getClass().getName() + rowNum + "-" + sheetNum + SEPARATOR + fileName + SEPARATOR + System.currentTimeMillis() + FILE_NAME_SUFFIX;
+        String suffix = this instanceof HSSF ? XLS_SUFFIX : XLSX_SUFFIX;
+        this.fullFileName = FILE_PATH + FILE_NAME_PREFIX + this.getClass().getName()
+                + rowNum + "-" + sheetNum + SEPARATOR + fileName
+                + SEPARATOR + System.currentTimeMillis() + suffix;
     }
 
 
