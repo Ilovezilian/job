@@ -33,6 +33,9 @@ public enum ByteUnitEnum {
         this.alias = alias;
     }
 
+    public static String getHumanSpace(long size) {
+        return getHumanSpace(size, B);
+    }
     public static String getHumanSpace(long size, ByteUnitEnum unitEnum) {
         final int seg = 1024;
         while (size > seg && BB != unitEnum) {

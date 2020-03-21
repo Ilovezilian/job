@@ -1,6 +1,6 @@
 package my.iostream;
 
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import java.io.*;
 import java.nio.ByteBuffer;
@@ -15,13 +15,24 @@ import java.nio.file.Paths;
  */
 public class IOTest {
     @Test
+    void kickStarting() {
+        Path startingDir = Paths.get("");
+        PrintFiles pf = new PrintFiles();
+        try {
+            Files.walkFileTree(startingDir, pf);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     void SnippetRads() {
         Path file = Paths.get("logfile.txt");
         try (SeekableByteChannel sbc = Files.newByteChannel(file)) {
-            ByteBuffer buf =  ByteBuffer.allocate(10);
+            ByteBuffer buf = ByteBuffer.allocate(10);
 
             String encoding = System.getProperty("file.encoding");
-            while(sbc.read(buf) > 0) {
+            while (sbc.read(buf) > 0) {
                 buf.rewind();
                 System.out.println(Charset.forName(encoding).decode(buf));
                 buf.flip();
