@@ -1,4 +1,4 @@
-package my.file;
+package my.nio;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

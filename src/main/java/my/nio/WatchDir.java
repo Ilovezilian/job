@@ -1,4 +1,4 @@
-package my.file;
+package my.nio;
 /*
  * Copyright (c) 2008, 2010, Oracle and/or its affiliates. All rights reserved.
  *
