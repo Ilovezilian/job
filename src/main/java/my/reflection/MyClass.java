@@ -1,4 +1,4 @@
-package tutorial.reflection;
+package my.reflection;
 
 public class MyClass {
     static Object o = new Object() {

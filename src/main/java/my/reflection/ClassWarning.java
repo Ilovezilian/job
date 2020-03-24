@@ -1,4 +1,4 @@
-package tutorial.reflection;
+package my.reflection;
 
 import java.lang.reflect.Method;
 

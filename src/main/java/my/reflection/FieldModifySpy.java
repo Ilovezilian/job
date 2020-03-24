@@ -1,4 +1,4 @@
-package tutorial.reflection;
+package my.reflection;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -8,10 +8,10 @@ import static java.lang.System.out;
 enum Spy {BLACK, WHITE}
 
 /**
- * $ java FieldModifierSpy tutorial.reflection.FieldModifySpy volatile
- * $ java FieldModifierSpy tutorial.reflection.Spy public
- * $ java FieldModifierSpy tutorial.reflection.FieldModifySpy\$Inner final
- * $ java FieldModifierSpy tutorial.reflection.Spy private static final
+ * $ java FieldModifierSpy my.reflection.FieldModifySpy volatile
+ * $ java FieldModifierSpy my.reflection.Spy public
+ * $ java FieldModifierSpy my.reflection.FieldModifySpy\$Inner final
+ * $ java FieldModifierSpy my.reflection.Spy private static final
  */
 public class FieldModifySpy {
     volatile int share;

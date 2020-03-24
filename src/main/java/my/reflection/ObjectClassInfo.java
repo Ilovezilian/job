@@ -1,4 +1,4 @@
-package tutorial.reflection;
+package my.reflection;
 
 
 import java.lang.reflect.Field;
@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import static tutorial.reflection.e.A;
+import static my.reflection.e.A;
 
 enum e {A, B}
 ;
@@ -54,6 +54,6 @@ public class ObjectClassInfo {
 
         System.out.println(Thread.State.class.getEnclosingClass());;
 
-        Class.forName("tutorial.reflection.MyClass");
+        Class.forName("my.reflection.MyClass");
     }
 }
