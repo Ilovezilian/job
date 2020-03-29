@@ -9,7 +9,7 @@ import org.junit.Test;
 public class CircleTest {
     @Test
     public void circleTest() {
-        Circle circle = new Circle(1, 1);
+        Circle circle = new Circle(1, 1, 0);
         circle.prtCircle(1);
         moveCircle(circle, 2, 2);
         circle.prtCircle(3);
@@ -20,7 +20,7 @@ public class CircleTest {
         circle.setX(circle.getX() + x);
         circle.setY(circle.getY() + y);
 
-        circle = new Circle(0, 0);
+        circle = new Circle(0, 0, 0);
         circle.prtCircle(2);
     }
 }
