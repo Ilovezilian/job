@@ -36,7 +36,7 @@ public class GenericTest {
     @Test
     public void genericsAndSubType() {
         List<Integer> li = new ArrayList<>();
-        //        List<Object> lo = li; // 编译出错，因为Object不是Integer的子类，所以不能这么使用
+        //                List<Object> lo = li; // 编译出错，因为Object不是Integer的子类，所以不能这么使用
     }
 
     @Test
@@ -60,7 +60,7 @@ public class GenericTest {
     public void CastsAndInstanceOf() {
         Collection cs = new ArrayList<String>();
         // Illegal.   Illegal generic type for instanceof
-//        if (cs instanceof Collection<String>) {}
+        //        if (cs instanceof Collection<String>) {}
 
 
         // Unchecked warning,
@@ -70,10 +70,15 @@ public class GenericTest {
     <T> T badCast(T t, Object o) {
         return (T) o;
     }
+
+    static <T> T badCastStatic(T t, Object o) {
+        return (T) o;
+    }
+
     @Test
-    public void test() {
+    public void arraysTest() {
         // Not really allowed.
-//        List<String>[] lsa = new ArrayList<String>[10];
+        //        List<String>[] lsa = new ArrayList<String>[10];
         List<String>[] lsa = new List[10]; //= new ArrayList<String>[10];
         Object o = lsa;
         Object[] oa = (Object[]) o;
@@ -84,6 +89,20 @@ public class GenericTest {
 
         // Run-time error: ClassCastException.
         String s = lsa[1].get(0);
+    }
+
+    @Test
+    public void arraysTest1() {
+        // OK, array of unbounded wildcard type.
+        List<?>[] lsa = new List<?>[10];
+        Object o = lsa;
+        Object[] oa = (Object[]) o;
+        List<Integer> li = new ArrayList<Integer>();
+        li.add(new Integer(3));
+        // Correct.
+        oa[1] = li;
+        // Run time error, but cast is explicit.
+        String s = (String) lsa[1].get(0);
     }
 
 }
