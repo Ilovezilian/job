@@ -1,6 +1,20 @@
 import createStatementData from './createStatementData.js';
 
-function statement(invoice, plays) {
+let message = "<br/>####################################################################################################<br/>";
+console.log(message);
+let invoice = loadLocalJsonFile("invoices.json");
+let plays = loadLocalJsonFile("plays.json");
+let s = statement(invoice, plays);
+console.log("output is :\n", s);
+let s1 = htmlStatement(invoice, plays);
+console.log("output is :\n", s1);
+
+let result = message + s + message + s1 + message;
+$("#divId").html(result);
+console.log(message);
+
+
+export function statement(invoice, plays) {
     return renderPlainText(createStatementData(invoice, plays));
 }
 
@@ -15,7 +29,7 @@ function renderPlainText(data, plays) {
     return result;
 }
 
-function htmlStatement(invoice, plays) {
+export function htmlStatement(invoice, plays) {
     return renderHtml(createStatementData(invoice, plays));
 }
 
