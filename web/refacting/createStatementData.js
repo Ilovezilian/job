@@ -46,11 +46,7 @@ class PerformanceCalculator {
         let result = 0;
         switch (this.play.type) {
             case "tragedy":
-                result = 40000;
-                if (this.performance.audience > 30) {
-                    result += 1000 * (this.performance.audience - 30);
-                }
-                break;
+                throw 'bad thing';
             case "comedy":
                 result = 30000;
                 if (this.performance.audience > 20) {
@@ -73,17 +69,34 @@ class PerformanceCalculator {
 }
 
 class TragedyCalculator extends PerformanceCalculator {
+    get amount() {
+        let result = 40000;
+        if (this.performance.audience > 30) {
+            result += 1000 * (this.performance.audience - 30);
+        }
+
+        return result;
+    }
 }
 
 class ComedyCalculator extends PerformanceCalculator {
+    get amount() {
+        let result = 30000;
+        if (this.performance.audience > 20) {
+            result += 10000 + 500 * (this.performance.audience - 20);
+        }
+
+        result += 300 * this.performance.audience;
+        return result;
+    }
 }
 
 function createPerformanceCalculator(aPerformance, aPlay) {
-    switch (this.play.type) {
+    switch (aPlay.type) {
         case "tragedy":
-            return new TragedyCalculator();
+            return new TragedyCalculator(aPerformance, aPlay);
         case "comedy":
-            return new ComedyCalculator();
+            return new ComedyCalculator(aPerformance, aPlay);
         default:
             throw new Error(`unknown type: ${aPlay.type}`);
     }
