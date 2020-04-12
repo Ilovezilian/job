@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="FileUtils.js"></script>
+    <script src="firstDemo.js"></script>
+</head>
+<body>
+<h1>call daddy</h1>
+
+<script>
+    console.log("####################################################################################################");
+    let invoices = loadLocalJsonFile("invoices.json");
+    let plays = loadLocalJsonFile("plays.json");
+    let s = statement(invoices, plays);
+    console.log("output is :\n", s);
+    console.log("####################################################################################################");
+
+</script>
+</body>
+</html>
