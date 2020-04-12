@@ -21,6 +21,9 @@
         <slf4j.version>1.7.5</slf4j.version>
         <testng.version>6.8.7</testng.version>
         <poi.version>4.1.2</poi.version>
+        <mysql-connector-java.version>5.1.47</mysql-connector-java.version>
+        <spring-context.version>4.3.7.RELEASE</spring-context.version>
+        <lombok.version>1.18.12</lombok.version>
     </properties>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
@@ -53,7 +56,12 @@
             <artifactId>poi-excelant</artifactId>
             <version>${poi.version}</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.testng</groupId>
@@ -64,12 +72,12 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>4.3.7.RELEASE</version>
+            <version>${spring-context.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.12</version>
+            <version>${lombok.version}</version>
         </dependency>
     </dependencies>
 
