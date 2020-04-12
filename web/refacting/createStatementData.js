@@ -7,7 +7,7 @@ export default function createStatementData(invoice, plays) {
     return result;
 
     function enrichPerformance(aPerformance) {
-        let calculator = new PerformanceCalculator(aPerformance, playFor(aPerformance));
+        let calculator = createPerformanceCalculator(aPerformance, playFor(aPerformance));
         const result = Object.assign({}, aPerformance);
         result.play = calculator.play;
         result.amount = calculator.amount;
@@ -69,5 +69,22 @@ class PerformanceCalculator {
         result += Math.max(this.performance.audience - 30, 0);
         if ("comedy" === this.play.type) result += Math.floor(this.performance.audience / 5);
         return result;
+    }
+}
+
+class TragedyCalculator extends PerformanceCalculator {
+}
+
+class ComedyCalculator extends PerformanceCalculator {
+}
+
+function createPerformanceCalculator(aPerformance, aPlay) {
+    switch (this.play.type) {
+        case "tragedy":
+            return new TragedyCalculator();
+        case "comedy":
+            return new ComedyCalculator();
+        default:
+            throw new Error(`unknown type: ${aPlay.type}`);
     }
 }
