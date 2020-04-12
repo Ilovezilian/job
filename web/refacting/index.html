@@ -11,9 +11,9 @@
 
 <script>
     console.log("####################################################################################################");
-    let invoices = loadLocalJsonFile("invoices.json");
+    let invoice = loadLocalJsonFile("invoices.json");
     let plays = loadLocalJsonFile("plays.json");
-    let s = statement(invoices, plays);
+    let s = statement(invoice, plays);
     console.log("output is :\n", s);
     console.log("####################################################################################################");
 
