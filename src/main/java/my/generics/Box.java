@@ -12,6 +12,19 @@ package my.generics;
 public class Box<T> {
     // T stands for "Type"
     private T t;
+    public static <T> T hello1() {
+        System.out.println("t1 = empty");
+        return null;
+    }
+    public static <T> T hello1(T t1) {
+        System.out.println("t1 = " + t1);
+        return t1;
+    }
+
+    public static <S> S hello(S t1) {
+        System.out.println("t1 = " + t1);
+        return t1;
+    }
 
     public void set(T t) {
         this.t = t;

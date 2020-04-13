@@ -10,6 +10,13 @@ import java.util.List;
  */
 public class BoxTest {
     @Test
+    public void testStaticMethod() {
+        Box.hello("hello");
+        Box.hello1();
+        Box.hello1("hello1");
+    }
+
+    @Test
     public void create() {
         Box<String> stringBox = new Box<>();
         Box rawBox = stringBox;
