@@ -1,6 +1,1404 @@
- Statement for BigCo
-  Hamlet: $650.00 (55 seats)
-  As You Like It: $580.00 (35 seats)
-  Othello: $500.00 (40 seats)
-Amount owed is $1,730.00
-You earned 47 credits
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+package com.kingdee.shr.ats.web.util.io;
+
+import com.kingdee.bos.BOSException;
+import com.kingdee.bos.Context;
+import com.kingdee.bos.dao.ormapping.ObjectUuidPK;
+import com.kingdee.bos.metadata.data.SortType;
+import com.kingdee.bos.metadata.entity.EntityViewInfo;
+import com.kingdee.bos.metadata.entity.FilterInfo;
+import com.kingdee.bos.metadata.entity.FilterItemInfo;
+import com.kingdee.bos.metadata.entity.SelectorItemInfo;
+import com.kingdee.bos.metadata.entity.SorterItemInfo;
+import com.kingdee.bos.metadata.query.util.CompareType;
+import com.kingdee.eas.base.message.util.StringUtil;
+import com.kingdee.eas.base.permission.UserInfo;
+import com.kingdee.eas.basedata.org.AdminOrgUnitInfo;
+import com.kingdee.eas.basedata.org.CtrlUnitInfo;
+import com.kingdee.eas.basedata.org.OrgType;
+import com.kingdee.eas.basedata.person.PersonCollection;
+import com.kingdee.eas.basedata.person.PersonFactory;
+import com.kingdee.eas.basedata.person.PersonInfo;
+import com.kingdee.eas.common.EASBizException;
+import com.kingdee.eas.hr.ats.AtsShiftCollection;
+import com.kingdee.eas.hr.ats.AtsShiftFactory;
+import com.kingdee.eas.hr.ats.AtsShiftInfo;
+import com.kingdee.eas.hr.ats.AtsShiftItemCollection;
+import com.kingdee.eas.hr.ats.AtsShiftItemInfo;
+import com.kingdee.eas.hr.ats.AtsShiftTypeFactory;
+import com.kingdee.eas.hr.ats.AtsShiftTypeInfo;
+import com.kingdee.eas.hr.ats.AttencePolicyCollection;
+import com.kingdee.eas.hr.ats.AttencePolicyFactory;
+import com.kingdee.eas.hr.ats.AttencePolicyInfo;
+import com.kingdee.eas.hr.ats.AttendanceFileInfo;
+import com.kingdee.eas.hr.ats.AttendanceTypeEnum;
+import com.kingdee.eas.hr.ats.CardRuleCollection;
+import com.kingdee.eas.hr.ats.CardRuleFactory;
+import com.kingdee.eas.hr.ats.CardRuleInfo;
+import com.kingdee.eas.hr.ats.DayTypeEnum;
+import com.kingdee.eas.hr.ats.HolidayPolicySetCollection;
+import com.kingdee.eas.hr.ats.HolidayPolicySetFactory;
+import com.kingdee.eas.hr.ats.HolidayPolicySetInfo;
+import com.kingdee.eas.hr.ats.ScheduleShiftInfo;
+import com.kingdee.eas.hr.ats.SchlShiftSrcTypeEnum;
+import com.kingdee.eas.hr.ats.SegIsPunchCardEnum;
+import com.kingdee.eas.hr.ats.SegmentEnum;
+import com.kingdee.eas.hr.ats.SegmentUnitEnum;
+import com.kingdee.eas.hr.ats.helper.ScheduleShiftItemHelper;
+import com.kingdee.eas.hr.ats.util.AtsAttendanceFileUtils;
+import com.kingdee.eas.hr.ats.util.AtsDateUtils;
+import com.kingdee.eas.util.app.DbUtil;
+import com.kingdee.shr.ats.bill.util.BillBizUtil;
+import com.kingdee.shr.ats.web.handler.ScheduleShiftImportEditHandler;
+import com.kingdee.shr.ats.web.util.ExportScheduleShiftInfo;
+import com.kingdee.shr.ats.web.util.HRTimeWebUtils;
+import com.kingdee.shr.ats.web.util.WorkCalendarItemHelper;
+import com.kingdee.shr.ats.web.util.file.ExcelUtil;
+import com.kingdee.shr.base.syssetting.app.io.StatusTool;
+import com.kingdee.shr.base.syssetting.app.io.StyleUtil;
+import com.kingdee.shr.base.syssetting.context.SHRContext;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
+import org.apache.commons.lang.StringUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class ScheduleShiftFileService {
+    public static AtomicInteger IMPORTCOUNT = new AtomicInteger(0);
+    private Workbook wb;
+    private Sheet sheet;
+    private List<String[]> sheetData;
+    private String sheetName;
+    private int rowNum;
+    private int colNum;
+    private Map<Integer, String> fieldMap;
+    private Row row;
+    private int beginRow = 1;
+    private Map<String, CellStyle> styles;
+    private static int DATE_COL = 4;
+    private static int HoriontalBeginRow = 11;
+    private static int VerticalBeginRow = 4;
+    Map<String, AtsShiftInfo> shiftNameSet = new HashMap();
+    Map<String, AtsShiftInfo> shiftIdMap = new HashMap();
+    Map<String, AttencePolicyInfo> attencePSet = new HashMap();
+    Map<String, HolidayPolicySetInfo> holidaySet = new HashMap();
+    Map<String, CardRuleInfo> cardSet = new HashMap();
+    Map<String, AttendanceTypeEnum> attendanceTypeSet = new HashMap();
+    Map<String, SegmentUnitEnum> referenceDateSet = new HashMap();
+    Map<String, SegIsPunchCardEnum> isPunchCardSet = new HashMap();
+    Map<String, AdminOrgUnitInfo> adminOrgUnitSet = new HashMap();
+    Map<String, AdminOrgUnitInfo> adminOrgUnitIdAndObjSet = new HashMap();
+    private Set<String> personNumSet = new HashSet();
+    private Map<String, Map<String, AttendanceFileInfo>> attendanceFileMap = new HashMap();
+    private Map<String, PersonInfo> personInfoMap = new HashMap();
+    Map<String, Integer> dayTypeMap;
+    private AttendanceFileInfo fileInfo;
+    private String srcType = "2";
+    private int errorNum = 0;
+    private Map<String, String> hasShiftMap = new HashMap();
+    private int PAGECOUNT = 31;
+    private int firsttAttendanceType = 10;
+    private int firstPreDayType = 11;
+    private int firstPreTime = 12;
+    private int firstPreIsPunchCard = 13;
+    private int firstPreFloatTime = 14;
+    private int firstNextDayType = 15;
+    private int firstNextTime = 16;
+    private int firstNextIsPunchCard = 17;
+    private int firstNextFloatTime = 18;
+    private int preRest = 19;
+    private int nextRest = 20;
+    private int firstRestTime = 21;
+    private int secondAttendanceType = 22;
+    private int secondPreDayType = 23;
+    private int secondPreTime = 24;
+    private int secondPreIsPunchCard = 25;
+    private int secondPreFloatTime = 26;
+    private int secondNextDayType = 27;
+    private int secondNextTime = 28;
+    private int secondNextIsPunchCard = 29;
+    private int secondNextFloatTime = 30;
+    private int secondRestTime = 31;
+    private int thirdAttendanceType = 32;
+    private int thirdPreDayType = 33;
+    private int thirdPreTime = 34;
+    private int thirdPreIsPunchCard = 35;
+    private int thirdPreFloatTime = 36;
+    private int thirdNextDayType = 37;
+    private int thirdNextTime = 38;
+    private int thirdNextIsPunchCard = 39;
+    private int thirdNextFloatTime = 40;
+    private int thirdRestTime = 41;
+
+    public ScheduleShiftFileService() {
+    }
+
+    public void initSheetData(String sheetName, List<String[]> sheetData) throws BOSException {
+        this.sheet = new SHRSheet(this.colNum, sheetName);
+        ((SHRSheet)this.sheet).setSheetData(sheetData);
+        this.sheetData = sheetData;
+        this.rowNum = this.sheet.getLastRowNum() + 1;
+        this.fieldMap = new LinkedHashMap();
+        Row fieldRow = this.sheet.getRow(0);
+        Cell c1 = fieldRow.getCell(0);
+        String name = c1.getStringCellValue();
+        if (name.indexOf("横向") != -1) {
+            this.beginRow = 11;
+        }
+
+        if (name.indexOf("纵向") != -1) {
+            this.beginRow = VerticalBeginRow;
+        }
+
+        this.colNum = this.sheet.getRow(this.beginRow - 1).getPhysicalNumberOfCells();
+        fieldRow = this.sheet.getRow(this.beginRow - 1);
+
+        for(int i = 0; i < this.colNum; ++i) {
+            Cell c = fieldRow.getCell(i);
+            this.fieldMap.put(i, c.getStringCellValue());
+        }
+
+    }
+
+    public void preScheduleShiftData() throws BOSException {
+        String keyStr = "";
+        this.dayTypeMap = (new WorkCalendarItemHelper()).getDateTypeByInt();
+        String idKey = "";
+        Context ctx = SHRContext.getInstance().getContext();
+        AtsShiftCollection atsShiftCollection = this.getAtsShiftCollection(ctx);
+
+        for(int i = 0; i < atsShiftCollection.size(); ++i) {
+            AtsShiftInfo atsShiftInfo = atsShiftCollection.get(i);
+            keyStr = atsShiftInfo.getName();
+            idKey = atsShiftInfo.getId().toString();
+            if (!this.shiftNameSet.containsKey(keyStr)) {
+                this.shiftNameSet.put(atsShiftInfo.getName(), atsShiftInfo);
+            }
+
+            if (!this.shiftIdMap.containsKey(idKey)) {
+                this.shiftIdMap.put(atsShiftInfo.getId().toString(), atsShiftInfo);
+            }
+        }
+
+        AttencePolicyCollection attencePtCollection = this.getAttencePolicyColl(ctx);
+
+        for(int i = 0; i < attencePtCollection.size(); ++i) {
+            AttencePolicyInfo attenceInfo = attencePtCollection.get(i);
+            keyStr = attenceInfo.getName();
+            if (!this.attencePSet.containsKey(keyStr)) {
+                this.attencePSet.put(attenceInfo.getName(), attenceInfo);
+            }
+        }
+
+        HolidayPolicySetCollection holidayPSetCollection = this.getHolidayPolicySetColl(ctx);
+
+        for(int i = 0; i < holidayPSetCollection.size(); ++i) {
+            HolidayPolicySetInfo holidayInfo = holidayPSetCollection.get(i);
+            keyStr = holidayInfo.getName();
+            if (!this.holidaySet.containsKey(keyStr)) {
+                this.holidaySet.put(keyStr, holidayInfo);
+            }
+        }
+
+        CardRuleCollection cardInfoCollection = this.getCardRuleColl(ctx);
+
+        for(int i = 0; i < cardInfoCollection.size(); ++i) {
+            CardRuleInfo cardRuleInfo = cardInfoCollection.get(i);
+            keyStr = cardRuleInfo.getName();
+            if (!this.cardSet.containsKey(keyStr)) {
+                this.cardSet.put(cardRuleInfo.getName(), cardRuleInfo);
+            }
+        }
+
+        this.adminOrgUnitIdAndObjSet = ScheduleShiftImportEditHandler.getCurrentRangeAdminOrgUnitMap(ctx, (String)null);
+        if (this.adminOrgUnitIdAndObjSet != null && this.adminOrgUnitIdAndObjSet.size() > 0) {
+            Collection<AdminOrgUnitInfo> adminOrgUnitInfoColl = this.adminOrgUnitIdAndObjSet.values();
+            Iterator<AdminOrgUnitInfo> it = adminOrgUnitInfoColl.iterator();
+            AdminOrgUnitInfo adminOrgUnitInfo = null;
+
+            while(it.hasNext()) {
+                adminOrgUnitInfo = (AdminOrgUnitInfo)it.next();
+                if (adminOrgUnitInfo != null) {
+                    this.adminOrgUnitSet.put(adminOrgUnitInfo.getNumber(), adminOrgUnitInfo);
+                }
+            }
+        }
+
+    }
+
+    private CardRuleCollection getCardRuleColl(Context ctx) throws BOSException {
+        EntityViewInfo evi = new EntityViewInfo();
+        evi.getSelector().add(new SelectorItemInfo("id"));
+        evi.getSelector().add(new SelectorItemInfo("name"));
+        evi.getSelector().add(new SelectorItemInfo("startSegmentNum"));
+        CardRuleCollection cardInfoCollection = CardRuleFactory.getLocalInstance(ctx).getCardRuleCollection(evi);
+        return cardInfoCollection;
+    }
+
+    private HolidayPolicySetCollection getHolidayPolicySetColl(Context ctx) throws BOSException {
+        EntityViewInfo evi = new EntityViewInfo();
+        evi.getSelector().add(new SelectorItemInfo("id"));
+        evi.getSelector().add(new SelectorItemInfo("name"));
+        HolidayPolicySetCollection holidayPSetCollection = HolidayPolicySetFactory.getLocalInstance(ctx).getHolidayPolicySetCollection(evi);
+        return holidayPSetCollection;
+    }
+
+    private AttencePolicyCollection getAttencePolicyColl(Context ctx) throws BOSException {
+        EntityViewInfo evi = new EntityViewInfo();
+        evi.getSelector().add(new SelectorItemInfo("id"));
+        evi.getSelector().add(new SelectorItemInfo("name"));
+        AttencePolicyCollection attencePtCollection = AttencePolicyFactory.getLocalInstance(ctx).getAttencePolicyCollection(evi);
+        evi = null;
+        return attencePtCollection;
+    }
+
+    private AtsShiftCollection getAtsShiftCollection(Context ctx) throws BOSException {
+        EntityViewInfo evi = new EntityViewInfo();
+        evi.getSelector().add(new SelectorItemInfo("id"));
+        evi.getSelector().add(new SelectorItemInfo("otCompens.id"));
+        evi.getSelector().add(new SelectorItemInfo("shiftType"));
+        evi.getSelector().add(new SelectorItemInfo("standardHour"));
+        evi.getSelector().add(new SelectorItemInfo("name"));
+        evi.getSelector().add(new SelectorItemInfo("items.*"));
+        SorterItemInfo sorterItem = new SorterItemInfo("items.segment");
+        sorterItem.setSortType(SortType.ASCEND);
+        evi.getSorter().add(sorterItem);
+        AtsShiftCollection atsShiftCollection = AtsShiftFactory.getLocalInstance(ctx).getAtsShiftCollection(evi);
+        evi = null;
+        return atsShiftCollection;
+    }
+
+    private void setPrepareData() {
+        List<AttendanceTypeEnum> list = AttendanceTypeEnum.getEnumList();
+
+        for(int i = 0; i < list.size(); ++i) {
+            String key = ((AttendanceTypeEnum)list.get(i)).getAlias();
+            this.attendanceTypeSet.put(key, (AttendanceTypeEnum)list.get(i));
+        }
+
+        List<SegmentUnitEnum> referenceArr = SegmentUnitEnum.getEnumList();
+
+        for(int i = 0; i < referenceArr.size(); ++i) {
+            SegmentUnitEnum temp = (SegmentUnitEnum)referenceArr.get(i);
+            this.referenceDateSet.put(temp.getAlias(), temp);
+        }
+
+        List<SegIsPunchCardEnum> list1 = SegIsPunchCardEnum.getEnumList();
+
+        for(int i = 0; i < list1.size(); ++i) {
+            SegIsPunchCardEnum isPunInfo = (SegIsPunchCardEnum)list1.get(i);
+            this.isPunchCardSet.put(isPunInfo.getAlias(), isPunInfo);
+        }
+
+    }
+
+    private String checkImportData(int rowNum) throws Exception {
+        this.setPrepareData();
+        String personNum = "";
+        String attendDateStr = "";
+        String shiftName = "";
+        String cardRule = "";
+        String field = "";
+        Cell cell = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf.setLenient(false);
+        this.row = this.sheet.getRow(rowNum);
+        StringBuffer errorStr = new StringBuffer("");
+
+        for(int j = 0; j < this.colNum; ++j) {
+            field = (String)this.fieldMap.get(j);
+            cell = this.row.getCell((short)j);
+            Object value = ExcelUtil.getCellValue(cell);
+            if ("员工编码".equals(field)) {
+                if (StringUtils.isEmpty((String)value)) {
+                    errorStr.append("员工编码为空；");
+                } else {
+                    personNum = (String)value;
+                }
+            } else if ("考勤日期".equals(field)) {
+                if (StringUtils.isEmpty(value.toString())) {
+                    errorStr.append("考勤日期为空；");
+                } else {
+                    try {
+                        sdf.parse(value.toString().trim());
+                    } catch (Exception var16) {
+                        errorStr.append("考勤日期格式不正确；");
+                        continue;
+                    }
+
+                    attendDateStr = value.toString();
+                }
+            } else if ("日期类型".equals(field)) {
+                if (StringUtils.isEmpty((String)value)) {
+                    errorStr.append("日期类型为空；");
+                } else if (!this.dayTypeMap.containsKey(value.toString())) {
+                    errorStr.append("日期类型不合法；");
+                }
+            } else if ("班次名称".equals(field)) {
+                if (!StringUtils.isEmpty((String)value)) {
+                    shiftName = value.toString().trim();
+                    if (!this.shiftNameSet.containsKey(value)) {
+                        errorStr.append("班次名称不合法；");
+                    }
+                }
+            } else if ("考勤制度".equals(field)) {
+                if (StringUtils.isEmpty((String)value)) {
+                    errorStr.append("考勤制度为空；");
+                } else if (!this.attencePSet.containsKey(value)) {
+                    errorStr.append("考勤制度不合法；");
+                }
+            } else if ("假期制度".equals(field)) {
+                if (StringUtils.isEmpty((String)value)) {
+                    errorStr.append("假期制度为空；");
+                } else if (!this.holidaySet.containsKey(value)) {
+                    errorStr.append("假期制度不合法；");
+                }
+            } else if ("取卡规则".equals(field)) {
+                if (StringUtils.isEmpty((String)value)) {
+                    errorStr.append("取卡规则为空；");
+                } else {
+                    cardRule = value.toString().trim();
+                    if (!this.cardSet.containsKey(value)) {
+                        errorStr.append("取卡规则不合法；");
+                    }
+                }
+            } else if ("出勤类型".equals(field) && !value.toString().trim().equals("") && !this.attendanceTypeSet.containsKey(value)) {
+                errorStr.append("出勤类型不合法；");
+            } else if ("参考日期".equals(field) && !value.toString().trim().equals("") && !this.referenceDateSet.containsKey(value)) {
+                errorStr.append("参考日期不合法；");
+            } else if ("是否打卡".equals(field) && !value.toString().trim().equals("") && !this.isPunchCardSet.containsKey(value)) {
+                errorStr.append("是否打卡不合法；");
+            } else if (!"浮动调整值".equals(field) && !"休息时长".equals(field)) {
+                if ("上班时间".equals(field) || "下班时间".equals(field) || "休息开始".equals(field) || "休息结束".equals(field)) {
+                    String val = value.toString().trim();
+                    if (!"".equals(val)) {
+                        boolean a = val.matches("^[0-1][0-9][\\/:][0-5][0-9]$");
+                        boolean b = val.matches("^[2][0-3][\\/:][0-5][0-9]$");
+                        if (!a && !b) {
+                            errorStr.append("上班时间/下班时间/休息开始/休息结束,不合法；");
+                        }
+                    }
+                }
+            } else if (!value.toString().trim().equals("") && !value.toString().trim().matches("^(0|[0-9]+)$")) {
+                errorStr.append("休息时长/浮动调整值不合法；");
+            }
+        }
+
+        if (errorStr.length() <= 0) {
+            if (!"".equals(shiftName) && !"".equals(cardRule)) {
+                AtsShiftInfo atsShiftInfo = (AtsShiftInfo)this.shiftNameSet.get(shiftName);
+                CardRuleInfo cardRuleInfo = (CardRuleInfo)this.cardSet.get(cardRule);
+                int shiftItemLen = atsShiftInfo.getItems().size();
+                int cardRuleSegmentNum = cardRuleInfo.getStartSegmentNum().getValue();
+                if (shiftItemLen != cardRuleSegmentNum) {
+                    errorStr.append("班次段数和取卡规则不匹配；");
+                }
+            }
+
+            if (this.hasShiftMap.get(personNum + "_" + attendDateStr) != null) {
+                errorStr.append("排班信息不能出现重复；");
+            } else {
+                this.hasShiftMap.put(personNum + "_" + attendDateStr, personNum + "_" + attendDateStr);
+            }
+        }
+
+        return errorStr.toString();
+    }
+
+    public Map<Integer, String> importScheduleShiftData() throws Exception {
+        Context ctx = SHRContext.getInstance().getContext();
+        this.errorNum = 0;
+        Map<Integer, String> resultMap = new HashMap();
+        Date beginDate = null;
+        Date endDate = null;
+        Set<ScheduleShiftInfo> saveSet = new HashSet();
+        Set<String> noAttendSet = new HashSet();
+        String personids = "";
+        String attenddates = "";
+        boolean validate = true;
+        String colNameString = ((String)this.fieldMap.get(0)).trim();
+        if (colNameString.indexOf("员工编码") == -1) {
+            validate = false;
+            resultMap.put(this.beginRow, "导入数据表格与模板不符，请检模板标题、说明部分内容或格式是否改动过。");
+            ++this.errorNum;
+        }
+
+        if (validate) {
+            if (this.beginRow == HoriontalBeginRow) {
+                saveSet = this.getImportDataHoriontal((Set)saveSet, noAttendSet, ctx, resultMap);
+            } else if (this.beginRow == VerticalBeginRow) {
+                this.row = this.sheet.getRow(this.beginRow - 1);
+                validate = this.validateDateCol(resultMap);
+                if (validate) {
+                    saveSet = this.getImportDataVertical((Set)saveSet, noAttendSet, ctx, resultMap);
+                }
+            }
+        }
+
+        this.setStatus(this.rowNum);
+        int i = 0;
+        if (this.errorNum == 0) {
+            int totalNum = ((Set)saveSet).size();
+            int countNum = 0;
+            int count = 0;
+            Set<ScheduleShiftInfo> tempSet = new HashSet();
+            List<Object[]> deleteShiftParamsList = new ArrayList();
+            List<Object[]> insertShiftParamsList = new ArrayList();
+            List<Object[]> deleteShiftItemParamsList = new ArrayList();
+            List<Object[]> insertShiftItemParamsList = new ArrayList();
+            UserInfo currentUserInfo = (UserInfo)ctx.get("UserInfo");
+            CtrlUnitInfo cu = (CtrlUnitInfo)ctx.get(OrgType.ControlUnit);
+
+            for(Iterator var23 = ((Set)saveSet).iterator(); var23.hasNext(); this.setChaining(countNum, totalNum)) {
+                ScheduleShiftInfo temp = (ScheduleShiftInfo)var23.next();
+                if (i == 0) {
+                    beginDate = temp.getAttendDate();
+                    endDate = temp.getAttendDate();
+                } else {
+                    if (temp.getAttendDate().getTime() < beginDate.getTime()) {
+                        beginDate = temp.getAttendDate();
+                    }
+
+                    if (temp.getAttendDate().getTime() > endDate.getTime()) {
+                        endDate = temp.getAttendDate();
+                    }
+                }
+
+                ++i;
+                tempSet.add(temp);
+                this.getParamsList(deleteShiftItemParamsList, deleteShiftParamsList, insertShiftParamsList, insertShiftItemParamsList, temp, currentUserInfo, cu);
+                ++count;
+                if (count == this.PAGECOUNT) {
+                    this.saveOrUpdateBatchEntity(ctx, tempSet, deleteShiftItemParamsList, deleteShiftParamsList, insertShiftParamsList, insertShiftItemParamsList);
+                    countNum += this.PAGECOUNT;
+                    count = 0;
+                    tempSet.clear();
+                    deleteShiftItemParamsList.clear();
+                    deleteShiftParamsList.clear();
+                    insertShiftParamsList.clear();
+                    insertShiftItemParamsList.clear();
+                }
+            }
+
+            if (totalNum <= 0) {
+                this.setChaining(1, 1);
+            } else {
+                if (count > 0) {
+                    this.saveOrUpdateBatchEntity(ctx, tempSet, deleteShiftItemParamsList, deleteShiftParamsList, insertShiftParamsList, insertShiftItemParamsList);
+                    countNum += tempSet.size();
+                    this.setChaining(countNum, totalNum);
+                }
+
+                AtsAttendanceFileUtils.delScheduleShiftBeforeEnterDate(ctx, this.personNumSet);
+            }
+        }
+
+        return resultMap;
+    }
+
+    public void addCheckReport(String sheetName, Map<Integer, String> error_report) {
+        Sheet sheet = null;
+        Row row = null;
+        Cell cell = null;
+        sheet = this.wb.createSheet(sheetName);
+        Map<String, CellStyle> styles = StyleUtil.createStyles(this.wb);
+        String[] columns = (String[])this.sheetData.get(this.beginRow - 1);
+        if (this.beginRow == VerticalBeginRow) {
+            ScheduleShiftFileServiceUtils.setExcelVerticalHead(columns, sheet, this.wb);
+        } else if (this.beginRow == HoriontalBeginRow) {
+            ScheduleShiftFileServiceUtils.setExcelHead(columns, sheet, this.wb);
+        }
+
+        ScheduleShiftFileServiceUtils.addScheduleShiftErrorExeclHead(columns, sheet, styles, this.beginRow);
+
+        for(int i = this.beginRow; i < this.rowNum; ++i) {
+            row = sheet.createRow(i);
+            String[] rowData = (String[])this.sheetData.get(i);
+
+            for(int j = 0; j < this.colNum; ++j) {
+                cell = row.createCell(j);
+                cell.setCellValue(rowData[j]);
+            }
+
+            cell = row.createCell(this.colNum);
+            if (error_report != null && error_report.containsKey(i)) {
+                cell.setCellValue((String)error_report.get(i));
+                cell.setCellStyle((CellStyle)styles.get("red"));
+            } else {
+                cell.setCellValue("校验通过");
+            }
+        }
+
+    }
+
+    public Map<String, Object> generateErrorReport(String errorPath, String sheetName, Map<Integer, String> map) throws IOException {
+        Map<String, Object> errorMap = new HashMap();
+        if (this.errorNum > 0) {
+            if (this.wb == null) {
+                this.wb = new SXSSFWorkbook(50);
+            }
+
+            this.addCheckReport(sheetName, map);
+            FileOutputStream out = new FileOutputStream(errorPath);
+            this.wb.write(out);
+            out.close();
+            errorMap.put("errorPath", errorPath);
+            errorMap.put("errorNum", this.errorNum);
+        }
+
+        return errorMap;
+    }
+
+    private boolean validateDateCol(Map<Integer, String> resultMap) {
+        boolean validate = true;
+        String errorStr = "";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf.setLenient(false);
+        StringBuilder getAttdate = new StringBuilder("表头第");
+        int colLen = this.fieldMap.size();
+
+        for(int col = DATE_COL; col < colLen; ++col) {
+            String colName = ((String)this.fieldMap.get(col)).trim();
+            String attString = "";
+            if (colName.length() < 10) {
+                errorStr = errorStr + col + ",";
+            } else {
+                attString = colName.substring(0, 10);
+
+                try {
+                    sdf.parse(attString);
+                } catch (Exception var11) {
+                }
+            }
+        }
+
+        if (errorStr.length() > 0) {
+            validate = false;
+            getAttdate.append(errorStr).append("列考勤日期格式不正确，正确的格式为：2016-03-08；");
+            resultMap.put(this.beginRow, getAttdate.toString());
+            ++this.errorNum;
+        }
+
+        return validate;
+    }
+
+    private Set<ScheduleShiftInfo> getImportDataVertical(Set<ScheduleShiftInfo> saveSet, Set<String> noAttendSet, Context ctx, Map<Integer, String> resultMap) throws Exception {
+        Map<String, AtsShiftInfo> atsShiftInfoMap = new HashMap();
+        new ExportScheduleShiftInfo();
+
+        for(int i = this.beginRow; i < this.rowNum; ++i) {
+            List<ScheduleShiftInfo> list = new ArrayList();
+            String shiftName = "";
+            String personNumber = new String();
+            String personName = "";
+            String personNum = "";
+            String attendDateStr = "";
+            String attDup = "";
+            this.row = this.sheet.getRow(i);
+
+            Object value;
+            for(int j = 0; j < this.colNum; ++j) {
+                value = null;
+                String colDataStr = (String)this.fieldMap.get(j);
+                if ("员工编码".equals(colDataStr)) {
+                    value = ExcelUtil.getCellValue(this.row.getCell(j));
+                    personNumber = value.toString().trim();
+                    personNum = personNumber;
+                }
+
+                if ("姓名".equals(colDataStr)) {
+                    value = ExcelUtil.getCellValue(this.row.getCell(j));
+                    personName = value.toString().trim();
+                }
+
+                if ("组织编码".equals(colDataStr)) {
+                    value = ExcelUtil.getCellValue(this.row.getCell(j));
+                }
+            }
+
+            String errorString = this.checkImportDataVertical(i);
+            this.setStatus(i);
+            if (StringUtils.isNotEmpty(errorString)) {
+                resultMap.put(i, errorString);
+                ++this.errorNum;
+            } else {
+                value = null;
+                PersonInfo personInfo;
+                if (this.personInfoMap.get(personNum) == null) {
+                    personInfo = this.getPerson(personNum, ctx);
+                    this.personInfoMap.put(personNum, personInfo);
+                } else {
+                    personInfo = (PersonInfo)this.personInfoMap.get(personNum);
+                }
+
+                for(int j = 0; j < this.colNum; ++j) {
+                    new AtsShiftInfo();
+                    Object value = null;
+                    String colDataStr = (String)this.fieldMap.get(j);
+                    if (!"姓名".equals(colDataStr) && !"组织编码".equals(colDataStr) && !"考勤组织".equals(colDataStr) && !"员工编码".equals(colDataStr)) {
+                        String att = colDataStr.substring(0, 10);
+                        Date attDate = AtsDateUtils.stringToShortDate(att);
+                        attendDateStr = AtsDateUtils.dateShortFormatToString(attDate);
+                        String[] personNums = new String[]{personNum};
+                        String key = "";
+                        String orgNum = "";
+                        String orgName = "";
+                        if (personInfo == null) {
+                            resultMap.put(i, "员工编码不合法；");
+                            ++this.errorNum;
+                        } else {
+                            this.setFileInfo(ctx, personNumber, att);
+                            if (this.fileInfo == null) {
+                                this.fileInfo = BillBizUtil.getAttendanceFileInfoByDate(ctx, personNumber, att);
+                            }
+
+                            String adminOrgUnitId = this.fileInfo != null ? this.fileInfo.getAdminOrgUnit().getId().toString() : "";
+                            if (!StringUtils.isEmpty(personName) && !personName.equals(personInfo.getName())) {
+                                resultMap.put(i, "员工姓名和编码不匹配");
+                                ++this.errorNum;
+                            } else if (this.fileInfo != null) {
+                                if (this.fileInfo.getAttencePolicy() == null) {
+                                    resultMap.put(i, "员工考勤档案的考勤制度为空");
+                                    ++this.errorNum;
+                                } else if (this.fileInfo.getAtsShift() == null) {
+                                    resultMap.put(i, "员工考勤档案的默认班次为空");
+                                    ++this.errorNum;
+                                } else if ("0".equals(this.fileInfo.getIsAttendance().getValue())) {
+                                    noAttendSet.add(this.fileInfo.getProposer().getNumber());
+                                } else if (this.hasShiftMap.get(personNum + "_" + attendDateStr) != null) {
+                                    attDup = attDup + attendDateStr + "；";
+                                    ++this.errorNum;
+                                } else {
+                                    this.hasShiftMap.put(personNum + "_" + attendDateStr, personNum + "_" + attendDateStr);
+                                    value = ExcelUtil.getCellValue(this.row.getCell(j));
+                                    String shiftNameString = value.toString().trim();
+                                    DayTypeEnum dayTypeEnum = null;
+                                    if (!StringUtil.isEmpty(shiftNameString)) {
+                                        String[] shiftData = shiftNameString.split("\\|");
+                                        if (shiftData.length > 1) {
+                                            if (shiftData[0].trim().equals("休息")) {
+                                                dayTypeEnum = DayTypeEnum.getEnum(1);
+                                            }
+
+                                            if (shiftData[0].trim().equals("法定假")) {
+                                                dayTypeEnum = DayTypeEnum.getEnum(2);
+                                                shiftName = null;
+                                            }
+
+                                            shiftName = shiftData[1].trim();
+                                        } else if ("休息".equals(shiftNameString)) {
+                                            dayTypeEnum = DayTypeEnum.getEnum(1);
+                                            shiftName = null;
+                                        } else if ("法定假".equals(shiftNameString)) {
+                                            dayTypeEnum = DayTypeEnum.getEnum(2);
+                                            shiftName = null;
+                                        } else {
+                                            dayTypeEnum = DayTypeEnum.getEnum(0);
+                                            shiftName = shiftNameString;
+                                        }
+
+                                        ScheduleShiftInfo scheduleShiftInfo = new ScheduleShiftInfo();
+                                        this.personNumSet.add(personNum);
+                                        AtsShiftInfo atsShift;
+                                        if (shiftName != null) {
+                                            if (atsShiftInfoMap.containsKey(shiftName)) {
+                                                atsShift = (AtsShiftInfo)atsShiftInfoMap.get(shiftName);
+                                            } else {
+                                                atsShift = AtsShiftFactory.getLocalInstance(ctx).getAtsShiftInfo("where name = '" + shiftName + "'");
+                                                atsShiftInfoMap.put(shiftName, atsShift);
+                                            }
+
+                                            AtsShiftTypeInfo atsShiftType = atsShift.getShiftType();
+                                            String shiftTypeId = null;
+                                            if (atsShiftType != null) {
+                                                shiftTypeId = atsShiftType.getId().toString();
+                                            }
+
+                                            AtsShiftTypeInfo atsShiftTypeInfo = null;
+                                            if (shiftTypeId != null) {
+                                                atsShiftTypeInfo = AtsShiftTypeFactory.getLocalInstance(ctx).getAtsShiftTypeInfo(new ObjectUuidPK(shiftTypeId));
+                                            }
+
+                                            scheduleShiftInfo.setShiftType(atsShiftTypeInfo == null ? null : atsShiftTypeInfo);
+                                            scheduleShiftInfo.setStandardHour(atsShift.getStandardHour() == null ? null : atsShift.getStandardHour());
+                                            scheduleShiftInfo.setOtCompens(atsShift.getOtCompens() == null ? null : atsShift.getOtCompens());
+                                            scheduleShiftInfo.setCardRule(atsShift.getCardRule() == null ? null : atsShift.getCardRule());
+                                        } else {
+                                            atsShift = null;
+                                            AtsShiftInfo defaultShiftOfFile = AtsShiftFactory.getLocalInstance(ctx).getAtsShiftInfo(new ObjectUuidPK(this.fileInfo.getAtsShift().getId().toString()));
+                                            scheduleShiftInfo.setShiftType(defaultShiftOfFile.getShiftType() == null ? null : defaultShiftOfFile.getShiftType());
+                                            scheduleShiftInfo.setStandardHour(defaultShiftOfFile.getStandardHour() == null ? null : defaultShiftOfFile.getStandardHour());
+                                            scheduleShiftInfo.setOtCompens(defaultShiftOfFile.getOtCompens() == null ? null : defaultShiftOfFile.getOtCompens());
+                                            scheduleShiftInfo.setCardRule(defaultShiftOfFile.getCardRule() == null ? null : defaultShiftOfFile.getCardRule());
+                                        }
+
+                                        scheduleShiftInfo.setAttendDate(attDate);
+                                        scheduleShiftInfo.setDayType(dayTypeEnum);
+                                        scheduleShiftInfo.setDefaultShift(atsShift);
+                                        list.add(scheduleShiftInfo);
+                                        scheduleShiftInfo.setProposer(this.fileInfo.getProposer());
+                                        scheduleShiftInfo.setSrcType(SchlShiftSrcTypeEnum.manSchlShift);
+                                        scheduleShiftInfo.setAttendFile(this.fileInfo);
+                                        scheduleShiftInfo.setAttendPolicy(this.fileInfo.getAttencePolicy());
+                                        scheduleShiftInfo.setHldPlcSet(this.fileInfo.getHolidayPolicySet());
+                                        scheduleShiftInfo.setAdvcValue(2);
+                                        if (StringUtils.isNotEmpty(adminOrgUnitId) && this.adminOrgUnitIdAndObjSet.get(adminOrgUnitId) != null) {
+                                            scheduleShiftInfo.setAdminOrgUnit((AdminOrgUnitInfo)this.adminOrgUnitIdAndObjSet.get(adminOrgUnitId));
+                                        } else {
+                                            scheduleShiftInfo.setAdminOrgUnit(this.fileInfo.getAdminOrgUnit());
+                                        }
+
+                                        scheduleShiftInfo.setPosition(this.fileInfo.getPosition());
+                                        scheduleShiftInfo.setHrOrgUnit(this.fileInfo.getHrOrgUnit());
+                                        saveSet.add(scheduleShiftInfo);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (attDup.length() > 0) {
+                    errorString = errorString + "排班信息不能出现重复，重复数据为：" + attDup;
+                    resultMap.put(i, errorString);
+                    ++this.errorNum;
+                }
+            }
+        }
+
+        return saveSet;
+    }
+
+    private String checkImportDataVertical(int rowNum) throws Exception {
+        String field = "";
+        Cell cell = null;
+        this.row = this.sheet.getRow(rowNum);
+        String errorStr = "";
+        String errorStr1 = "";
+        String errorStr2 = "";
+        String errorShift = "";
+
+        for(int j = 0; j < this.colNum; ++j) {
+            field = ((String)this.fieldMap.get(j)).trim();
+            cell = this.row.getCell((short)j);
+            Object value = ExcelUtil.getCellValue(cell).toString().trim();
+            if (!"员工编码".equals(field) || value != null && !StringUtils.isEmpty((String)value)) {
+                if (!"员工编码".equals(field) && !"姓名".equals(field) && !"考勤组织".equals(field) && !"组织编码".equals(field)) {
+                    String[] valueShift = ((String)value).split("\\|");
+                    if (valueShift.length > 1) {
+                        value = valueShift[1].trim();
+                    }
+
+                    if (!StringUtil.isEmpty((String)value)) {
+                        if (valueShift.length <= 1) {
+                            if (!valueShift[0].trim().equals("法定假") && !valueShift[0].trim().equals("休息") && !this.shiftNameSet.containsKey(value)) {
+                                errorStr2 = errorStr2 + field + ",";
+                            }
+                        } else if ((valueShift[0].trim().equals("法定假") || valueShift[0].trim().equals("休息")) && !this.shiftNameSet.containsKey(value)) {
+                            errorStr2 = errorStr2 + field + ",";
+                        } else if (!valueShift[0].trim().equals("法定假") && !valueShift[0].trim().equals("休息")) {
+                            errorStr2 = errorStr2 + field + ",";
+                        }
+                    }
+                }
+            } else {
+                errorStr = errorStr + "员工编码为空；";
+            }
+        }
+
+        if (!StringUtils.isEmpty(errorStr2)) {
+            errorShift = errorShift + errorStr2 + "班次名称不合法；";
+        }
+
+        return errorStr + errorShift;
+    }
+
+    private Set<ScheduleShiftInfo> getImportDataHoriontal(Set<ScheduleShiftInfo> saveSet, Set<String> noAttendSet, Context ctx, Map<Integer, String> resultMap) throws Exception {
+        for(int i = this.beginRow; i < this.rowNum; ++i) {
+            List<String> list = new ArrayList();
+            this.row = this.sheet.getRow(i);
+
+            for(int j = 0; j < this.colNum; ++j) {
+                Object value = null;
+                value = ExcelUtil.getCellValue(this.row.getCell(j));
+                list.add(value.toString().trim());
+            }
+
+            String personNumber = ((String)list.get(0)).trim();
+            String personName = ((String)list.get(1)).trim();
+            String orgNum = ((String)list.get(2)).trim();
+            String attenddate = (String)list.get(4);
+            Date begin = AtsDateUtils.stringToShortDate(attenddate);
+            String dayTypeKey = (String)list.get(5);
+            Integer dayTypeValue = (Integer)this.dayTypeMap.get(dayTypeKey.trim());
+            String shiftName = (String)list.get(6);
+            String policyName = (String)list.get(7);
+            String holidayName = (String)list.get(8);
+            String cardName = (String)list.get(9);
+            PersonInfo personInfo = null;
+            if (this.personInfoMap.get(personNumber) == null) {
+                personInfo = this.getPerson(personNumber, ctx);
+                this.personInfoMap.put(personNumber, personInfo);
+            } else {
+                personInfo = (PersonInfo)this.personInfoMap.get(personNumber);
+            }
+
+            if (personInfo != null) {
+                this.setFileInfo(ctx, personNumber, attenddate);
+                if (this.fileInfo == null) {
+                    this.fileInfo = BillBizUtil.getAttendanceFileInfoByDate(ctx, personNumber, attenddate);
+                }
+
+                if (!StringUtils.isEmpty(personName) && !personName.equals(personInfo.getName())) {
+                    resultMap.put(i, "员工姓名和编码不匹配");
+                    ++this.errorNum;
+                } else if (this.fileInfo != null) {
+                    String errorString = this.checkImportData(i);
+                    if ("0".equals(this.fileInfo.getIsAttendance().getValue())) {
+                        noAttendSet.add(this.fileInfo.getProposer().getNumber());
+                    } else if (StringUtils.isNotEmpty(errorString)) {
+                        resultMap.put(i, errorString);
+                        ++this.errorNum;
+                    } else {
+                        this.setStatus(i);
+                        this.personNumSet.add(personNumber);
+                        ScheduleShiftInfo scheduleShiftInfo = new ScheduleShiftInfo();
+                        AtsShiftInfo atsShiftInfo = null;
+                        AttendanceFileInfo tempAttendenceFileInfo = null;
+                        AtsShiftInfo defaultShiftOfFile = null;
+                        if (StringUtils.isEmpty(shiftName)) {
+                            if (dayTypeValue == 0) {
+                                resultMap.put(i, "工作日的班次不能为空；");
+                                ++this.errorNum;
+                                continue;
+                            }
+
+                            tempAttendenceFileInfo = this.fileInfo;
+                            if (tempAttendenceFileInfo.getAtsShift() != null) {
+                                String shiftId = tempAttendenceFileInfo.getAtsShift() != null && tempAttendenceFileInfo.getAtsShift().getId() != null ? tempAttendenceFileInfo.getAtsShift().getId().toString() : "";
+                                defaultShiftOfFile = (AtsShiftInfo)this.shiftIdMap.get(shiftId);
+                            }
+                        } else {
+                            atsShiftInfo = (AtsShiftInfo)this.shiftNameSet.get(shiftName);
+                        }
+
+                        AtsShiftInfo atsShiftTemp = new AtsShiftInfo();
+                        if (atsShiftInfo != null) {
+                            atsShiftTemp = (AtsShiftInfo)atsShiftInfo.clone();
+                        }
+
+                        HashMap map = this.checkShiftItem(atsShiftTemp, list, resultMap, attenddate, i);
+                        if (map.get("validate") != null) {
+                            if (StringUtils.isEmpty(shiftName)) {
+                                atsShiftInfo = null;
+                            } else {
+                                atsShiftInfo = (AtsShiftInfo)map.get("atsShiftInfo");
+                            }
+
+                            scheduleShiftInfo.setDefaultShift(atsShiftInfo);
+                            if (atsShiftInfo != null) {
+                                scheduleShiftInfo.setStandardHour(atsShiftInfo.getStandardHour());
+                                AtsShiftTypeInfo shiftType = atsShiftInfo.getShiftType();
+                                scheduleShiftInfo.setShiftType(shiftType);
+                                scheduleShiftInfo.setOtCompens(atsShiftInfo.getOtCompens());
+                            } else {
+                                scheduleShiftInfo.setStandardHour(defaultShiftOfFile == null ? null : defaultShiftOfFile.getStandardHour());
+                                scheduleShiftInfo.setOtCompens(defaultShiftOfFile == null ? null : defaultShiftOfFile.getOtCompens());
+                            }
+
+                            scheduleShiftInfo.setAttendDate(begin);
+                            scheduleShiftInfo.setDayType(DayTypeEnum.getEnum(dayTypeValue));
+                            scheduleShiftInfo.setProposer(this.fileInfo.getProposer());
+                            AdminOrgUnitInfo adminOrgInfo = (AdminOrgUnitInfo)this.adminOrgUnitSet.get(orgNum);
+                            if (StringUtils.isNotEmpty(orgNum) && adminOrgInfo != null) {
+                                scheduleShiftInfo.setAdminOrgUnit(adminOrgInfo);
+                            } else {
+                                scheduleShiftInfo.setAdminOrgUnit(this.fileInfo.getAdminOrgUnit());
+                            }
+
+                            scheduleShiftInfo.setPosition(this.fileInfo.getPosition());
+                            scheduleShiftInfo.setHrOrgUnit(this.fileInfo.getHrOrgUnit());
+                            scheduleShiftInfo.setAttendFile(this.fileInfo);
+                            scheduleShiftInfo.setSrcType(SchlShiftSrcTypeEnum.manSchlShift);
+                            scheduleShiftInfo.setAttendPolicy((AttencePolicyInfo)this.attencePSet.get(policyName));
+                            scheduleShiftInfo.setCardRule((CardRuleInfo)this.cardSet.get(cardName));
+                            scheduleShiftInfo.setSrcType(SchlShiftSrcTypeEnum.getEnum(this.srcType));
+                            scheduleShiftInfo.setHldPlcSet((HolidayPolicySetInfo)this.holidaySet.get(holidayName));
+                            scheduleShiftInfo.setAdvcValue(2);
+                            saveSet.add(scheduleShiftInfo);
+                        }
+                    }
+                }
+            } else {
+                resultMap.put(i, "员工编码不合法；");
+                ++this.errorNum;
+            }
+        }
+
+        return saveSet;
+    }
+
+    private void setFileInfo(Context ctx, String personNumber, String attenddate) {
+        Map<String, AttendanceFileInfo> atsFileInfoMap = null;
+        if (this.attendanceFileMap.get(personNumber) == null) {
+            atsFileInfoMap = BillBizUtil.getAttendanceFileMapByPersonNum(ctx, personNumber);
+            this.attendanceFileMap.put(personNumber, atsFileInfoMap);
+        } else {
+            atsFileInfoMap = (Map)this.attendanceFileMap.get(personNumber);
+        }
+
+        if (atsFileInfoMap != null) {
+            if (atsFileInfoMap.size() == 1) {
+                this.fileInfo = (AttendanceFileInfo)atsFileInfoMap.values().iterator().next();
+            } else {
+                Set<String> personDateKeys = atsFileInfoMap.keySet();
+                Iterator<String> it = personDateKeys.iterator();
+                String matchKey = null;
+
+                while(it.hasNext()) {
+                    String key = (String)it.next();
+                    String[] keys = key.split("_###_");
+                    if (attenddate.compareTo(keys[1]) >= 0 && attenddate.compareTo(keys[2]) <= 0) {
+                        matchKey = key;
+                    }
+                }
+
+                this.fileInfo = (AttendanceFileInfo)atsFileInfoMap.get(matchKey);
+            }
+        }
+
+    }
+
+    private PersonInfo getPerson(String personNumber, Context ctx) {
+        PersonInfo personInfo = null;
+
+        try {
+            EntityViewInfo evi = new EntityViewInfo();
+            evi.getSelector().add(new SelectorItemInfo("id"));
+            evi.getSelector().add(new SelectorItemInfo("number"));
+            evi.getSelector().add(new SelectorItemInfo("name"));
+            FilterInfo filter = new FilterInfo();
+            filter.getFilterItems().add(new FilterItemInfo("number", personNumber, CompareType.EQUALS));
+            evi.setFilter(filter);
+            PersonCollection personInfoCollection = PersonFactory.getLocalInstance(ctx).getPersonCollection(evi);
+            if (personInfoCollection.size() >= 0 && personInfoCollection != null) {
+                personInfo = personInfoCollection.get(0);
+            } else {
+                personInfo = null;
+            }
+
+            evi = null;
+        } catch (BOSException var7) {
+            var7.printStackTrace();
+        }
+
+        return personInfo;
+    }
+
+    private HashMap checkShiftItem(AtsShiftInfo atsShiftInfo, List<String> list, Map<Integer, String> resultMap, String attenddate, int rowNum) {
+        HashMap validateMap = new HashMap();
+        AtsShiftItemCollection atsShiftItemCollection = new AtsShiftItemCollection();
+        int itemsLen = 0;
+        if (atsShiftInfo != null) {
+            atsShiftItemCollection = atsShiftInfo.getItems();
+            itemsLen = atsShiftItemCollection.size();
+        }
+
+        boolean one = true;
+        boolean two = true;
+        boolean three = true;
+        boolean oneSeg = false;
+        boolean twoSeg = false;
+        boolean threeSeg = false;
+
+        String segOfNull;
+        for(int i = 10; i < this.colNum; ++i) {
+            segOfNull = (String)list.get(i);
+            if ((i <= 10 || i % 10 != 0) && i != 14 && i != 18 && i != 19 && (i <= 16 || i % 5 != 1)) {
+                if (StringUtils.isEmpty(segOfNull)) {
+                    if (i <= 21) {
+                        one = false;
+                    }
+
+                    if (i > 21 && i <= 31) {
+                        two = false;
+                    }
+
+                    if (i > 31) {
+                        three = false;
+                    }
+                }
+
+                if (!StringUtils.isEmpty(segOfNull)) {
+                    if (i <= 21) {
+                        oneSeg = true;
+                    }
+
+                    if (i > 21 && i <= 31) {
+                        twoSeg = true;
+                    }
+
+                    if (i > 31) {
+                        threeSeg = true;
+                    }
+                }
+            }
+        }
+
+        boolean segmentErr = true;
+        segOfNull = "";
+        boolean a = !one && oneSeg;
+        boolean b = !two && twoSeg;
+        boolean c = !three && threeSeg;
+        if (itemsLen == 0 && (oneSeg || twoSeg || threeSeg)) {
+            segmentErr = false;
+        }
+
+        if (itemsLen == 1) {
+            if (twoSeg || threeSeg) {
+                segmentErr = false;
+            }
+
+            if (a) {
+                segOfNull = "一";
+            }
+        }
+
+        if (itemsLen == 2) {
+            if (threeSeg || oneSeg != twoSeg) {
+                segmentErr = false;
+            }
+
+            if (a) {
+                segOfNull = "一；";
+            }
+
+            if (b) {
+                segOfNull = segOfNull + "二；";
+            }
+        }
+
+        if (itemsLen == 3) {
+            if (oneSeg != twoSeg || oneSeg != threeSeg || twoSeg != threeSeg) {
+                segmentErr = false;
+            }
+
+            if (a) {
+                segOfNull = "一；";
+            }
+
+            if (b) {
+                segOfNull = segOfNull + "二；";
+            }
+
+            if (c) {
+                segOfNull = segOfNull + "三；";
+            }
+        }
+
+        double standardHour = 0.0D;
+        if (segmentErr && segOfNull.length() == 0) {
+            AtsShiftItemInfo itemInfo;
+            String preFlowStr;
+            String nextFlowStr;
+            if (itemsLen == 1 && one && !two && !three || itemsLen == 2 && one && two && !three || itemsLen == 3 && one && two && three) {
+                itemInfo = atsShiftItemCollection.get(0);
+                itemInfo.setSegment(SegmentEnum.getEnum("1"));
+                AttendanceTypeEnum preAttendType = (AttendanceTypeEnum)this.attendanceTypeSet.get(list.get(this.firsttAttendanceType));
+                itemInfo.setAttendanceType(preAttendType);
+                itemInfo.setPreTimeDayType((SegmentUnitEnum)this.referenceDateSet.get(list.get(this.firstPreDayType)));
+                preFlowStr = (String)list.get(this.firstPreTime);
+                itemInfo.setPreTime(preFlowStr);
+                itemInfo.setPreIsPunchCard((SegIsPunchCardEnum)this.isPunchCardSet.get(list.get(this.firstPreIsPunchCard)));
+                String preFlowStr = ((String)list.get(this.firstPreFloatTime)).equals("") ? "0" : (String)list.get(this.firstPreFloatTime);
+                BigDecimal preFlow = new BigDecimal(Double.parseDouble(preFlowStr));
+                itemInfo.setPreFloatAdjusted(preFlow);
+                itemInfo.setNextTimeDayType((SegmentUnitEnum)this.referenceDateSet.get(list.get(this.firstNextDayType)));
+                nextFlowStr = (String)list.get(this.firstNextTime);
+                itemInfo.setNextTime(nextFlowStr);
+                itemInfo.setNextIsPunchCard((SegIsPunchCardEnum)this.isPunchCardSet.get(list.get(this.firstNextIsPunchCard)));
+                String nextFlowStr = ((String)list.get(this.firstNextFloatTime)).equals("") ? "0" : (String)list.get(this.firstNextFloatTime);
+                BigDecimal nextFlow = new BigDecimal(Double.parseDouble(nextFlowStr));
+                itemInfo.setNextFloatAdjusted(nextFlow);
+                String startTime = (String)list.get(this.preRest);
+                String endTime = (String)list.get(this.nextRest);
+                itemInfo.setRestPreTime(startTime);
+                itemInfo.setRestNextTime(endTime);
+                String restTimeStr = (String)list.get(this.firstRestTime);
+                double restTime = 0.0D;
+                if (startTime.length() > 0 && endTime.length() > 0) {
+                    String atdtPreDayString = AtsDateUtils.getPreDay(attenddate);
+                    String atdtNextDayString = AtsDateUtils.getNextDay(attenddate);
+                    Integer preTimeValue = Integer.valueOf(preAttendType.getValue());
+                    String preTimeStr = ScheduleShiftItemHelper.getRealRestTime(preFlowStr, preTimeValue, startTime, endTime, attenddate, atdtPreDayString, atdtNextDayString, "restPreTime");
+                    String nextTimeStr = ScheduleShiftItemHelper.getRealRestTime(preFlowStr, preTimeValue, startTime, endTime, attenddate, atdtPreDayString, atdtNextDayString, "restNextTime");
+                    Date preTimeDate = AtsDateUtils.stringToLongDate(preTimeStr);
+                    Date nextTimeDate = AtsDateUtils.stringToLongDate(nextTimeStr);
+                    restTime = AtsDateUtils.getTwoTimeDiffMinutes(preTimeDate, nextTimeDate);
+                } else if (restTimeStr.length() > 0) {
+                    BigDecimal segLength = new BigDecimal(restTimeStr);
+                    restTime = segLength.doubleValue();
+                }
+
+                itemInfo.setSegmentInRest(new BigDecimal(restTime));
+                atsShiftInfo.getItems().set(0, itemInfo);
+            }
+
+            String preTime;
+            BigDecimal preFlow;
+            String nextTime;
+            BigDecimal nextFlow;
+            String segStr;
+            double len;
+            BigDecimal segLength;
+            if (itemsLen == 2 && one && two && !three || itemsLen == 3 && one && two && three) {
+                itemInfo = atsShiftItemCollection.get(1);
+                itemInfo.setSegment(SegmentEnum.getEnum("2"));
+                itemInfo.setAttendanceType((AttendanceTypeEnum)this.attendanceTypeSet.get(list.get(this.secondAttendanceType)));
+                itemInfo.setPreTimeDayType((SegmentUnitEnum)this.referenceDateSet.get(list.get(this.secondPreDayType)));
+                preTime = (String)list.get(this.secondPreTime);
+                itemInfo.setPreTime(preTime);
+                itemInfo.setPreIsPunchCard((SegIsPunchCardEnum)this.isPunchCardSet.get(list.get(this.secondPreIsPunchCard)));
+                preFlowStr = ((String)list.get(this.secondPreFloatTime)).equals("") ? "0" : (String)list.get(this.secondPreFloatTime);
+                preFlow = new BigDecimal(Double.parseDouble(preFlowStr));
+                itemInfo.setPreFloatAdjusted(preFlow);
+                itemInfo.setNextTimeDayType((SegmentUnitEnum)this.referenceDateSet.get(list.get(this.secondNextDayType)));
+                nextTime = (String)list.get(this.secondNextTime);
+                itemInfo.setNextTime(nextTime);
+                itemInfo.setNextIsPunchCard((SegIsPunchCardEnum)this.isPunchCardSet.get(list.get(this.secondNextIsPunchCard)));
+                nextFlowStr = ((String)list.get(this.secondNextFloatTime)).equals("") ? "0" : (String)list.get(this.secondNextFloatTime);
+                nextFlow = new BigDecimal(Double.parseDouble(nextFlowStr));
+                itemInfo.setNextFloatAdjusted(nextFlow);
+                segStr = ((String)list.get(this.secondRestTime)).equals("") ? "0" : (String)list.get(this.secondRestTime);
+                len = Double.parseDouble(segStr);
+                segLength = new BigDecimal(len);
+                itemInfo.setSegmentInRest(segLength);
+                atsShiftInfo.getItems().set(1, itemInfo);
+            }
+
+            if (itemsLen == 3 && one && two && three) {
+                itemInfo = atsShiftItemCollection.get(2);
+                itemInfo.setSegment(SegmentEnum.getEnum("3"));
+                itemInfo.setAttendanceType((AttendanceTypeEnum)this.attendanceTypeSet.get(list.get(this.thirdAttendanceType)));
+                itemInfo.setPreTimeDayType((SegmentUnitEnum)this.referenceDateSet.get(list.get(this.thirdPreDayType)));
+                preTime = (String)list.get(this.thirdPreTime);
+                itemInfo.setPreTime(preTime);
+                itemInfo.setPreIsPunchCard((SegIsPunchCardEnum)this.isPunchCardSet.get(list.get(this.thirdPreIsPunchCard)));
+                preFlowStr = ((String)list.get(this.thirdPreFloatTime)).equals("") ? "0" : (String)list.get(this.thirdPreFloatTime);
+                preFlow = new BigDecimal(Double.parseDouble(preFlowStr));
+                itemInfo.setPreFloatAdjusted(preFlow);
+                itemInfo.setNextTimeDayType((SegmentUnitEnum)this.referenceDateSet.get(list.get(this.thirdNextDayType)));
+                nextTime = (String)list.get(this.thirdNextTime);
+                itemInfo.setNextTime(nextTime);
+                itemInfo.setNextIsPunchCard((SegIsPunchCardEnum)this.isPunchCardSet.get(list.get(this.thirdNextIsPunchCard)));
+                nextFlowStr = ((String)list.get(this.thirdNextFloatTime)).equals("") ? "0" : (String)list.get(this.thirdNextFloatTime);
+                nextFlow = new BigDecimal(Double.parseDouble(nextFlowStr));
+                itemInfo.setNextFloatAdjusted(nextFlow);
+                segStr = ((String)list.get(this.thirdRestTime)).equals("") ? "0" : (String)list.get(this.thirdRestTime);
+                len = Double.parseDouble(segStr);
+                segLength = new BigDecimal(len);
+                itemInfo.setSegmentInRest(segLength);
+                atsShiftInfo.getItems().set(2, itemInfo);
+            }
+
+            String error = ScheduleShiftItemHelper.checkAtsShiftItems(atsShiftInfo);
+            if (error.length() > 0 && error != null) {
+                resultMap.put(rowNum, error);
+                ++this.errorNum;
+                validateMap.put("atsShiftInfo", (Object)null);
+            } else {
+                standardHour = ScheduleShiftItemHelper.getStandardHour(atsShiftInfo);
+                BigDecimal hour = new BigDecimal(standardHour / 60.0D);
+                hour = hour.setScale(2, 4);
+                atsShiftInfo.setStandardHour(hour);
+                validateMap.put("validate", true);
+                validateMap.put("atsShiftInfo", atsShiftInfo);
+            }
+        } else {
+            if (!segmentErr) {
+                resultMap.put(rowNum, "班次段数和班次明细段数不匹配；");
+            } else {
+                resultMap.put(rowNum, "第" + segOfNull + "段的信息不完整");
+            }
+
+            ++this.errorNum;
+            validateMap.put("atsShiftInfo", (Object)null);
+        }
+
+        return validateMap;
+    }
+
+    private void saveOrUpdateBatchEntity(Context ctx, Set<ScheduleShiftInfo> saveSet, List<Object[]> deleteShiftItemParamsList, List<Object[]> deleteShiftParamsList, List<Object[]> insertShiftParamsList, List<Object[]> insertShiftItemParamsList) throws BOSException, EASBizException {
+        StringBuffer deleteShiftSql = new StringBuffer("");
+        StringBuffer insertShiftSql = new StringBuffer("");
+        StringBuffer deleteShiftItemSql = new StringBuffer("");
+        StringBuffer insertShiftItemSql = new StringBuffer("");
+        deleteShiftSql.append("delete from t_hr_ats_scheduleshift  where fproposerid = ?  and FattendDate = ?");
+        insertShiftSql.append(" insert t_hr_ats_scheduleshift(fid,fdayType,FDefaultShiftID,FAttendFileID,FAttendPolicyID,FCardRuleID,FSrcType,FAdvcValue,FStandardHour,FProposerId,FPositionId,FHrOrgUnitId,FCreatorId,FCreateTime,FLastUpdateUserId,FLastUpdateTime,FAdminOrgUnitId,FHldPlcSetID,FShiftTypeID,FOtCompensID,FAttendDate,FControlUnitID) ");
+        insertShiftSql.append(" values(newbosid('AE85E191'),?,?,?,?,?,?,?,?,?,?,?,?,Now(),?, Now(),?,?,?,?,?,?)");
+        deleteShiftItemSql.append("delete from  T_HR_ATS_ScheduleShiftItem where fgroupid in (select fid from t_hr_ats_scheduleshift shift where shift.fproposerid = ? and shift.FattendDate = ?)");
+        insertShiftItemSql.append(" insert into T_HR_ATS_ScheduleShiftItem(Fid,FShiftItemID, FGroupID,FSegment, FPreTime,FPreFloatAdjusted,FPreUnit,FPreIsPunchCard, FNextTime, FNextFloatAdjusted, FNextUnit, FNextIsPunchCard, FSegmentInRest, FAttendanceType,");
+        insertShiftItemSql.append("FPreTimeDayType, FNextTimeDayType, FPreDateTime, FNextDateTime, FRestPreTime, FRestNextTime, FRestPreDateTime, FRestNextDateTime)");
+        insertShiftItemSql.append(" values(newbosid('4ECBA044'),?,(select top 1 fid from t_hr_ats_scheduleshift  where fproposerid = ? and FattendDate = ?),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        DbUtil.executeBatch(ctx, deleteShiftItemSql.toString(), deleteShiftItemParamsList);
+        DbUtil.executeBatch(ctx, deleteShiftSql.toString(), deleteShiftParamsList);
+        DbUtil.executeBatch(ctx, insertShiftSql.toString(), insertShiftParamsList);
+        DbUtil.executeBatch(ctx, insertShiftItemSql.toString(), insertShiftItemParamsList);
+    }
+
+    private void getParamsList(List<Object[]> deleteShiftItemParamsList, List<Object[]> deleteShiftParamsList, List<Object[]> insertShiftParamsList, List<Object[]> insertShiftItemParamsList, ScheduleShiftInfo shiftInfo, UserInfo currentUserInfo, CtrlUnitInfo cu) {
+        AtsShiftItemCollection atsShiftItemCollection = null;
+        Object[] deleteShiftItemArr = new Object[]{shiftInfo.getProposer().getId().toString(), HRTimeWebUtils.stringShortToTimestamp(HRTimeWebUtils.dateShortToString(shiftInfo.getAttendDate()))};
+        deleteShiftItemParamsList.add(deleteShiftItemArr);
+        Object[] deleteShiftObjArr = new Object[]{shiftInfo.getProposer() != null && shiftInfo.getProposer().getId() != null ? shiftInfo.getProposer().getId().toString() : "", shiftInfo.getAttendDate()};
+        deleteShiftParamsList.add(deleteShiftObjArr);
+        Object[] insertShiftObjArr = new Object[]{shiftInfo.getDayType() != null ? shiftInfo.getDayType().getValue() : "", shiftInfo.getDefaultShift() != null && shiftInfo.getDefaultShift().getId() != null ? shiftInfo.getDefaultShift().getId().toString() : "", shiftInfo.getAttendFile() != null && shiftInfo.getAttendFile().getId() != null ? shiftInfo.getAttendFile().getId().toString() : "", shiftInfo.getAttendPolicy() != null && shiftInfo.getAttendPolicy().getId() != null ? shiftInfo.getAttendPolicy().getId().toString() : "", shiftInfo.getCardRule() != null && shiftInfo.getCardRule().getId() != null ? shiftInfo.getCardRule().getId().toString() : "", shiftInfo.getSrcType().getValue(), shiftInfo.getAdvcValue(), shiftInfo.getStandardHour() != null ? shiftInfo.getStandardHour() : 0, shiftInfo.getProposer() != null && shiftInfo.getProposer().getId() != null ? shiftInfo.getProposer().getId().toString() : "", shiftInfo.getPosition() != null && shiftInfo.getPosition().getId() != null ? shiftInfo.getPosition().getId().toString() : "", shiftInfo.getHrOrgUnit() != null && shiftInfo.getHrOrgUnit().getId() != null ? shiftInfo.getHrOrgUnit().getId().toString() : "", currentUserInfo.getId() != null && currentUserInfo.getId() != null ? currentUserInfo.getId().toString() : "", currentUserInfo.getId() != null && currentUserInfo.getId() != null ? currentUserInfo.getId().toString() : "", shiftInfo.getAdminOrgUnit() != null && shiftInfo.getAdminOrgUnit().getId() != null ? shiftInfo.getAdminOrgUnit().getId().toString() : "", shiftInfo.getHldPlcSet() != null && shiftInfo.getHldPlcSet().getId() != null ? shiftInfo.getHldPlcSet().getId().toString() : "", shiftInfo.getShiftType() != null && shiftInfo.getShiftType().getId() != null ? shiftInfo.getShiftType().getId().toString() : "", shiftInfo.getOtCompens() != null && shiftInfo.getOtCompens().getId() != null ? shiftInfo.getOtCompens().getId().toString() : "", shiftInfo.getAttendDate(), cu != null && cu.getId() != null ? cu.getId().toString() : ""};
+        insertShiftParamsList.add(insertShiftObjArr);
+        AtsShiftInfo atsShiftInfo = shiftInfo.getDefaultShift();
+        if (atsShiftInfo != null && atsShiftInfo.getItems() != null && !atsShiftInfo.getItems().isEmpty()) {
+            atsShiftItemCollection = atsShiftInfo.getItems();
+            Date atdt = shiftInfo.getAttendDate();
+            String atdtString = AtsDateUtils.dateShortToString(atdt);
+            Calendar atdtNextDayCal = Calendar.getInstance();
+            atdtNextDayCal.setTimeInMillis(atdt.getTime() + 86400000L);
+            String atdtNextDayString = HRTimeWebUtils.dateShortToString(atdtNextDayCal.getTime());
+            Calendar atdtPreDayCal = Calendar.getInstance();
+            atdtPreDayCal.setTimeInMillis(atdt.getTime() - 86400000L);
+            String atdtPreDayString = HRTimeWebUtils.dateShortToString(atdtPreDayCal.getTime());
+            String preTimeStr = "";
+            String preDateTimeStr = "";
+            String nextTimeStr = "";
+            String nextDateTimeStr = "";
+            String restPreTime = "";
+
+            for(int i = 0; i < atsShiftItemCollection.size(); ++i) {
+                AtsShiftItemInfo atsShiftItemInfo = atsShiftItemCollection.get(i);
+                preTimeStr = atsShiftItemInfo.getPreTime();
+                int preTimeValue = atsShiftItemInfo.getPreTimeDayType().getValue();
+                preDateTimeStr = ScheduleShiftItemHelper.getRealTimeByType(preTimeValue, atdtString, atdtPreDayString, atdtNextDayString, preTimeStr);
+                int nextTimeValue = atsShiftItemInfo.getNextTimeDayType().getValue();
+                nextTimeStr = atsShiftItemInfo.getNextTime();
+                nextDateTimeStr = ScheduleShiftItemHelper.getRealTimeByType(nextTimeValue, atdtString, atdtPreDayString, atdtNextDayString, nextTimeStr);
+                restPreTime = atsShiftItemInfo.getRestPreTime();
+                String restNextTime = atsShiftItemInfo.getRestNextTime();
+                String restPreDateTimeStr = "";
+                String restNextDateTimeStr = "";
+                if (!StringUtils.isEmpty(restPreTime) && !StringUtils.isEmpty(restNextTime)) {
+                    restPreDateTimeStr = ScheduleShiftItemHelper.getRealRestTime(preTimeStr, preTimeValue, restPreTime, restNextTime, atdtString, atdtPreDayString, atdtNextDayString, "restPreTime");
+                    restNextDateTimeStr = ScheduleShiftItemHelper.getRealRestTime(preTimeStr, preTimeValue, restPreTime, restNextTime, atdtString, atdtPreDayString, atdtNextDayString, "restNextTime");
+                }
+
+                Object[] insertShiftItemObjArr = new Object[]{atsShiftItemInfo != null && atsShiftItemInfo.getId() != null ? atsShiftItemInfo.getId().toString() : "", shiftInfo.getProposer() != null && shiftInfo.getProposer().getId() != null ? shiftInfo.getProposer().getId().toString() : "", HRTimeWebUtils.stringShortToTimestamp(HRTimeWebUtils.dateShortToString(shiftInfo.getAttendDate())), atsShiftItemInfo.getSegment() == null ? "" : atsShiftItemInfo.getSegment().getValue(), atsShiftItemInfo.getPreTime() == null ? "" : atsShiftItemInfo.getPreTime(), atsShiftItemInfo.getPreFloatAdjusted() == null ? 0.0D : (double)atsShiftItemInfo.getPreFloatAdjusted().floatValue(), atsShiftItemInfo.getPreUnit() == null ? "" : atsShiftItemInfo.getPreUnit().getValue(), atsShiftItemInfo.getPreIsPunchCard() == null ? "" : atsShiftItemInfo.getPreIsPunchCard().getValue(), atsShiftItemInfo.getNextTime() == null ? "" : atsShiftItemInfo.getNextTime(), atsShiftItemInfo.getNextFloatAdjusted() == null ? 0.0D : (double)atsShiftItemInfo.getNextFloatAdjusted().floatValue(), atsShiftItemInfo.getNextUnit() == null ? "" : atsShiftItemInfo.getNextUnit().getValue(), atsShiftItemInfo.getNextIsPunchCard() == null ? "" : atsShiftItemInfo.getNextIsPunchCard().getValue(), atsShiftItemInfo.getSegmentInRest() == null ? 0 : atsShiftItemInfo.getSegmentInRest(), atsShiftItemInfo.getAttendanceType() == null ? "" : atsShiftItemInfo.getAttendanceType().getValue(), atsShiftItemInfo.getPreTimeDayType().getValue(), atsShiftItemInfo.getNextTimeDayType().getValue(), null, null, null, null, null, null};
+                if (StringUtils.isNotEmpty(preDateTimeStr)) {
+                    insertShiftItemObjArr[16] = HRTimeWebUtils.stringToTimestamp(preDateTimeStr);
+                } else {
+                    insertShiftItemObjArr[16] = null;
+                }
+
+                if (StringUtils.isNotEmpty(nextDateTimeStr)) {
+                    insertShiftItemObjArr[17] = HRTimeWebUtils.stringToTimestamp(nextDateTimeStr);
+                } else {
+                    insertShiftItemObjArr[17] = null;
+                }
+
+                insertShiftItemObjArr[18] = restPreTime == null ? "" : restPreTime;
+                insertShiftItemObjArr[19] = restNextTime == null ? "" : restNextTime;
+                if (StringUtils.isNotEmpty(restPreDateTimeStr)) {
+                    insertShiftItemObjArr[20] = HRTimeWebUtils.stringToTimestamp(restPreDateTimeStr);
+                } else {
+                    insertShiftItemObjArr[20] = null;
+                }
+
+                if (StringUtils.isNotEmpty(restNextDateTimeStr)) {
+                    insertShiftItemObjArr[21] = HRTimeWebUtils.stringToTimestamp(restNextDateTimeStr);
+                } else {
+                    insertShiftItemObjArr[21] = null;
+                }
+
+                insertShiftItemParamsList.add(insertShiftItemObjArr);
+            }
+
+        }
+    }
+
+    private void setStatus(int tempNum) {
+        double status = (double)tempNum * 1.0D / (double)this.rowNum;
+        DecimalFormat df = new DecimalFormat("#0.00");
+        status = Double.parseDouble(df.format(status));
+
+        try {
+            JSONObject jsonObject = StatusTool.getImportStatus("com.kingdee.eas.hr.ats.app.ScheduleShift");
+            jsonObject.getJSONObject("check").put("status", status);
+            if (this.errorNum == 0 && tempNum == this.rowNum) {
+                jsonObject.getJSONObject("check").put("valid", true);
+            } else {
+                jsonObject.getJSONObject("check").put("valid", false);
+            }
+        } catch (JSONException var6) {
+            var6.printStackTrace();
+        }
+
+    }
+
+    private void setChaining(int tempNum, int totalNum) {
+        double status = (double)tempNum * 1.0D / (double)totalNum;
+        DecimalFormat df = new DecimalFormat("#0.00");
+        status = Double.parseDouble(df.format(status));
+
+        try {
+            JSONObject jsonObject = StatusTool.getImportStatus("com.kingdee.eas.hr.ats.app.ScheduleShift");
+            jsonObject.getJSONObject("import").put("status", status);
+            if (tempNum == totalNum) {
+                jsonObject.getJSONObject("import").put("valid", true);
+            } else {
+                jsonObject.getJSONObject("import").put("valid", false);
+            }
+        } catch (JSONException var7) {
+            var7.printStackTrace();
+        }
+
+    }
+
+    public void clearData() {
+        this.personInfoMap = null;
+        this.adminOrgUnitIdAndObjSet = null;
+        this.adminOrgUnitSet = null;
+        this.shiftNameSet = null;
+        this.shiftIdMap = null;
+        this.attencePSet = null;
+        this.cardSet = null;
+        this.attendanceTypeSet = null;
+        this.isPunchCardSet = null;
+        this.holidaySet = null;
+        this.referenceDateSet = null;
+        this.personNumSet = null;
+        this.fileInfo = null;
+        this.hasShiftMap = null;
+        this.dayTypeMap = null;
+    }
+}
