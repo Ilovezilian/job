@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<project name="ksm-chrome-plugins copy WebContent" basedir=".">
+
+    <property name="server.path" value="W:\eas\Server\server\deploy\easweb.ear\eas_web.war" />
+
+    <property name="server.path.web" value="D:\Downloads\soft\chrome extensions\ksm-chrome-plugins" />
+
+
+    <target name="ksm-chrome-plugins">
+        <copy todir="${server.path.web}" includeemptydirs="true" verbose="false" overwrite="true">
+            <fileset dir="D:\git\job\web\ksm\ksm-chrome-plugins">
+            </fileset>
+        </copy>
+
+    </target>
+
+</project>

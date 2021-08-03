@@ -1,0 +1,48 @@
+{
+    "manifest_version": 2,
+    "name": "kingdee",
+    "description": "shr提单系统插件",
+    "version": "1.0",
+    "page_action": {
+        "default_icon": "img/128.png",
+        "default_title": "shr提单系统插件",
+        "default_popup": "index.html"
+    },
+    "icons": {
+        "16": "img/128.png",
+        "48": "img/128.png",
+        "128": "img/128.png"
+    },
+    "background": {
+        "scripts": [
+            "js/background.js"
+        ]
+    },
+    "content_scripts": [
+        {
+            "matches": ["http://ksm.kingdee.com:8000/*"],
+            "js": [
+                "js/jquery.min.js",
+                "js/content-script.js",
+                "js/echarts.min.js",
+                "js/bootstrap.min.js"
+            ],
+            "css": [
+                "css/bootstrap.css",
+                "css/index.css"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "permissions": [
+        "declarativeContent",
+        "contextMenus",
+		"tabs",
+		"notifications", 
+		"webRequest", 
+		"webRequestBlocking",
+		"storage", 
+		"http://*/*", 
+		"https://*/*"
+    ]
+}
