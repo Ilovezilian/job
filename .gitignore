@@ -61,3 +61,5 @@ Thumbs.db
 # to8to rpc
 version
 
+/src/main/resources/compare/
+/src/main/resources/log/
