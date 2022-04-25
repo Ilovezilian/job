@@ -5,7 +5,6 @@ import org.junit.Test;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
-import java.time.chrono.ChronoLocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class PeriodTest {

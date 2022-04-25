@@ -26,7 +26,6 @@ public class test1 {
     }
 
 
-
     public static Date stringToLongDate(String str) {
         Date date = new Date();
 
