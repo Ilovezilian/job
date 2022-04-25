@@ -302,6 +302,9 @@ shr.defineClass("shr.ats.atsLeaveBillEditNew", shr.framework.Edit, {
 
     } ,
 	initCcPersonPrompt:function() {
+        if ($('#ccPersonIds').length == 0) {
+            return;
+        }
         atsCcPersonUtils.initCCPersonIdsPrompt(this);
         if (this.getOperateState() != 'VIEW') {
             var person = $('#proposer').shrPromptBox("getValue");

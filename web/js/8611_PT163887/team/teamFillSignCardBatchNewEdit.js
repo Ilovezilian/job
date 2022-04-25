@@ -71,9 +71,15 @@ shr.defineClass("shr.ats.team.TeamFillSignCardBatchNewEdit", shr.ats.atttenceEdi
         _self.initCcPersonPrompt();
 	},
     clearCCPersonIdsPrompt :function() {
+        if ($('#ccPersonIds').length == 0) {
+            return;
+        }
         atsCcPersonUtils.clearCCPersonIdsPrompt(this);
     },
     initCcPersonPrompt :function() {
+        if ($('#ccPersonIds').length == 0) {
+            return;
+        }
         atsCcPersonUtils.initCCPersonIdsPrompt(this);
         if (this.getOperateState() != 'VIEW') {
             var person = $('#proposer').shrPromptBox("getValue");

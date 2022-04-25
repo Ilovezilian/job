@@ -228,9 +228,15 @@ shr.defineClass("shr.ats.team.TeamAtsLeaveBillEdit", shr.framework.Edit, {
         _self.initCcPersonPrompt();
 	},
     clearCCPersonIdsPrompt:function() {
+        if ($('#ccPersonIds').length == 0) {
+            return;
+        }
         atsCcPersonUtils.clearCCPersonIdsPrompt(this);
     },
     initCcPersonPrompt:function() {
+        if ($('#ccPersonIds').length == 0) {
+            return;
+        }
         atsCcPersonUtils.initCCPersonIdsPrompt(this);
         if (this.getOperateState() != 'VIEW') {
             var person = $('#entries_person').shrPromptBox("getValue");

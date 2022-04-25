@@ -4852,9 +4852,15 @@ shr.defineClass("shr.ats.AtsLeaveBillEdit", shr.framework.Edit, {
         return retuenValue;
     },
     clearCCPersonIdsPrompt: function () {
+        if ($('#ccPersonIds').length == 0) {
+            return;
+        }
         atsCcPersonUtils.clearCCPersonIdsPrompt(this);
     },
     initCcPersonPrompt: function () {
+        if ($('#ccPersonIds').length == 0) {
+            return;
+        }
         atsCcPersonUtils.initCCPersonIdsPrompt(this);
         if (this.getOperateState() != "VIEW") {
             var person = $("#entries_person").shrPromptBox("getValue");

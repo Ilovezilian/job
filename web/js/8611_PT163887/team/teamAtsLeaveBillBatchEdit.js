@@ -303,6 +303,9 @@ shr.defineClass("shr.ats.team.TeamAtsLeaveBillBatchEdit", shr.ats.atttenceEditFo
 		that.initCcPersonPrompt();
 	},
     initCcPersonPrompt:function() {
+        if ($('#ccPersonIds').length == 0) {
+            return;
+        }
         atsCcPersonUtils.initCCPersonIdsPrompt(this);
         if (this.getOperateState() != 'VIEW') {
             var person = $('#proposer').shrPromptBox("getValue");

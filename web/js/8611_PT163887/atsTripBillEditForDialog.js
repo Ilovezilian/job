@@ -29,6 +29,9 @@ shr.defineClass("shr.ats.AtsTripBillEditForDialog", shr.framework.Edit, {
 		//alert(that.getOperateState());//ADDNEW 新增页面   VIEW 查看页面  EDIT 编辑页面
 	},
     initCcPersonPrompt() {
+        if ($('#ccPersonIds').length == 0) {
+            return;
+        }
         atsCcPersonUtils.initCCPersonIdsPrompt(this);
         if (this.getOperateState() != 'VIEW') {
             var person = $('#entries_person').shrPromptBox("getValue");

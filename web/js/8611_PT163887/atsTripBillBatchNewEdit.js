@@ -61,6 +61,9 @@ shr.defineClass("shr.ats.atsTripBillBatchNewEdit", shr.ats.atttenceEditFormImpor
 		_self.initByIsAllDay();
 	},
     initCcPersonPrompt:function() {
+        if ($('#ccPersonIds').length == 0) {
+            return;
+        }
         atsCcPersonUtils.initCCPersonIdsPrompt(this);
         if (this.getOperateState() != 'VIEW') {
             var person = $("#proposer").shrPromptBox("getValue");
