@@ -32,7 +32,7 @@ public class AtsDateUtils {
         return stringShortToShortDate(dateShortToString(calendar.getTime()));
     }
 
-    private static Date stringShortToShortDate(String str) {
+    public static Date stringShortToShortDate(String str) {
         Date date = new Date();
 
         DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
