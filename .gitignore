@@ -26,6 +26,7 @@ hs_err_pid*
 ######################################################################################################
 # maven ignore
 target/
+out/
 *.jar
 *.war
 *.zip
@@ -64,3 +65,8 @@ version
 /src/main/resources/compare/
 /src/main/resources/log/
 /web/ksm/jsDownload/
+/src/main/resources/
+
+# gradle
+.gradle
+gradle
