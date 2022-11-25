@@ -23,8 +23,10 @@ public class test1 {
         // a.notifyAll();
         Date date = stringToLongDate("2021-06-21");
         System.out.println("date = " + date);
-        for (int i = 0; i < 100; i++) {
-            System.out.println("number " +i + " = " + Integer.numberOfLeadingZeros(16));
+        while(true) {
+            for (int i = 0; i < 100; i++) {
+                System.out.println("number " + i + " = " + Integer.numberOfLeadingZeros(16));
+            }
         }
 
 
