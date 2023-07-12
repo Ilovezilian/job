@@ -1,0 +1,48 @@
+{
+  "name": "kd-build",
+  "version": "0.0.0.1",
+  "manifest_version": 2,
+  "description": "An extension to build kingdee s-HR build project. chrome must be at least 88",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "browser_action": {
+    "default_popup": "index.html"
+  },
+  "background": {
+    "scripts": [
+      "background-scripts/background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://172.17.8.17:8080/*"
+      ],
+      "js": [
+        "js/jquery.min.js",
+        "js/echarts.min.js",
+        "js/bootstrap.min.js",
+        "content-scripts/content.js"
+      ],
+      "css": [
+        "css/bootstrap.css",
+        "css/index.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": [
+    "declarativeContent",
+    "contextMenus",
+    "tabs",
+    "notifications",
+    "webRequest",
+    "webRequestBlocking",
+    "storage",
+    "http://*/*",
+    "https://*/*"
+  ]
+}
