@@ -7,10 +7,11 @@ public class ThreadExtendsRunable {
     public static void main(String[] args) {
 //        ThreadExtendsRunable threadExtendsRunable = new ThreadExtendsRunable();
 //        threadExtendsRunable.run();
-        for(int i = 0; i < 20; i ++) {
+        for (int i = 0; i < 20; i++) {
             try {
                 Thread.sleep(1000);
-            }catch (InterruptedException e){}
+            } catch (InterruptedException e) {
+            }
             Thread t1 = new Thread(new A());
             t1.start();
             System.out.println("hello1");
@@ -22,17 +23,20 @@ public class ThreadExtendsRunable {
 //        my.thread.start();
         }
     }
-    public void run(){
+
+    public void run() {
         System.out.println("this is run method");
     }
 }
-class A extends Thread{
+
+class A extends Thread {
     @Override
     public void run() {
         System.out.println("A");
     }
 }
-class B implements Runnable{
+
+class B implements Runnable {
     @Override
     public void run() {
         System.out.println("B");

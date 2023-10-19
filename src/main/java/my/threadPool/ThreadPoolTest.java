@@ -11,8 +11,7 @@ import java.util.concurrent.*;
  * Created by Ilovezilian on 2016/10/14.
  */
 public class ThreadPoolTest {
-    public static void main(String[] args) throws Exception
-    {
+    public static void main(String[] args) throws Exception {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter base directory (e.g. /usr/local/jkd5.0/src):");
         String directory = in.nextLine();
@@ -26,83 +25,64 @@ public class ThreadPoolTest {
 
         try {
             System.out.println(result.get() + " matching files.");
-        }
-        catch(ExecutionException e)
-        {
+        } catch (ExecutionException e) {
             e.printStackTrace();
-        }
-        catch(InterruptedException e)
-        {
+        } catch (InterruptedException ignored) {
         }
         pool.shutdown();
 
         int largestPoolSize = ((ThreadPoolExecutor) pool).getLargestPoolSize();
-        System.out.println("largest pool size = "+ largestPoolSize);
+        System.out.println("largest pool size = " + largestPoolSize);
     }
 }
 
-class MatchCounter implements Callable<Integer>
-{
+class MatchCounter implements Callable<Integer> {
     private File directory;
     private String keyword;
     private ExecutorService pool;
     private int count;
-    public MatchCounter(File directory, String keyword, ExecutorService pool)
-    {
+
+    public MatchCounter(File directory, String keyword, ExecutorService pool) {
         this.directory = directory;
         this.keyword = keyword;
         this.pool = pool;
     }
 
-    public Integer call()
-    {
+    public Integer call() {
         count = 0;
-        try{
+        try {
             File[] files = directory.listFiles();
             List<Future<Integer>> results = new ArrayList<>();
 
-            for(File file : files)
-                if(file.isDirectory())
-                {
-                    MatchCounter counter  = new MatchCounter(file, keyword, pool);
+            for (File file : files)
+                if (file.isDirectory()) {
+                    MatchCounter counter = new MatchCounter(file, keyword, pool);
                     Future<Integer> result = pool.submit(counter);
                     results.add(result);
+                } else {
+                    if (search(file)) count++;
                 }
-                else
-                {
-                    if(search(file)) count ++;
+            for (Future<Integer> result : results)
+                try {
+                    count += result.get();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
                 }
-            for(Future<Integer> result : results)
-            try
-            {
-                count += result.get();
-            }
-            catch(ExecutionException e)
-            {
-                e.printStackTrace();
-            }
-        }
-        catch (InterruptedException e)
-        {
+        } catch (InterruptedException ignored) {
         }
         return count;
     }
 
-    public boolean search(File file)
-    {
-        try(Scanner in = new Scanner(file))
-        {
+    public boolean search(File file) {
+        try (Scanner in = new Scanner(file)) {
             boolean found = false;
-            while(!found && in.hasNextLine())
-            {
+            while (!found && in.hasNextLine()) {
                 String line = in.nextLine();
 
-                if(line.contains(keyword)) found = true;
+                if (line.contains(keyword)) found = true;
             }
             return found;
-        }
-        catch(IOException e)
-        {
+        } catch (IOException e) {
             return false;
         }
     }
