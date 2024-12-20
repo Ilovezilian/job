@@ -1,5 +1,6 @@
 package my.stream;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -27,5 +28,25 @@ public class ReduceStreamDemo {
         System.out.println(reduce);
         int reduce1 = list.stream().reduce(6, Integer::sum);
         System.out.println(reduce1);
+
+        listsReduce();
+    }
+
+    private static void listsReduce() {
+        List<Integer> a = Arrays.asList(1, 2, 3, 44);
+        List<Integer> b = Arrays.asList(1, 2, 33, 44);
+        List<Integer> c = Arrays.asList(1, 22, 33, 44);
+        List<List<Integer>> lists = Arrays.asList(a, b, c);
+        List<Integer> abc = lists.stream().reduce(new ArrayList<>(16), (k1, k2) -> {
+            k1.addAll(k2);
+            return k1;
+        });
+
+        System.out.println("a = " + a);
+        System.out.println("b = " + b);
+        System.out.println("c = " + c);
+        System.out.println("abc = " + abc);
+
+
     }
 }
