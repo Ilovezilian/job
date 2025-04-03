@@ -20,14 +20,16 @@ with(easNames){
         }
 
         if(numList.size() > 1){
-            if(numList.get(0).indexOf(numList.get(1)) > -1 || numList.get(1).indexOf(numList.get(0)) > -1){
-                list.remove(0);
+            if(numList.get(0).indexOf(numList.get(1) + "!") > -1 || numList.get(1).indexOf(numList.get(0) + "!") > -1){
+                // list.remove(0);
+                list.get(0).put("numList", numList);
                 result.put("subOrg",list);
             }
         }
         for(var i = 1;i<list.size();i ++){
             if(list.get(0).get("subOrgId").toString() == list.get(i).get("subOrgId").toString()){
-                list.remove(0);
+                // list.remove(0);
+                list.get(0).put("0-i", list.get(0).get("subOrgId").toString() +" "+list.get(i).get("subOrgId").toString())
                 result.put("subOrg",list);
                 break;
             }
