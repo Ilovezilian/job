@@ -434,7 +434,7 @@ mbos('page').bind('afterOnload', function () {
                 },
                 error: function (res) {
                     mbos.ui.showError({
-                        title: localeResource.netError
+                        title: easContext.user.name ? localeResource.sysError : localeResource.noUserError
                     })
                 }
             })
