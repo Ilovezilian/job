@@ -12,6 +12,8 @@ easNames.importPackage(Packages.com.kingdee.eas.basedata.person);
 easNames.importPackage(Packages.com.kingdee.eas.hr.ats);
 easNames.importPackage(Packages.com.kingdee.eas.hr.ats.util);
 easNames.importPackage(Packages.com.kingdee.eas.basedata.org);
+easNames.importPackage(Packages.com.kingdee.eas.framework.CoreBaseInfo);
+easNames.importPackage(Packages.com.kingdee.bos.util.BOSUuid);
 
 //获取服务端上下文
 with(easNames){
@@ -93,9 +95,24 @@ with(easNames){
         entryInfo.setPerson(personInfo);								//事务执行人(如加班人、出差人等)
         entryInfo.setPosition(personPositionInfo.getPrimaryPosition()); //执行人职位-在分录上边
         entryInfo.setTripStartPlace(tripStartPlace);
-        entryInfo.put("tripStartPlaceF7",tripStartPlaceF7);
+        //entryInfo.put("tripStartPlaceF7",tripStartPlaceF7);
         entryInfo.setTripEndPlace(tripEndPlace);
         entryInfo.put("tripEndPlaceId",tripEndPlaceId);
+
+
+        var coreBaseInfo = new CoreBaseInfo();
+        coreBaseInfo.setId(BOSUuid.read(tripStartPlaceF7));
+        entryInfo.put("tripStartPlaceF7",coreBaseInfo);
+        // var  tripStartPlaceF7Map = new java.util.HashMap();
+        //   tripStartPlaceF7Map.put("id",tripStartPlaceF7);
+        //   entryInfo.put("tripStartPlaceF7",tripStartPlaceF7Map);
+
+
+        // var  tripEndPlaceIdMap = new java.util.HashMap();
+        // tripEndPlaceIdMap.put("id",tripEndPlaceId);
+        //entryInfo.put("tripEndPlaceId",tripEndPlaceIdMap.toString());
+
+
         //出差类型
         var tripTypeCollection = TripTypeFactory.getLocalInstance(ctx).getTripTypeCollection(" where id = '" + tripType + "'");
         if(tripTypeCollection != null && tripTypeCollection.size() > 0){
