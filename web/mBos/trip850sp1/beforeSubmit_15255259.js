@@ -7,7 +7,6 @@ easNames.importPackage(Packages.com.kingdee.eas.util.app);
 easNames.importPackage(Packages.com.kingdee.eas.hr.base.util);
 easNames.importPackage(Packages.java.lang);
 easNames.importPackage(Packages.java.math);
-easNames.importPackage(Packages.java.util);
 easNames.importPackage(Packages.org.apache.commons.lang);
 easNames.importPackage(Packages.com.kingdee.eas.basedata.person);
 easNames.importPackage(Packages.com.kingdee.eas.hr.ats);
