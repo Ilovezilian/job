@@ -7,6 +7,7 @@ easNames.importPackage(Packages.com.kingdee.eas.util.app);
 easNames.importPackage(Packages.com.kingdee.eas.hr.base.util);
 easNames.importPackage(Packages.java.lang);
 easNames.importPackage(Packages.java.math);
+easNames.importPackage(Packages.java.util);
 easNames.importPackage(Packages.org.apache.commons.lang);
 easNames.importPackage(Packages.com.kingdee.eas.basedata.person);
 easNames.importPackage(Packages.com.kingdee.eas.hr.ats);
@@ -19,11 +20,11 @@ with(easNames){
     function getCurrentHrUnit(ctx,personId,startDate,endDate){
         return AttendanceFileHISFactory.getLocalInstance(ctx).getAttendanceFileHISCollection("select hrOrgUnit where proposer.id='"+personId+"' and ((EFFDT <='"+startDate+"' and LEFFDT >='"+startDate+"') or (EFFDT <='"+endDate+"' and LEFFDT >='"+endDate+"')) and attendFileState='1' order by effdt desc ");
     }
-    var result = new java.util.HashMap();
+    var result = new HashMap();
 
     var ctx = context.getBosContext();
     var param = context.getParamAsMap(0);
-    var tripStartTime = param.get("tripStartTime");;//.toString(); //出差开始时间
+    var tripStartTime = param.get("tripStartTime");//.toString(); //出差开始时间
     var tripEndTime = param.get("tripEndTime");//.toString();//出差结束时间
     var tripType = param.get("tripType");//.toString(); //出差类型
     var tripStartPlaceF7 = param.get("tripStartPlaceF7");//.toString();//出发地点
@@ -38,7 +39,7 @@ with(easNames){
     var nowDate = DateTimeUtils.truncateDate(new Date());
     var atsTripBillUtils = new AtsTripBillUtils();
     var atsTripBillInfo1 = new AtsTripBillInfo();
-    var atsTripBillInfo = new java.util.HashMap();
+    var atsTripBillInfo = new HashMap();
     var shrBillUtil = new SHRBillUtil();
     var personInfo = SHRBillUtil.getCurrPersonInfoNew(ctx);
     var personId = personInfo.getId().toString();
@@ -53,6 +54,8 @@ with(easNames){
     var errorMsg = new java.lang.String("");
     //var hrInfo = ContextUtil.getCurrentHRUnit(ctx);
     var hrInfo = "";
+    var adminOrgUnit = null;
+    var attAdminOrgUnit = null;
     var attendanceFileHISColl = getCurrentHrUnit(ctx,personId,tripStartTime.substring(0,10),tripEndTime.substring(0,10));
     if(null === attendanceFileHISColl || attendanceFileHISColl.size() === 0){
         errorMsg = "找不到考勤业务组织!";
@@ -64,6 +67,8 @@ with(easNames){
         }else if(attendanceFileHISColl.get(0) !== null){
             var attendanceFileHIS = attendanceFileHISColl.get(0);
             hrInfo = attendanceFileHIS.getHrOrgUnit();
+            adminOrgUnit = attendanceFileHIS.getAdminOrgUnit();
+            attAdminOrgUnit = attendanceFileHIS.getAttAdminOrgUnit();
         }
     }
     atsTripBillInfo1.setHrOrgUnit(hrInfo);//hr组织
@@ -75,7 +80,7 @@ with(easNames){
 
     //判断时间重叠
     var leaveType = id;
-    var res = new java.util.HashMap();
+    var res = new HashMap();
     res = atsTripBillUtils.getDateOverlappingData(ctx, personId, tripStartTime, tripEndTime, leaveType);
     var addFlag = res.get("addFlag");
     if(res != null && addFlag > 0){
@@ -106,15 +111,18 @@ with(easNames){
             }
             //分录信息
             var  entryInfo1 = new AtsTripBillEntryInfo();
-            var  entryInfo = new java.util.HashMap();
+            var  entryInfo = new HashMap();
 
-            entryInfo1.setAdminOrgUnit(personPositionInfo.getPersonDep());	//执行人所在部门
+            //entryInfo1.setAdminOrgUnit(personPositionInfo.getPersonDep());	//执行人所在部门
+            entryInfo1.setAdminOrgUnit(adminOrgUnit);	//执行人所在部门
             entryInfo1.setPerson(personInfo);								//事务执行人(如加班人、出差人等)
             entryInfo1.setPosition(personPositionInfo.getPrimaryPosition()); //执行人职位-在分录上边
             entryInfo1.setTripStartPlace(tripStartPlace);
-            entryInfo1.put("tripStartPlaceF7",tripStartPlaceF7);
-
-
+            entryInfo1.setTripEndPlace(tripEndPlace);
+            var aMap = new HashMap();
+            aMap.put("bosType", "02F0EEF6");
+            aMap.put("id", tripStartPlaceF7);
+            entryInfo1.put("tripStartPlaceF7",aMap);
             entryInfo1.put("tripEndPlaceId",tripEndPlaceId);
 
             entryInfo1.setTripStartTransport(tripStartTransport);
@@ -123,7 +131,7 @@ with(easNames){
             entryInfo.put("person",personInfo);								//事务执行人(如加班人、出差人等)
             entryInfo.put("position",personPositionInfo.getPrimaryPosition()); //执行人职位-在分录上边
             entryInfo.put("tripStartPlace",tripStartPlace);
-            entryInfo.put("tripStartPlaceF7",tripStartPlaceF7);
+            entryInfo.put("tripStartPlaceF7",aMap);
             entryInfo.put("tripEndPlace",tripEndPlace);
             entryInfo.put("tripEndPlaceId",tripEndPlaceId);
             entryInfo.put("tripStartTransport",tripStartTransport);

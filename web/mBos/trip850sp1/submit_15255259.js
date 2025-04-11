@@ -7,13 +7,14 @@ easNames.importPackage(Packages.com.kingdee.eas.util.app);
 easNames.importPackage(Packages.com.kingdee.eas.hr.base.util);
 easNames.importPackage(Packages.java.lang);
 easNames.importPackage(Packages.java.math);
+easNames.importPackage(Packages.java.util);
 easNames.importPackage(Packages.org.apache.commons.lang);
 easNames.importPackage(Packages.com.kingdee.eas.basedata.person);
 easNames.importPackage(Packages.com.kingdee.eas.hr.ats);
 easNames.importPackage(Packages.com.kingdee.eas.hr.ats.util);
 easNames.importPackage(Packages.com.kingdee.eas.basedata.org);
-easNames.importPackage(Packages.com.kingdee.eas.framework.CoreBaseInfo);
-easNames.importPackage(Packages.com.kingdee.bos.util.BOSUuid);
+// easNames.importPackage(Packages.com.kingdee.eas.framework.CoreBaseInfo);
+// easNames.importPackage(Packages.com.kingdee.bos.util.BOSUuid);
 
 //获取服务端上下文
 with(easNames){
@@ -100,12 +101,12 @@ with(easNames){
         entryInfo.put("tripEndPlaceId",tripEndPlaceId);
 
 
-        var coreBaseInfo = new CoreBaseInfo();
-        coreBaseInfo.setId(BOSUuid.read(tripStartPlaceF7));
-        entryInfo.put("tripStartPlaceF7",coreBaseInfo);
-        // var  tripStartPlaceF7Map = new java.util.HashMap();
-        //   tripStartPlaceF7Map.put("id",tripStartPlaceF7);
-        //   entryInfo.put("tripStartPlaceF7",tripStartPlaceF7Map);
+        // var coreBaseInfo = new CoreBaseInfo();
+        // coreBaseInfo.setId(BOSUuid.read(tripStartPlaceF7));
+        // entryInfo.put("tripStartPlaceF7",coreBaseInfo);
+        var  tripStartPlaceF7Map = new java.util.HashMap();
+          tripStartPlaceF7Map.put("id",tripStartPlaceF7);
+          entryInfo.put("tripStartPlaceF7",tripStartPlaceF7Map);
 
 
         // var  tripEndPlaceIdMap = new java.util.HashMap();

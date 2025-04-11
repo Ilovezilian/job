@@ -1039,6 +1039,8 @@ _this.tripEndPlaceValueChange = function(event){
 _this.tripStartPlaceValueChange = function(event){
     var val = event.new_value;
     //隐藏字段赋值,提交时使用
+    console.log("tripStartPlaceValueChange val= ", val)
+    if (!val) return;
     mbos('entity').value().tripStartPlace = val.name;
     _private.tripStartPlaceF7 = event.new_value.id;
     _private.tripStartPlace = event.new_value.name;

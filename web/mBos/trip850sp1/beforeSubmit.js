@@ -7,6 +7,7 @@ easNames.importPackage(Packages.com.kingdee.eas.util.app);
 easNames.importPackage(Packages.com.kingdee.eas.hr.base.util);
 easNames.importPackage(Packages.java.lang);
 easNames.importPackage(Packages.java.math);
+easNames.importPackage(Packages.java.util);
 easNames.importPackage(Packages.org.apache.commons.lang);
 easNames.importPackage(Packages.com.kingdee.eas.basedata.person);
 easNames.importPackage(Packages.com.kingdee.eas.hr.ats);
@@ -22,7 +23,7 @@ with(easNames){
 
     var ctx = context.getBosContext();
     var param = context.getParamAsMap(0);
-    var tripStartTime = param.get("tripStartTime");;//.toString(); //出差开始时间
+    var tripStartTime = param.get("tripStartTime");//.toString(); //出差开始时间
     var tripEndTime = param.get("tripEndTime");//.toString();//出差结束时间
     var tripType = param.get("tripType");//.toString(); //出差类型
     var tripStartPlace = param.get("tripStartPlace");//.toString();//出发地点
