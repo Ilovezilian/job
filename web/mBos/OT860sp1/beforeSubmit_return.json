@@ -1,0 +1,223 @@
+{
+  "bill": {
+    "bosType": "C46A580E",
+    "extendedProps": {
+      "isAddNew": "isAddNew"
+    },
+    "proposer": {
+      "bosType": "80EF7DED",
+      "number": "EMP000020",
+      "name": "jq2",
+      "id": "4i4AAAAGH02A733t"
+    },
+    "adminOrg": {
+      "bosType": "6A6435BE",
+      "id": "00000000-0000-0000-0000-000000000000CCE7AED4"
+    },
+    "billSubmitType": {
+      "isenum": true,
+      "alias": "普通提交",
+      "value": 1
+    },
+    "hrOrgUnit": {
+      "bosType": "58B332D9",
+      "id": "00000000-0000-0000-0000-000000000000CCE7AED4"
+    },
+    "billState": {
+      "isenum": true,
+      "alias": "未审批",
+      "value": 1
+    },
+    "number": "M-EMP000020-20250411163504",
+    "entries": [
+      {
+        "bosType": "B4309904",
+        "adminOrgUnit": {
+          "bosType": "6A6435BE",
+          "id": "00000000-0000-0000-0000-000000000000CCE7AED4"
+        },
+        "realStartTime": "2025-04-05 00:00:00",
+        "otDate": "2025-04-05 00:00:00",
+        "endTime": "2025-04-05 03:00:00",
+        "description": "",
+        "realEndTime": "2025-04-05 03:00:00",
+        "startTime": "2025-04-05 00:00:00",
+        "applyOTTime": 3.00,
+        "otCompens": {
+          "bosType": "A96B4E60",
+          "creator": {
+            "bosType": "13B7DE7F",
+            "orgRange": [],
+            "orgRangeIncludeSubOrg": [],
+            "id": "00000000-0000-0000-0000-00000000000013B7DE7F"
+          },
+          "createTime": "2013-06-28 16:40:39",
+          "adminOrgUnit": {
+            "bosType": "6A6435BE",
+            "id": "00000000-0000-0000-0000-000000000000CCE7AED4"
+          },
+          "lastUpdateTime": "2013-06-28 16:40:39",
+          "shrBasicItem": {
+            "bosType": "9373879E",
+            "conPolicy": [],
+            "crHRBUAuth": [],
+            "id": "zAiD+eOgRUuQm/alhZvF0pNzh54="
+          },
+          "description": "调休",
+          "usePolicy": {
+            "isenum": true,
+            "alias": "全局共享",
+            "value": 100
+          },
+          "index": 0,
+          "hrOrgUnit": {
+            "bosType": "58B332D9",
+            "id": "00000000-0000-0000-0000-000000000000CCE7AED4"
+          },
+          "number": "001",
+          "cU": {
+            "bosType": "3525AA94",
+            "id": "11111111-1111-1111-1111-111111111111CCE7AED4"
+          },
+          "name": "调休",
+          "lastUpdateUser": {
+            "bosType": "13B7DE7F",
+            "orgRange": [],
+            "orgRangeIncludeSubOrg": [],
+            "id": "00000000-0000-0000-0000-00000000000013B7DE7F"
+          },
+          "isSysPreset": true,
+          "id": "AERg0TIcSnaM40EKvJCdRKlrTmA=",
+          "state": {
+            "isenum": true,
+            "alias": "启用",
+            "value": 1
+          },
+          "isDefault": true
+        },
+        "restTime": 0,
+        "otReason": {
+          "bosType": "F5331EBF",
+          "creator": {
+            "bosType": "13B7DE7F",
+            "orgRange": [],
+            "orgRangeIncludeSubOrg": [],
+            "id": "00000000-0000-0000-0000-00000000000013B7DE7F"
+          },
+          "createTime": "2013-09-13 18:00:38",
+          "adminOrgUnit": {
+            "bosType": "6A6435BE",
+            "id": "00000000-0000-0000-0000-000000000000CCE7AED4"
+          },
+          "lastUpdateTime": "2013-09-13 18:00:38",
+          "shrBasicItem": {
+            "bosType": "9373879E",
+            "conPolicy": [],
+            "crHRBUAuth": [],
+            "id": "ZgFXyvhETxyTrLgg2cxo9pNzh54="
+          },
+          "description": "个人原因",
+          "usePolicy": {
+            "isenum": true,
+            "alias": "全局共享",
+            "value": 100
+          },
+          "index": 0,
+          "hrOrgUnit": {
+            "bosType": "58B332D9",
+            "id": "00000000-0000-0000-0000-000000000000CCE7AED4"
+          },
+          "number": "001",
+          "cU": {
+            "bosType": "3525AA94",
+            "id": "11111111-1111-1111-1111-111111111111CCE7AED4"
+          },
+          "name": "个人原因",
+          "lastUpdateUser": {
+            "bosType": "13B7DE7F",
+            "orgRange": [],
+            "orgRangeIncludeSubOrg": [],
+            "id": "00000000-0000-0000-0000-00000000000013B7DE7F"
+          },
+          "isSysPreset": true,
+          "id": "vAIsaIB8T42gq2HFY7+M//UzHr8=",
+          "state": {
+            "isenum": true,
+            "alias": "启用",
+            "value": 1
+          }
+        },
+        "createTag": {
+          "isenum": true,
+          "alias": "手工提交",
+          "value": 1
+        },
+        "person": {
+          "bosType": "80EF7DED",
+          "number": "EMP000020",
+          "name": "jq2",
+          "id": "4i4AAAAGH02A733t"
+        },
+        "realOTTime": 3.00,
+        "position": {
+          "bosType": "74AE612E",
+          "number": "000001",
+          "name": "集团总裁",
+          "id": "5q8AU9wIQHWhbTI0Eo86aXSuYS4="
+        },
+        "otType": {
+          "bosType": "8E82FE75",
+          "creator": {
+            "bosType": "13B7DE7F",
+            "orgRange": [],
+            "orgRangeIncludeSubOrg": [],
+            "id": "00000000-0000-0000-0000-00000000000013B7DE7F"
+          },
+          "createTime": "2013-06-28 15:25:39",
+          "adminOrgUnit": {
+            "bosType": "6A6435BE",
+            "id": "00000000-0000-0000-0000-000000000000CCE7AED4"
+          },
+          "lastUpdateTime": "2013-06-28 16:43:14",
+          "shrBasicItem": {
+            "bosType": "9373879E",
+            "conPolicy": [],
+            "crHRBUAuth": [],
+            "id": "aBa+X+muSGOgVs7PxkzFgZNzh54="
+          },
+          "description": "工作日加班",
+          "usePolicy": {
+            "isenum": true,
+            "alias": "全局共享",
+            "value": 100
+          },
+          "index": 0,
+          "hrOrgUnit": {
+            "bosType": "58B332D9",
+            "id": "00000000-0000-0000-0000-000000000000CCE7AED4"
+          },
+          "number": "001",
+          "cU": {
+            "bosType": "3525AA94",
+            "id": "11111111-1111-1111-1111-111111111111CCE7AED4"
+          },
+          "name": "工作日加班",
+          "lastUpdateUser": {
+            "bosType": "13B7DE7F",
+            "orgRange": [],
+            "orgRangeIncludeSubOrg": [],
+            "id": "00000000-0000-0000-0000-00000000000013B7DE7F"
+          },
+          "isSysPreset": true,
+          "id": "rBy0u1YgQ9C1OxcM85mxyY6C/nU=",
+          "state": {
+            "isenum": true,
+            "alias": "启用",
+            "value": 1
+          }
+        }
+      }
+    ],
+    "applyDate": "2025-04-11 00:00:00"
+  }
+}
