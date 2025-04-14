@@ -2,7 +2,8 @@
 
 _private.tripStartTime = undefined;
 _private.tripEndTime = undefined;
-_private.tripType = undefined;
+// _private.tripType = {"name":"国内","id":"0kB0QjzlQDG7EhWQJo2p3Re3I9k=","fnumber":"001"}, // "国内";
+_private.tripType = "0kB0QjzlQDG7EhWQJo2p3Re3I9k=",
 _private.tripStartPlace = undefined;
 _private.tripEndPlace = undefined;
 _private.tripReason = undefined;
@@ -120,40 +121,42 @@ _self.pageinit = function () {
         //加多选框 的样式
         $('div F7').after("<div class='caret-F7 overBill-caret-F7'></div>");
 
-        var transport = '';
+        // var transport = '';
         var type = 1;
-        $('.shadow, .tripTypes').on('click', function () {
-            $(this).hide();
-        })
-        $('.cont').delegate('li', 'click', function () {
-            $('.shadow').hide();
-            transport = this.innerHTML;
-            if (type === 1) {
-                $('.tripStartTransport').html(transport);
-            } else {
-                $('.tripEndTransport').html(transport);
-            }
-        })
-        $('.tripCont').delegate('li', 'click', function () {
-            $('.tripTypes').hide();
-            $('.tripType').html(this.innerHTML);
-            _private.tripType = $(this).attr("type-id");
-        })
+        // $('.shadow, .tripTypes').on('click', function () {
+        //     $(this).hide();
+        // })
+        // $('.cont').delegate('li', 'click', function () {
+        //     $('.shadow').hide();
+        //     transport = this.innerHTML;
+        //     if (type === 1) {
+        //         $('.tripStartTransport').html(transport);
+        //     } else {
+        //         $('.tripEndTransport').html(transport);
+        //     }
+        // })
+        // $('.tripCont').delegate('li', 'click', function () {
+        //     $('.tripTypes').hide();
+        //     $('.tripType').html(this.innerHTML);
+        //     _private.tripType = $(this).attr("type-id");
+        // })
         // 选择交通工具
-        $('.tripStartTransport').on('click', function () {
-            $('.shadow').show();
-            type = 1;
-        });
-        $('.tripEndTransport').on('click', function () {
-            $('.shadow').show();
-            type = 2;
-        });
+        // $('.tripStartTransport').on('click', function () {
+        //     $('.shadow').show();
+        //     type = 1;
+        // });
+        // $('.tripEndTransport').on('click', function () {
+        //     $('.shadow').show();
+        //     type = 2;
+        // });
         // setTimeout(function(){
 
         // },300)
-        $('.tripType').on('click', function () {
-            $('.tripTypes').show();
-        });
+
+        // $('.tripType').on('click', function () {
+        //     $('.tripTypes').show();
+        // });
+
 
         $('#text').remove();
         if(mbos.getRequestParams().stat||mbos.getRequestParams().billID){
@@ -218,8 +221,8 @@ _self.pageinit = function () {
         }
         //$('div kddatepicker').after("<div class='caret-date overBill-caret-date'></div>");
     }
-
-
+    mbos("htmlContent2").hide();
+    mbos("htmlContent1").hide();
 }
 mbos('page').bind('onCreateData', function () {
     _private.tripDate = mbos.getRequestParams().tripDate;
@@ -243,9 +246,10 @@ _private.getAtsParams = function () {
         } else {
             _private.atsParams = true;
         }
-        _private.getTripTypes();
+        // _private.getTripTypes();
+        mbos("htmlContent8").hide();
         _this.timeChange() //对默认时间计算出差时长
-        //弹性段算时长
+                       //弹性段算时长
         _private.generateIsElasticCalLen();
         console.log(_private.atsParams,"_private.atsParams")
     }
@@ -290,7 +294,8 @@ _private.getDetail = function () {
     var data = JSON.parse(mbos.getRequestParams().param);
     billId = data.billId;
 
-    $('#tripDays').text(data.realTripDays);
+    mbos('tripDays').value(data.realTripDays);
+    _private.tripDays = data.realTripDays;
     mbos('tripStartPlace').value(data.tripStartPlace);
     mbos('tripEndPlace').value(data.tripEndPlace);
     $('.tripStartTransport').html(data.tripStartTransport);
@@ -324,11 +329,11 @@ _private.initText = function () {
     // 去除出差类型后面的标识
     $('#tripType .glyphicon').remove();
 
-    var tripTimeHtml = "<span class='star'>出差时长</span><div style='float: right'><div id='tripDays'>" + _private.tripDays + "</div><span>天</span></div>";
-    //初始化出差时长
-    setTimeout(function () {
-        $('#htmlContent5').html(tripTimeHtml);
-    })
+    // var tripTimeHtml = "<span class='star'>出差时长</span><div style='float: right'><div id='tripDays'>" + _private.tripDays + "</div><span>天</span></div>";
+    // 初始化出差时长
+    // setTimeout(function () {
+    //     $('#htmlContent5').html(tripTimeHtml);
+    // })
 }
 
 
@@ -378,7 +383,7 @@ _private.tripBillSubmit = function (event) {
             param.tripType = _private.tripType || $('.tripType').html();
             param.tripStartTime = tripStartTime; //
             param.tripEndTime = tripEndTime; //
-            param.tripDays = _private.tripDays;
+            param.tripDays = mbos('tripDays').value() ? mbos('tripDays').value().toString() : _private.tripDays;
             param.tripStartTransport = $('.tripStartTransport').text();
             param.tripEndTransport = $('.tripEndTransport').text();
             //param.tripReason = _private.tripReason;
@@ -745,7 +750,7 @@ _this.timeChange = function(event){
             param.tripEndTime = tendTime + ":00";
             param.isElasticCalLen = $("#isElasticCalLen").val() == "1" ? "true" : "false";
             params[0] = param;
-            if (tstartTime != undefined && tstartTime != null && tstartTime != '' && tendTime != undefined && tendTime != null && tendTime != '') {
+            if ( tstartTime != undefined && tstartTime != null && tstartTime != '' && tendTime != undefined && tendTime != null && tendTime != '') {
                 _private.tripStartTime = param.tripStartTime;
                 _private.tripEndTime = param.tripEndTime;
                 var startTime = tstartTime.replace(/-/g, '/');
@@ -755,8 +760,11 @@ _this.timeChange = function(event){
                 var errorText = "";
                 var success = function (data) {
                     //获取出差时长成功
-                    _private.tripDays = data;
-                    $('#tripDays').text(_private.tripDays);
+                    if (mbos.getRequestParams().stat != "view") {
+                        _private.tripDays = data;
+                        // $('#tripDays').text(_private.tripDays);
+                        mbos('tripDays').value(_private.tripDays ? parseFloat(_private.tripDays) : 0);
+                    }
                     _private.submitButtonState();
                 }
                 var fail = function (data) {
